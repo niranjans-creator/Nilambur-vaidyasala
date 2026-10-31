@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex">
+<title>Admin – Nilambur Vaidyasala</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+<style>
+:root{--g:#5a7a2e;--gd:#3a4a20;--o:#cf6528;--line:#e6ecdd;--mint:#f4f9ee;--mut:#6a705c}
+*{box-sizing:border-box}body{margin:0;font:15px/1.5 system-ui,Arial,sans-serif;color:#2c3320;background:#fff}
+h2{margin:0 0 14px;color:var(--gd)}h3{margin:0 0 10px;color:var(--gd)}
+button,input,select,textarea{font:inherit}
+input,select,textarea{width:100%;padding:9px 11px;border:1.5px solid var(--line);border-radius:9px;background:#fff}
+label{display:block;font-weight:600;font-size:.82rem;margin:10px 0 4px}
+.btn{background:var(--g);color:#fff;border:0;border-radius:999px;padding:9px 20px;font-weight:600;cursor:pointer}
+.btn.s{padding:5px 12px;font-size:.82rem}.btn.o{background:transparent;color:var(--gd);border:1.5px solid var(--g)}.btn.r{background:#b3402a}
+.box{max-width:360px;margin:12vh auto;padding:28px;border:1px solid var(--line);border-radius:18px;text-align:center}
+.box img{width:130px}.err{color:#b3402a;min-height:1.3em;font-size:.88rem}
+header{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:10px 20px;background:var(--gd);color:#fff;position:sticky;top:0;z-index:5}
+header b{margin-right:auto}header button{background:transparent;color:#fff;border:0;padding:6px 12px;border-radius:999px;cursor:pointer}
+header button.on{background:#fff;color:var(--gd)}
+main{max-width:1100px;margin:0 auto;padding:22px 16px}.tab{display:none}.tab.on{display:block}
+.stats{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));margin-bottom:18px}
+.st{background:var(--mint);border-radius:14px;padding:14px}.st b{display:block;font-size:1.6rem;color:var(--gd)}.st span{color:var(--mut);font-size:.85rem}
+.charts{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.cw{border:1px solid var(--line);border-radius:14px;padding:14px}.cw div{position:relative;height:230px}
+.card{border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:18px}
+.row{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+.tw{overflow-x:auto}table{border-collapse:collapse;width:100%;min-width:640px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top;font-size:.88rem}th{background:var(--mint);color:var(--gd)}
+.bar{display:flex;gap:10px;align-items:center;margin-bottom:12px;flex-wrap:wrap}.bar input{max-width:260px}
+.pill{display:inline-block;padding:2px 10px;border-radius:999px;background:var(--mint);font-size:.78rem}
+td select{padding:4px 6px;width:auto}
+</style></head><body>
+<div id="login" class="box"><img src="logo.png" alt="Nilambur Vaidyasala"><h3>Admin sign in</h3>
+<label for="em">Email</label><input id="em" type="email" autocomplete="username"><label for="pw">Password</label><input id="pw" type="password" autocomplete="current-password">
+<p class="err" id="lerr"></p><button class="btn" id="li" style="width:100%">Sign in</button></div>
+
+<div id="app" hidden>
+<header><b>🌿 Nilambur Vaidyasala · Admin</b>
+<button data-t="dash" class="on">Dashboard</button><button data-t="prod">Products</button><button data-t="doc">Doctors</button><button data-t="ord">Orders</button><button data-t="book">Patient bookings</button><button id="out">Sign out</button></header>
+<main>
+<p class="err" id="aerr"></p>
+<section class="tab on" id="t-dash"><h2>Dashboard</h2><div class="stats" id="stats"></div>
+<div class="charts"><div class="cw"><h3>Orders per day (14 days)</h3><div><canvas id="c1"></canvas></div></div><div class="cw"><h3>Revenue per day (₹)</h3><div><canvas id="c2"></canvas></div></div><div class="cw"><h3>Bookings by department</h3><div><canvas id="c3"></canvas></div></div></div></section>
+
+<section class="tab" id="t-prod"><h2>Products</h2><div class="card"><h3 id="pf-h">Add product</h3><input type="hidden" id="p-id">
+<div class="row"><div><label>Name</label><input id="p-n"></div><div><label>Price (₹)</label><input id="p-p" type="number" min="0"></div><div><label>Category</label><input id="p-c" placeholder="Oils, Tonics…"></div><div><label>Emoji (if no image)</label><input id="p-e" placeholder="🌿"></div></div>
+<label>Description</label><input id="p-d"><label>Product image (optional)</label><input id="p-i" type="file" accept="image/*">
+<label><input type="checkbox" id="p-a" checked style="width:auto"> Show on website</label>
+<p class="err" id="p-err"></p><button class="btn" id="p-save">Save product</button> <button class="btn o" id="p-clr">Clear</button></div>
+<div class="tw"><table><thead><tr><th>Name</th><th>Category</th><th>Price</th><th>Status</th><th></th></tr></thead><tbody id="pt"></tbody></table></div></section>
+
+<section class="tab" id="t-doc"><h2>Doctors</h2><div class="card"><h3 id="df-h">Add doctor</h3><input type="hidden" id="d-id">
+<div class="row"><div><label>Name</label><input id="d-n"></div><div><label>Department</label><select id="d-dept"><option>General</option><option>Orthopaedics</option><option>Neurology</option></select></div><div><label>Qualification</label><input id="d-q" placeholder="BAMS, MD (Ayu)"></div><div><label>Experience</label><input id="d-x" placeholder="12 years"></div></div>
+<label>Doctor photo (optional)</label><input id="d-i" type="file" accept="image/*"><p class="err" id="d-err"></p><button class="btn" id="d-save">Save doctor</button> <button class="btn o" id="d-clr">Clear</button></div>
+<div class="tw"><table><thead><tr><th>Name</th><th>Department</th><th>Qualification</th><th>Experience</th><th></th></tr></thead><tbody id="dt"></tbody></table></div></section>
+
+<section class="tab" id="t-ord"><h2>Orders</h2><div class="bar"><input id="oq" placeholder="Search name / phone"><button class="btn o s" id="o-csv">Export CSV</button></div>
+<div class="tw"><table><thead><tr><th>Placed</th><th>Order</th><th>Customer</th><th>Address</th><th>Items</th><th>Total</th><th>Status</th></tr></thead><tbody id="ot"></tbody></table></div></section>
+
+<section class="tab" id="t-book"><h2>Patient bookings</h2><div class="bar"><input id="bq" placeholder="Search name / phone"><select id="bd" style="max-width:170px"><option value="">All departments</option><option>General</option><option>Orthopaedics</option><option>Neurology</option></select><button class="btn o s" id="b-csv">Export CSV</button></div>
+<div class="tw"><table><thead><tr><th>Date</th><th>Time</th><th>Department</th><th>Patient</th><th>Phone</th><th>Concern</th><th>Status</th></tr></thead><tbody id="bt"></tbody></table></div></section>
+</main></div>
+
+<script type="module">
+import {sb} from "./supabase.js";
+const $=id=>document.getElementById(id),esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const inr=n=>"₹"+Number(n||0).toLocaleString("en-IN"),T=o=>new Date(o.created_at||0);
+const key=d=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+const fd=d=>d.toLocaleString("en-IN",{day:"2-digit",month:"short",year:"numeric",hour:"2-digit",minute:"2-digit"});
+const SO=["new","confirmed","shipped","delivered","cancelled"],SB=["new","confirmed","completed","cancelled"];
+let D={products:[],doctors:[],orders:[],bookings:[]},charts={},timer,pImg="",dImg="";
+const {data:{session}}=await sb.auth.getSession();gate(session);sb.auth.onAuthStateChange((_,s)=>gate(s));
+function gate(s){$("login").hidden=!!s;$("app").hidden=!s;clearInterval(timer);if(s){load();timer=setInterval(load,30000)}}
+$("li").onclick=async()=>{$("lerr").textContent="";const {error}=await sb.auth.signInWithPassword({email:$("em").value.trim(),password:$("pw").value});if(error)$("lerr").textContent=error.message};
+$("out").onclick=()=>sb.auth.signOut();
+document.querySelectorAll("header [data-t]").forEach(b=>b.onclick=()=>{document.querySelectorAll("header [data-t]").forEach(x=>x.classList.toggle("on",x===b));document.querySelectorAll(".tab").forEach(s=>s.classList.toggle("on",s.id==="t-"+b.dataset.t))});
+async function load(){const ok=(await sb.rpc("is_admin")).data;$("aerr").textContent=ok?"":"This account is not listed in the admins table (see schema.sql).";if(!ok)return;
+const q={products:sb.from("products").select("*").order("created_at"),doctors:sb.from("doctors").select("*").order("created_at"),orders:sb.from("orders").select("*").order("created_at",{ascending:false}),bookings:sb.from("bookings").select("*").order("appt_date",{ascending:false})},ks=Object.keys(q),res=await Promise.all(ks.map(k=>q[k]));
+ks.forEach((k,i)=>{if(res[i].error)$("aerr").textContent="Could not load "+k+": "+res[i].error.message;else D[k]=res[i].data});render()}
+async function up(f){const p=Date.now()+"_"+f.name.replace(/[^\w.-]/g,"_"),{error}=await sb.storage.from("images").upload(p,f);if(error)throw error;return sb.storage.from("images").getPublicUrl(p).data.publicUrl}
+function chart(id,cfg){charts[id]&&charts[id].destroy();cfg.options={maintainAspectRatio:false,...cfg.options};charts[id]=new Chart($(id),cfg)}
+function render(){dash();prod();docs();ords();books()}
+function dash(){const O=D.orders.filter(o=>o.status!=="cancelled"),B=D.bookings.filter(b=>b.status!=="cancelled");
+$("stats").innerHTML=[["Orders",O.length],["Revenue",inr(O.reduce((a,o)=>a+Number(o.total||0),0))],["Bookings",B.length],["New orders",D.orders.filter(o=>o.status==="new").length],["New bookings",D.bookings.filter(b=>b.status==="new").length]].map(([a,b])=>`<div class="st"><b>${b}</b><span>${a}</span></div>`).join("");
+const days=[...Array(14)].map((_,i)=>{const d=new Date();d.setDate(d.getDate()-13+i);return d}),ks=days.map(key),lb=days.map(d=>d.toLocaleDateString("en-IN",{day:"numeric",month:"short"})),on=k=>O.filter(o=>key(T(o))===k);
+chart("c1",{type:"bar",data:{labels:lb,datasets:[{data:ks.map(k=>on(k).length),backgroundColor:"#5a7a2e"}]},options:{plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{precision:0}}}}});
+chart("c2",{type:"line",data:{labels:lb,datasets:[{data:ks.map(k=>on(k).reduce((a,o)=>a+Number(o.total||0),0)),borderColor:"#cf6528",backgroundColor:"rgba(207,101,40,.15)",fill:true,tension:.3}]},options:{plugins:{legend:{display:false}},scales:{y:{beginAtZero:true}}}});
+const dp=["General","Orthopaedics","Neurology"];
+chart("c3",{type:"doughnut",data:{labels:dp,datasets:[{data:dp.map(x=>B.filter(b=>b.dept===x).length),backgroundColor:["#5a7a2e","#a9c36d","#cf6528"]}]}})}
+function prod(){$("pt").innerHTML=D.products.map(x=>`<tr><td>${esc(x.emoji||"")} ${esc(x.name)}<br><small>${esc(x.description)}</small></td><td>${esc(x.category)}</td><td>${inr(x.price)}</td><td><span class="pill">${x.active?"live":"hidden"}</span></td><td><button class="btn s o" data-e="${x.id}">Edit</button> <button class="btn s r" data-x="${x.id}">Delete</button></td></tr>`).join("")||'<tr><td colspan="5">No products yet.</td></tr>'}
+$("pt").onclick=async e=>{const b=e.target.closest("button");if(!b)return;if(b.dataset.x){if(confirm("Delete this product?")){await sb.from("products").delete().eq("id",b.dataset.x);load()}return}
+const x=D.products.find(v=>v.id===b.dataset.e);$("p-id").value=x.id;$("p-n").value=x.name||"";$("p-d").value=x.description||"";$("p-p").value=x.price||0;$("p-c").value=x.category||"";$("p-e").value=x.emoji||"";pImg=x.image_url||"";$("p-a").checked=x.active;$("pf-h").textContent="Edit product";scrollTo(0,0)};
+const pclr=()=>{["p-id","p-n","p-d","p-p","p-c","p-e","p-i"].forEach(i=>$(i).value="");pImg="";$("p-a").checked=true;$("pf-h").textContent="Add product";$("p-err").textContent=""};$("p-clr").onclick=pclr;
+$("p-save").onclick=async()=>{const n=$("p-n").value.trim(),p=Number($("p-p").value);if(!n||$("p-p").value===""||!(p>=0))return $("p-err").textContent="Name and price are required.";
+try{const f=$("p-i").files[0],img=f?await up(f):pImg,data={name:n,description:$("p-d").value.trim(),price:p,category:$("p-c").value.trim()||"General",emoji:$("p-e").value.trim(),image_url:img||null,active:$("p-a").checked},id=$("p-id").value;
+const {error}=id?await sb.from("products").update(data).eq("id",id):await sb.from("products").insert(data);if(error)throw error;pclr();load()}catch(e){$("p-err").textContent="Could not save: "+(e.message||e)}};
+function docs(){$("dt").innerHTML=D.doctors.map(x=>`<tr><td>${esc(x.name)}</td><td>${esc(x.dept)}</td><td>${esc(x.qualification)}</td><td>${esc(x.experience)}</td><td><button class="btn s o" data-e="${x.id}">Edit</button> <button class="btn s r" data-x="${x.id}">Delete</button></td></tr>`).join("")||'<tr><td colspan="5">No doctors yet.</td></tr>'}
+$("dt").onclick=async e=>{const b=e.target.closest("button");if(!b)return;if(b.dataset.x){if(confirm("Delete this doctor?")){await sb.from("doctors").delete().eq("id",b.dataset.x);load()}return}
+const x=D.doctors.find(v=>v.id===b.dataset.e);$("d-id").value=x.id;$("d-n").value=x.name||"";$("d-dept").value=x.dept||"General";$("d-q").value=x.qualification||"";$("d-x").value=x.experience||"";dImg=x.photo_url||"";$("df-h").textContent="Edit doctor";scrollTo(0,0)};
+const dclr=()=>{["d-id","d-n","d-q","d-x","d-i"].forEach(i=>$(i).value="");dImg="";$("df-h").textContent="Add doctor";$("d-err").textContent=""};$("d-clr").onclick=dclr;
+$("d-save").onclick=async()=>{const n=$("d-n").value.trim();if(!n)return $("d-err").textContent="Name is required.";
+try{const f=$("d-i").files[0],img=f?await up(f):dImg,data={name:n,dept:$("d-dept").value,qualification:$("d-q").value.trim(),experience:$("d-x").value.trim(),photo_url:img||null},id=$("d-id").value;
+const {error}=id?await sb.from("doctors").update(data).eq("id",id):await sb.from("doctors").insert(data);if(error)throw error;dclr();load()}catch(e){$("d-err").textContent="Could not save: "+(e.message||e)}};
+const sel=(arr,v,col,id)=>`<select data-c="${col}" data-id="${id}">${arr.map(s=>`<option ${s===v?"selected":""}>${s}</option>`).join("")}</select>`;
+const match=(o,q)=>!q||String(o.name).toLowerCase().includes(q)||String(o.phone).includes(q);
+const oList=()=>D.orders.filter(o=>match(o,$("oq").value.toLowerCase()));
+const bList=()=>D.bookings.filter(b=>match(b,$("bq").value.toLowerCase())&&(!$("bd").value||b.dept===$("bd").value));
+function ords(){$("ot").innerHTML=oList().map(o=>`<tr><td>${fd(T(o))}</td><td>${esc(o.oid)}</td><td>${esc(o.name)}<br>${esc(o.phone)}</td><td>${esc(o.addr)}<br>PIN ${esc(o.pin)}</td><td>${(o.items||[]).map(i=>esc(i.n)+" × "+i.q).join("<br>")}</td><td>${inr(o.total)}</td><td>${sel(SO,o.status,"orders",o.id)}</td></tr>`).join("")||'<tr><td colspan="7">No orders yet.</td></tr>'}
+function books(){$("bt").innerHTML=bList().map(b=>`<tr><td>${esc(b.appt_date)}</td><td>${esc(b.appt_time)}</td><td>${esc(b.dept)}</td><td>${esc(b.name)}, ${esc(b.age)}</td><td>${esc(b.phone)}</td><td>${esc(b.note)}</td><td>${sel(SB,b.status,"bookings",b.id)}</td></tr>`).join("")||'<tr><td colspan="7">No bookings yet.</td></tr>'}
+$("oq").oninput=ords;["bq","bd"].forEach(i=>$(i).oninput=books);
+document.addEventListener("change",async e=>{const s=e.target.closest("select[data-c]");if(!s)return;await sb.from(s.dataset.c).update({status:s.value}).eq("id",s.dataset.id);load()});
+function csv(name,rows){const s=rows.map(r=>r.map(v=>'"'+String(v??"").replace(/"/g,'""')+'"').join(",")).join("\n"),a=document.createElement("a");a.href=URL.createObjectURL(new Blob(["\ufeff"+s],{type:"text/csv"}));a.download=name;a.click()}
+$("o-csv").onclick=()=>csv("orders.csv",[["Placed","Order","Name","Phone","Address","PIN","Items","Total","Status"],...oList().map(o=>[fd(T(o)),o.oid,o.name,o.phone,o.addr,o.pin,(o.items||[]).map(i=>i.n+" x"+i.q).join("; "),o.total,o.status])]);
+$("b-csv").onclick=()=>csv("bookings.csv",[["Date","Time","Department","Name","Age","Phone","Concern","Status"],...bList().map(b=>[b.appt_date,b.appt_time,b.dept,b.name,b.age,b.phone,b.note,b.status])]);
+</script></body></html>

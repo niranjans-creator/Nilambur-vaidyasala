@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nilambur Vaidyasala – Ayurveda Heritage Hospital since 1925</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff;--surface:#fff;--ink:#2c3320;--muted:#6a705c;--green:#5a7a2e;--green-d:#3a4a20;--gold:#cf6528;--line:#e6ecdd;--on-green:#fff;--sel:#f3f7e8;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark) and (max-width:0){:root:not([data-theme="light"]){--bg:#14170f;--surface:#1e2316;--ink:#eee8d6;--muted:#aeb59c;--green:#a6bf6a;--green-d:#bfd48a;--gold:#f08a4b;--line:#343b26;--on-green:#1a2010;--sel:#2a3320;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#14170f;--surface:#1e2316;--ink:#eee8d6;--muted:#aeb59c;--green:#a6bf6a;--green-d:#bfd48a;--gold:#f08a4b;--line:#343b26;--on-green:#1a2010;--sel:#2a3320;color-scheme:dark}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px)}
+*{box-sizing:border-box}
+body{margin:0;background:#fff;color:var(--ink);font:16px/1.6 Inter,system-ui,Arial,sans-serif}
+h1,h2,h3{font-family:"Cormorant Garamond",Georgia,serif;line-height:1.15;margin:0}
+a{color:inherit}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--green-d)}
+.brand .bt{font-family:"Cormorant Garamond",Georgia,serif;font-weight:700;font-size:1.15rem;letter-spacing:.14em;text-transform:uppercase;line-height:1.1}
+.brand small{display:block;font:500 .6rem Inter,sans-serif;letter-spacing:.12em;color:var(--gold);margin-top:3px}
+.lg{display:inline-block;flex:none;border-radius:50%}.lg img{width:100%;height:100%;display:block;border-radius:50%}
+.herologo{width:260px;height:260px}
+.cartbtn{background:var(--green);color:var(--on-green);border:0;border-radius:999px;padding:8px 16px;font:600 .95rem Inter,sans-serif;cursor:pointer}
+.chips{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:26px}
+.chip{border:1.5px solid var(--line);background:transparent;color:var(--ink);border-radius:999px;padding:7px 18px;font:500 .9rem Inter,sans-serif;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--green);color:var(--on-green);border-color:var(--green)}
+.pgrid{display:grid;gap:18px;grid-template-columns:repeat(auto-fill,minmax(210px,1fr))}
+.pc{background:var(--surface);border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:0 6px 24px rgba(90,122,46,.08);display:flex;flex-direction:column}
+.pt{height:140px;display:grid;place-items:center;font-size:3.4rem;background:linear-gradient(135deg,var(--sel),color-mix(in srgb,var(--green) 28%,var(--surface)))}
+.pb{padding:16px;display:flex;flex-direction:column;gap:4px;flex:1}
+.pb h3{font-size:1.3rem;color:var(--green-d)}
+.pb p{margin:0;color:var(--muted);font-size:.88rem}
+.pr{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:10px}
+.pr b{font-size:1.15rem;color:var(--gold)}
+.pr .btn{padding:8px 16px;font-size:.88rem}
+.ov{position:fixed;inset:0;background:rgba(20,25,10,.45);z-index:40}
+.dr{position:fixed;top:0;right:0;bottom:0;width:min(420px,100%);background:var(--bg);z-index:50;display:flex;flex-direction:column;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);box-shadow:-10px 0 40px rgba(0,0,0,.2)}
+.dh{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--line)}
+.dh h3{font-size:1.5rem;color:var(--green-d)}
+.dh button{background:none;border:0;font-size:1.2rem;color:var(--ink);cursor:pointer}
+.db{padding:18px 20px;overflow:auto;flex:1}
+.ci{display:grid;grid-template-columns:44px 1fr auto;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
+.ce{font-size:1.8rem;text-align:center}
+.qty{display:flex;align-items:center;gap:8px}
+.qty button{width:28px;height:28px;border-radius:50%;border:1.5px solid var(--green);background:transparent;color:var(--green-d);cursor:pointer;font-size:1rem}
+.tr{display:flex;justify-content:space-between;margin:6px 0}
+.tr.t{font-weight:700;font-size:1.1rem;border-top:1px solid var(--line);padding-top:10px;margin-top:10px}
+.tint{background:#f4f9ee}
+.team .card{text-align:center}
+.av img{width:100%;height:100%;border-radius:50%;object-fit:cover}
+.av{width:88px;height:88px;border-radius:50%;margin:0 auto 12px;display:grid;place-items:center;font-size:2.2rem;background:linear-gradient(135deg,var(--sel),color-mix(in srgb,var(--green) 25%,var(--surface)));border:3px solid var(--surface);box-shadow:0 0 0 2px var(--green)}
+footer .lg{border-radius:50%}
+@media(max-width:760px){.hero{grid-template-columns:1fr;padding:36px 24px}.hero .herologo{grid-column:1;grid-row:auto;width:170px;height:170px;margin-bottom:12px}}
+nav a{margin-left:18px;text-decoration:none;color:var(--muted);font-size:.92rem}
+.btn{display:inline-block;background:var(--green);color:var(--on-green);border:0;border-radius:999px;padding:12px 26px;font:600 1rem Inter,sans-serif;cursor:pointer;text-decoration:none}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.ghost{background:transparent;color:var(--green-d);border:1.5px solid var(--green)}
+.hero{width:calc(100% - 32px);margin-top:20px;padding:56px 48px;border-radius:30px;background:linear-gradient(135deg,#2c3d1a,#4a6a2a);color:#f3f0dc;text-align:left;display:grid;grid-template-columns:1.25fr .85fr;column-gap:24px;align-content:center}
+.hero>*{grid-column:1}
+.hero .herologo{grid-column:2;grid-row:1/7;align-self:center;justify-self:center;border-radius:50%;padding:0;box-shadow:0 8px 30px rgba(0,0,0,.18)}
+.hero .badge{justify-self:start;color:#ffc9a0;border-color:#ffc9a0}
+.hero .btn{background:#fff;color:#2c3d1a;justify-self:start}
+.hero .stats b{color:#ffb47a}
+.badge{display:inline-block;border:1px solid var(--gold);color:var(--gold);border-radius:999px;padding:4px 16px;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600}
+.hero h1{font-size:clamp(2.4rem,5.5vw,4rem);color:#fff;margin:18px 0 14px}
+.hero p{max-width:520px;margin:0 0 28px;color:#dfe6cf;font-size:1.08rem}
+.stats{display:flex;justify-content:flex-start;gap:36px;flex-wrap:wrap;margin-top:40px}
+.stats b{display:block;font:700 2.2rem "Cormorant Garamond",Georgia,serif;color:var(--gold)}
+.stats span{color:#dfe6cf;font-size:.9rem}
+section{padding:56px 0}
+.sec-h{text-align:center;margin-bottom:32px}
+.sec-h h2{font-size:2.3rem;color:var(--green-d)}
+.sec-h p{color:var(--muted);margin:8px 0 0}
+.grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:26px;box-shadow:0 6px 24px rgba(90,122,46,.08)}
+.card h3{font-size:1.5rem;color:var(--green-d);margin:6px 0 6px}
+.card p{margin:0;color:var(--muted);font-size:.95rem}
+.ico{font-size:1.8rem}
+.about{background:var(--surface);border-block:1px solid var(--line)}
+.about p{max-width:720px;margin:0 auto 14px;text-align:center;color:var(--muted)}
+.book{display:grid;gap:26px;grid-template-columns:1fr}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:26px;box-shadow:0 8px 30px rgba(90,122,46,.08)}
+.panel h3{font-size:1.4rem;color:var(--green-d);margin-bottom:12px}
+.depts{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+.opt{border:1.5px solid var(--line);border-radius:14px;padding:14px;cursor:pointer;background:transparent;color:var(--ink);text-align:left;font:inherit}
+.opt b{display:block;font-family:"Cormorant Garamond",Georgia,serif;font-size:1.2rem;color:var(--green-d)}
+.opt small{color:var(--muted)}
+.opt[aria-pressed="true"]{border-color:var(--green);background:var(--sel);box-shadow:0 0 0 2px var(--green) inset}
+.slots{display:grid;gap:8px;grid-template-columns:repeat(auto-fill,minmax(92px,1fr))}
+.slot{padding:9px 4px;border:1.5px solid var(--line);border-radius:10px;background:transparent;color:var(--ink);font:500 .9rem Inter,sans-serif;cursor:pointer}
+.slot[aria-pressed="true"]{background:var(--green);color:var(--on-green);border-color:var(--green)}
+.slot:disabled{text-decoration:line-through;opacity:.4;cursor:not-allowed}
+label{display:block;font-weight:600;font-size:.88rem;margin:14px 0 5px}
+input,textarea{width:100%;padding:11px 13px;border:1.5px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);font:inherit}
+input:focus,textarea:focus,.opt:focus-visible,.slot:focus-visible{outline:2px solid var(--gold);outline-offset:1px}
+.row{display:grid;gap:12px;grid-template-columns:1fr 1fr}
+.muted{color:var(--muted);font-size:.88rem}
+.err{color:#c0392b;font-size:.88rem;min-height:1.3em;margin:10px 0 0}
+.ok{text-align:center}
+.ok h3{font-size:2rem}
+.ref{display:inline-block;margin:12px 0;padding:8px 20px;border:1.5px dashed var(--gold);border-radius:10px;font:600 1.2rem Inter,sans-serif;letter-spacing:.08em;color:var(--gold)}
+.sum{text-align:left;max-width:380px;margin:12px auto 20px;line-height:1.9}
+footer{background:linear-gradient(135deg,#2c3d1a,#46602a);color:#f3f0dc;padding:36px 0;text-align:center;font-size:.92rem}
+[hidden]{display:none!important}
+@media(min-width:860px){.book{grid-template-columns:1.1fr .9fr}}
+@media(max-width:620px){nav{display:none}.row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><div class="wrap"><a class="brand" href="#top"><span class="lg" data-logo style="width:56px;height:56px"></span><span class="bt">Nilambur Vaidyasala<small>AYURVEDA HERITAGE HOSPITAL</small></span></a>
+<nav><a href="#about">Our Legacy</a><a href="#departments">Departments</a><a href="#shop">Shop</a><a href="#book">Book Visit</a></nav><div style="display:flex;gap:8px;align-items:center"><button class="cartbtn" id="accountBtn">Sign in</button><button class="cartbtn" id="cartBtn" aria-label="Open cart">🛒 Cart (<span id="cartN">0</span>)</button></div></div></header>
+
+<main id="top">
+<div class="hero wrap">
+<div class="lg herologo" data-logo></div>
+<span class="badge">Ayurveda Heritage Hospital · Since 1925</span>
+<h1>Healing, rooted in tradition</h1>
+<p>For over a century, Nilambur Vaidyasala has restored health through classical Ayurvedic care. Book your consultation in a few simple steps.</p>
+<a class="btn" href="#book">Book a Consultation</a>
+<div class="stats"><div><b>100+</b><span>Years of tradition</span></div><div><b>3</b><span>Specialty departments</span></div><div><b>5</b><span>Generations of vaidyas</span></div></div>
+</div>
+
+<section class="about" id="about"><div class="wrap">
+<div class="sec-h"><h2>A legacy rooted in a century of care</h2></div>
+<p>Founded in the forest-fringed town of Nilambur, Kerala, our vaidyasala has carried forward the knowledge of the Ashtanga Hridaya and classical Ayurvedic texts, passed from teacher to student for over a century.</p>
+<p>Today, traditional diagnosis, herbal formulations and Panchakarma therapies are offered alongside modern patient care, with the same principle as always: treat the person, not just the symptom.</p>
+</div></section>
+
+<section id="departments"><div class="wrap">
+<div class="sec-h"><h2>Our Departments</h2><p>Specialist care, the Ayurvedic way</p></div>
+<div class="grid">
+<div class="card"><div class="ico">🌿</div><h3>General Medicine</h3><p>Kayachikitsa for digestion, immunity, lifestyle disorders, skin, and seasonal wellness.</p></div>
+<div class="card"><div class="ico">🦴</div><h3>Orthopaedics</h3><p>Care for joint pain, arthritis, spine and sports injuries using Kizhi, Abhyanga and Marma therapy.</p></div>
+<div class="card"><div class="ico">🧠</div><h3>Neurology</h3><p>Treatment for paralysis, neuropathy, migraine and stress-related nerve disorders through Panchakarma.</p></div>
+</div></div></section>
+
+<section class="tint" id="team"><div class="wrap"><div class="sec-h"><h2>Meet Our Specialists</h2><p>Experienced vaidyas guiding every department</p></div><div class="grid team" id="docs">
+<div class="card"><div class="av">🌿</div><h3>General Medicine</h3><p>Senior Vaidya · Kayachikitsa</p></div>
+<div class="card"><div class="av">🦴</div><h3>Orthopaedics</h3><p>Senior Vaidya · Bone, joint &amp; Marma care</p></div>
+<div class="card"><div class="av">🧠</div><h3>Neurology</h3><p>Senior Vaidya · Panchakarma &amp; nerve care</p></div>
+</div></div></section>
+
+<section id="treatments"><div class="wrap"><div class="sec-h"><h2>Our Signature Therapies</h2><p>Classical treatments, delivered with care</p></div><div class="grid">
+<div class="card"><div class="ico">💧</div><h3>Abhyanga</h3><p>Warm herbal oil massage to ease muscles and calm the nerves.</p></div>
+<div class="card"><div class="ico">🍃</div><h3>Kizhi</h3><p>Herbal poultice therapy for joint stiffness and pain.</p></div>
+<div class="card"><div class="ico">🪷</div><h3>Shirodhara</h3><p>A steady stream of medicated oil over the forehead for deep relaxation.</p></div>
+<div class="card"><div class="ico">✨</div><h3>Panchakarma</h3><p>Classical detoxification and rejuvenation programme.</p></div>
+</div></div></section>
+
+<section id="shop"><div class="wrap"><div class="sec-h"><h2>Vaidyasala Store</h2><p>Authentic Ayurvedic formulations, prepared the traditional way</p></div><div class="chips" id="chips"></div><div class="pgrid" id="pgrid"></div><p class="muted" style="text-align:center;margin-top:22px">Free delivery on orders above ₹999. Please consult our vaidya before starting any medicine.</p></div></section>
+
+<section id="book" style="background:var(--surface);border-top:1px solid var(--line)"><div class="wrap">
+<div class="sec-h"><h2>Book Your Consultation</h2><p>Choose a department, date and time that suits you</p></div>
+
+<div id="bookForm" class="book">
+<div class="panel">
+<h3>1 · Department</h3>
+<div class="depts" id="depts"></div>
+<h3 style="margin-top:24px">2 · Date &amp; time</h3>
+<label for="date" style="margin-top:0">Preferred date</label>
+<input type="date" id="date">
+<p class="muted" style="margin:6px 0 0">Consultations run Monday to Saturday.</p>
+<label>Available slots</label>
+<div class="slots" id="slots"><span class="muted">Select a department and date first.</span></div>
+</div>
+
+<div class="panel">
+<h3>3 · Your details</h3>
+<label for="name" style="margin-top:0">Full name</label><input id="name" autocomplete="name">
+<div class="row"><div><label for="age">Age</label><input id="age" type="number" min="0" max="120" inputmode="numeric"></div>
+<div><label for="phone">Phone</label><input id="phone" type="tel" autocomplete="tel" inputmode="tel"></div></div>
+<label for="note">Health concern (optional)</label><textarea id="note" rows="3"></textarea>
+<p class="err" id="err" role="alert"></p>
+<button class="btn" id="submit" style="width:100%;margin-top:6px">Confirm Booking</button>
+</div>
+</div>
+
+<div id="done" class="panel ok" hidden>
+<div class="ico">🪷</div><h3>Booking confirmed</h3>
+<p class="muted">Please arrive 15 minutes early and carry any previous medical records.</p>
+<div class="ref" id="ref"></div>
+<div class="sum" id="sum"></div>
+<button class="btn ghost" id="again">Book another visit</button>
+</div>
+</div></section>
+
+<section id="account" hidden><div class="wrap account-wrap">
+<div class="sec-h"><h2>Your Account</h2><p>Manage your profile, bookings and orders</p></div>
+<div class="panel" id="accountGuest">
+<h3 id="authHeading">Sign in</h3>
+<div id="signupFields" hidden><label for="authName">Full name</label><input id="authName" autocomplete="name"><label for="authPhone">Phone</label><input id="authPhone" type="tel" autocomplete="tel"></div>
+<label for="authEmail">Email</label><input id="authEmail" type="email" autocomplete="email">
+<label for="authPassword">Password</label><input id="authPassword" type="password" autocomplete="current-password">
+<p class="err" id="authErr" role="alert"></p>
+<div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px"><button class="btn" id="authSubmit">Sign in</button><button class="btn ghost" id="authSwitch">Create account</button><button class="btn ghost" id="authReset">Reset password</button></div>
+</div>
+<div class="panel" id="accountHome" hidden>
+<div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap"><h3>Profile</h3><button class="btn ghost" id="authSignOut">Sign out</button></div>
+<p class="muted" id="accountEmail"></p>
+<div id="recoveryPanel" hidden><label for="newPassword">New password</label><input id="newPassword" type="password" autocomplete="new-password"><p class="err" id="recoveryErr" role="alert"></p><button class="btn" id="recoverySave">Update password</button></div>
+<label for="profileName">Full name</label><input id="profileName" autocomplete="name">
+<label for="profilePhone">Phone</label><input id="profilePhone" type="tel" autocomplete="tel">
+<p class="err" id="profileErr" role="alert"></p><button class="btn" id="profileSave">Save profile</button>
+<h3 style="margin-top:28px">My bookings</h3><div id="myBookings" class="muted">Loading bookings…</div>
+<h3 style="margin-top:28px">My orders</h3><div id="myOrders" class="muted">Loading orders…</div>
+</div>
+</div></section>
+</main>
+
+<div id="ov" class="ov" hidden></div>
+<aside id="dr" class="dr" hidden aria-label="Shopping cart"><div class="dh"><h3 id="dt">Your cart</h3><button id="dx" aria-label="Close">✕</button></div><div id="db" class="db"></div></aside>
+
+<footer><div class="wrap">
+<div class="lg" data-logo style="width:120px;height:120px"></div>
+<div style="font-family:'Cormorant Garamond',Georgia,serif;font-size:1.4rem;letter-spacing:.14em;text-transform:uppercase;color:#fff">Nilambur Vaidyasala</div>
+<div>Nilambur, Malappuram, Kerala · Open Monday–Saturday, 9:00 am – 5:00 pm</div>
+<div style="opacity:.7;margin-top:6px">© 2026 Nilambur Vaidyasala · Serving since 1925</div>
+</div></footer>
+
+<script type="module">
+import {sb} from "./supabase.js";
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const DEPTS=[{id:"General",icon:"🌿",d:"Kayachikitsa"},{id:"Orthopaedics",icon:"🦴",d:"Joints, spine, muscles"},{id:"Neurology",icon:"🧠",d:"Nerves &amp; brain"}];
+const TIMES=["09:00","09:30","10:00","10:30","11:00","11:30","12:00","12:30","14:00","14:30","15:00","15:30","16:00","16:30"];
+let state={dept:null,time:null};
+const $=id=>document.getElementById(id);
+const{data:{session:initialSession}}=await sb.auth.getSession();
+let currentUser=initialSession?.user||null,authMode="signin";
+const authErr=$("authErr");
+function setAuthMode(mode){authMode=mode;const signup=mode==="signup";$("authHeading").textContent=signup?"Create your account":"Sign in";$("authSubmit").textContent=signup?"Create account":"Sign in";$("authSwitch").textContent=signup?"I already have an account":"Create account";$("signupFields").hidden=!signup;$("authPassword").autocomplete=signup?"new-password":"current-password";authErr.textContent=""}
+function showAccount(){ $("account").hidden=false;$("account").scrollIntoView({behavior:"smooth",block:"start"});if(currentUser)loadAccount()}
+function renderAccountState(){const signedIn=!!currentUser;$("accountBtn").textContent=signedIn?"Account":"Sign in";$("accountGuest").hidden=signedIn;$("accountHome").hidden=!signedIn;if(signedIn){$("accountEmail").textContent=currentUser.email||"";if(!$("profileName").value)$("profileName").value=currentUser.user_metadata?.full_name||"";if(!$("profilePhone").value)$("profilePhone").value=currentUser.user_metadata?.phone||"";if(!$("name").value)$("name").value=currentUser.user_metadata?.full_name||"";if(!$("phone").value)$("phone").value=currentUser.user_metadata?.phone||""}}
+async function loadAccount(){if(!currentUser)return;const uid=currentUser.id;const[profile,bookings,orders]=await Promise.all([sb.from("profiles").select("full_name,phone").eq("id",uid).maybeSingle(),sb.from("bookings").select("ref,dept,appt_date,appt_time,status").eq("user_id",uid).order("created_at",{ascending:false}),sb.from("orders").select("oid,items,total,status,created_at").eq("user_id",uid).order("created_at",{ascending:false})]);if(!currentUser||currentUser.id!==uid)return;if(profile.error){$("profileErr").textContent="Could not load your profile. Please try again."}else if(profile.data){$("profileName").value=profile.data.full_name||"";$("profilePhone").value=profile.data.phone||"";if(!$("name").value)$("name").value=profile.data.full_name||"";if(!$("phone").value)$("phone").value=profile.data.phone||""}const dt=d=>new Date(d+"T00:00:00").toLocaleDateString("en-IN",{day:"numeric",month:"short",year:"numeric"});$("myBookings").innerHTML=bookings.error?'<p class="muted">Could not load bookings. Please try again.</p>':bookings.data.length?bookings.data.map(b=>`<div class="card"><b>${esc(b.dept)}</b> · ${esc(dt(b.appt_date))} · ${esc(b.appt_time)}<br><span class="muted">Reference ${esc(b.ref||"—")} · ${esc(b.status)}</span></div>`).join(""):'<p class="muted">No bookings yet.</p>';$("myOrders").innerHTML=orders.error?'<p class="muted">Could not load orders. Please try again.</p>':orders.data.length?orders.data.map(o=>`<div class="card"><b>Order ${esc(o.oid||"")}</b> · ₹${Number(o.total||0).toLocaleString("en-IN")}<br><span class="muted">${esc(o.status)} · ${esc(new Date(o.created_at).toLocaleDateString("en-IN",{day:"numeric",month:"short",year:"numeric"}))}</span><div class="muted">${(o.items||[]).map(i=>`${esc(i.n)} × ${Number(i.q)||0}`).join(", ")}</div></div>`).join(""):'<p class="muted">No orders yet.</p>'}
+async function syncProfile(){if(!currentUser)return;const full_name=$("profileName").value.trim(),phone=$("profilePhone").value.trim();$("profileErr").textContent="";if(full_name.length<2){$("profileErr").textContent="Please enter your full name.";return}if(phone&&!/^[+\d][\d\s-]{7,14}$/.test(phone)){$("profileErr").textContent="Please enter a valid phone number.";return}const{error}=await sb.from("profiles").upsert({id:currentUser.id,full_name,phone},{onConflict:"id"});if(error){$("profileErr").textContent=error.message;return}$("name").value=full_name;$("phone").value=phone;$("profileErr").textContent="Profile saved."}
+sb.auth.onAuthStateChange((event,session)=>{currentUser=session?.user||null;renderAccountState();$("recoveryPanel").hidden=event!=="PASSWORD_RECOVERY";if(currentUser)setTimeout(()=>loadAccount(),0)});
+$("accountBtn").onclick=showAccount;
+$("authSwitch").onclick=()=>setAuthMode(authMode==="signup"?"signin":"signup");
+$("authSubmit").onclick=async()=>{authErr.textContent="";const email=$("authEmail").value.trim(),password=$("authPassword").value;if(!email||!password){authErr.textContent="Enter your email and password.";return}if(authMode==="signup"){const name=$("authName").value.trim(),phone=$("authPhone").value.trim();if(name.length<2){authErr.textContent="Please enter your full name.";return}if(password.length<8){authErr.textContent="Use a password with at least 8 characters.";return}if(phone&&!/^[+\d][\d\s-]{7,14}$/.test(phone)){authErr.textContent="Please enter a valid phone number.";return}const{data,error}=await sb.auth.signUp({email,password,options:{data:{full_name:name,phone}}});if(error){authErr.textContent=error.message;return}authErr.textContent=data.session?"Account created. You are signed in.":"Account created. Check your email to confirm the account, then sign in."}else{const{error}=await sb.auth.signInWithPassword({email,password});if(error)authErr.textContent=error.message}};
+$("authReset").onclick=async()=>{authErr.textContent="";const email=$("authEmail").value.trim();if(!email){authErr.textContent="Enter your email first.";return}const{error}=await sb.auth.resetPasswordForEmail(email,{redirectTo:location.origin+location.pathname});authErr.textContent=error?error.message:"If an account exists for that email, a password reset link has been sent."};
+$("recoverySave").onclick=async()=>{const password=$("newPassword").value;$("recoveryErr").textContent="";if(password.length<8){$("recoveryErr").textContent="Use a password with at least 8 characters.";return}const{error}=await sb.auth.updateUser({password});$("recoveryErr").textContent=error?error.message:"Password updated."};
+$("authSignOut").onclick=async()=>{const{error}=await sb.auth.signOut();if(error)$("profileErr").textContent=error.message};
+$("profileSave").onclick=syncProfile;
+setAuthMode("signin");
+const dEl=$("date");
+function iso(d){return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")}
+const today=new Date();dEl.min=iso(today);
+const mx=new Date();mx.setDate(mx.getDate()+60);dEl.max=iso(mx);
+function fmt(t){const[h,m]=t.split(":").map(Number);return(h%12||12)+":"+String(m).padStart(2,"0")+" "+(h<12?"AM":"PM")}
+function hash(s){let h=0;for(const c of s)h=(h*31+c.charCodeAt(0))>>>0;return h}
+let takenSet=new Set(),wtok=0;
+function taken(date,dept,t){return takenSet.has(t)}
+async function watch(){const tok=++wtok;takenSet=new Set();if(!state.dept||!dEl.value)return;const {data}=await sb.rpc("taken_slots",{d:dEl.value,dp:state.dept});if(tok!==wtok)return;takenSet=new Set((data||[]).map(r=>r.appt_time));renderSlots()}
+function pastTime(date,t){if(date!==iso(new Date()))return false;const[h,m]=t.split(":").map(Number);const n=new Date();return h*60+m<=n.getHours()*60+n.getMinutes()}
+function renderDepts(){
+  $("depts").innerHTML=DEPTS.map(x=>`<button type="button" class="opt" data-d="${x.id}" aria-pressed="${state.dept===x.id}"><span class="ico">${x.icon}</span><b>${x.id}</b><small>${esc(x.d)}</small></button>`).join("");
+  $("depts").querySelectorAll(".opt").forEach(b=>b.onclick=()=>{state.dept=b.dataset.d;state.time=null;renderDepts();watch();renderSlots()});
+}
+function renderSlots(){
+  const box=$("slots"),v=dEl.value;
+  if(!state.dept||!v){box.innerHTML='<span class="muted">Select a department and date first.</span>';return}
+  const day=new Date(v+"T00:00:00").getDay();
+  if(day===0){box.innerHTML='<span class="muted">The hospital is closed on Sundays. Please choose another date.</span>';state.time=null;return}
+  box.innerHTML=TIMES.map(t=>{const off=taken(v,state.dept,t)||pastTime(v,t);return`<button type="button" class="slot" data-t="${t}" ${off?"disabled":""} aria-pressed="${state.time===t}">${fmt(t)}</button>`}).join("");
+  box.querySelectorAll(".slot:not(:disabled)").forEach(b=>b.onclick=()=>{state.time=b.dataset.t;renderSlots()});
+}
+dEl.onchange=()=>{state.time=null;watch();renderSlots()};
+$("submit").onclick=async()=>{
+  const e=$("err"),name=$("name").value.trim(),phone=$("phone").value.trim(),age=$("age").value;
+  e.textContent="";
+  if(!state.dept)return e.textContent="Please choose a department.";
+  if(!dEl.value)return e.textContent="Please choose a date.";
+  if(new Date(dEl.value+"T00:00:00").getDay()===0)return e.textContent="We are closed on Sundays.";
+  if(!state.time)return e.textContent="Please pick a time slot.";
+  if(name.length<2)return e.textContent="Please enter your name.";
+  if(!age||age<0||age>120)return e.textContent="Please enter a valid age.";
+  if(!/^[+\d][\d\s-]{7,14}$/.test(phone))return e.textContent="Please enter a valid phone number.";
+  const ref="NV-"+Math.random().toString(36).slice(2,8).toUpperCase();
+  const dt=new Date(dEl.value+"T00:00:00").toLocaleDateString("en-IN",{weekday:"long",day:"numeric",month:"long",year:"numeric"});
+  const esc=s=>s.replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+  $("ref").textContent=ref;
+  $("sum").innerHTML=`<b>Patient:</b> ${esc(name)}<br><b>Department:</b> ${state.dept}<br><b>Date:</b> ${dt}<br><b>Time:</b> ${fmt(state.time)}`;
+  const {error:be}=await sb.from("bookings").insert({ref,dept:state.dept,appt_date:dEl.value,appt_time:state.time,name,age:+age,phone,note:$("note").value.trim().slice(0,500),user_id:currentUser?.id||null});
+  if(be){e.textContent=be.code==="23505"?"Sorry, that slot was just taken. Please choose another time.":"Sorry, we could not save your booking. Please try again or call us.";watch();return}
+  if(currentUser)loadAccount();
+  $("bookForm").hidden=true;$("done").hidden=false;$("done").scrollIntoView({block:"center"});
+};
+$("again").onclick=()=>{state={dept:null,time:null};["name","age","phone","note"].forEach(i=>$(i).value="");dEl.value="";renderDepts();renderSlots();$("done").hidden=true;$("bookForm").hidden=false;document.getElementById("book").scrollIntoView()};
+function logo(){let s=7;const r=()=>(s=(s*16807)%2147483647)/2147483647,D='#3a4a20',K='#2c2c22';let o='';
+[-115,-85,-55,-25,25,55,85,115].forEach(a=>{const t=a*Math.PI/180,x=100+54*Math.sin(t),y=88-54*Math.cos(t);o+=`<path d="M100 104 Q${(100+(x-100)*.35).toFixed(1)} ${(88+(y-88)*.4).toFixed(1)} ${x.toFixed(1)} ${y.toFixed(1)}" stroke="${K}" stroke-width="1.5" fill="none"/>`});
+o+=`<circle cx="100" cy="88" r="34" fill="none" stroke="${K}" stroke-width="1.2"/>`;
+for(let i=0;i<90;i++){const a=r()*6.283;if(Math.abs(a-1.5708)<.42)continue;const d=40+r()*27,x=100+d*Math.cos(a),y=88+d*Math.sin(a),rot=a*57.3+(r()-.5)*70;o+=`<ellipse cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" rx="6.5" ry="2.7" transform="rotate(${rot.toFixed(0)} ${x.toFixed(1)} ${y.toFixed(1)})" fill="${r()>.5?'#7f9f45':'#a9c36d'}"/>`}
+o+=`<circle cx="100" cy="70" r="4.6" fill="${D}"/><path d="M100 76C94 86 105 94 99 106C97 112 100 116 100 124" stroke="${D}" stroke-width="5" fill="none" stroke-linecap="round"/>`;
+['M100 124C100 150 100 170 100 192','M100 124C90 140 70 150 50 152','M100 124C110 140 130 150 150 152','M100 130C88 160 76 172 64 186','M100 130C112 160 124 172 136 186','M98 128C94 150 86 168 82 190','M102 128C106 150 114 168 118 190','M90 140C76 146 62 164 56 174','M110 140C124 146 138 164 144 174'].forEach(p=>o+=`<path d="${p}" stroke="${K}" stroke-width="2" fill="none" stroke-linecap="round"/>`);
+return`<svg viewBox="0 0 200 200" role="img" aria-label="Nilambur Vaidyasala logo">${o}</svg>`}
+const LOGO="logo.png";document.querySelectorAll('[data-logo]').forEach(e=>e.innerHTML='<img src="'+LOGO+'" alt="Nilambur Vaidyasala, Ayurveda Heritage Hospital, since 1925">');
+let P=[];
+let cart={},cat="All",view="cart";try{cart=JSON.parse(localStorage.getItem("nv_cart")||"{}")}catch(_){}
+const inr=n=>"₹"+n.toLocaleString("en-IN"),cnt=()=>Object.values(cart).reduce((a,b)=>a+b,0),sub=()=>P.reduce((a,x)=>a+(cart[x.id]||0)*x.p,0),ship=s=>s===0||s>=999?0:60;
+function upd(){try{localStorage.setItem("nv_cart",JSON.stringify(cart))}catch(_){}$("cartN").textContent=cnt();if(view==="cart"&&!$("dr").hidden)drawer("cart")}
+function shop(){$("chips").innerHTML=["All",...new Set(P.map(x=>x.c).filter(Boolean))].map(c=>`<button class="chip" data-c="${c}" aria-pressed="${cat===c}">${c}</button>`).join("");
+$("chips").querySelectorAll(".chip").forEach(b=>b.onclick=()=>{cat=b.dataset.c;shop()});
+$("pgrid").innerHTML=P.filter(x=>cat==="All"||x.c===cat).map(x=>`<div class="pc"><div class="pt">${x.img?`<img src="${esc(x.img)}" alt="" style="width:100%;height:100%;object-fit:cover">`:esc(x.e||"🌿")}</div><div class="pb"><h3>${esc(x.n)}</h3><p>${esc(x.d)}</p><div class="pr"><b>${inr(x.p)}</b><button class="btn" data-id="${x.id}">Add to cart</button></div></div></div>`).join("");
+$("pgrid").querySelectorAll("[data-id]").forEach(b=>b.onclick=()=>{cart[b.dataset.id]=(cart[b.dataset.id]||0)+1;upd();b.textContent="Added ✓";setTimeout(()=>b.textContent="Add to cart",900)})}
+function tot(){const s=sub(),h=ship(s);return`<div class="tr"><span>Subtotal</span><span>${inr(s)}</span></div><div class="tr"><span>Delivery</span><span>${h?inr(h):"Free"}</span></div><div class="tr t"><span>Total</span><span>${inr(s+h)}</span></div>`}
+function drawer(v){view=v;const b=$("db");$("dt").textContent=v==="checkout"?"Checkout":v==="done"?"Order placed":"Your cart";
+if(v==="cart"){if(!sub()){b.innerHTML='<p class="muted">Your cart is empty. Browse the store to add products.</p>';return}
+b.innerHTML=P.filter(x=>cart[x.id]).map(x=>`<div class="ci"><span class="ce">${x.e}</span><div><b>${esc(x.n)}</b><div class="muted">${inr(x.p)}</div></div><div class="qty"><button data-m="${x.id}" aria-label="Remove one">−</button><span>${cart[x.id]}</span><button data-a="${x.id}" aria-label="Add one">+</button></div></div>`).join("")+'<div style="margin:14px 0">'+tot()+'</div><button class="btn" id="go" style="width:100%">Proceed to checkout</button>';
+b.querySelectorAll("[data-a]").forEach(e=>e.onclick=()=>{cart[e.dataset.a]++;upd()});
+b.querySelectorAll("[data-m]").forEach(e=>e.onclick=()=>{if(--cart[e.dataset.m]<=0)delete cart[e.dataset.m];upd()});
+$("go").onclick=()=>drawer("checkout")}
+else if(v==="checkout"){b.innerHTML=tot()+'<label for="cn">Full name</label><input id="cn" autocomplete="name"><label for="cp">Phone</label><input id="cp" type="tel" autocomplete="tel"><label for="ca">Delivery address</label><textarea id="ca" rows="3" autocomplete="street-address"></textarea><label for="cz">PIN code</label><input id="cz" inputmode="numeric" maxlength="6"><label>Payment</label><p class="muted" style="margin:0">✅ Cash on delivery<br>Online payment (UPI / cards) will be available soon.</p><p class="err" id="coerr" role="alert"></p><button class="btn" id="place" style="width:100%">Place order</button><button class="btn ghost" id="back" style="width:100%;margin-top:10px">Back to cart</button>';
+$("cn").value=$("profileName").value||currentUser?.user_metadata?.full_name||"";$("cp").value=$("profilePhone").value||currentUser?.user_metadata?.phone||"";
+$("back").onclick=()=>drawer("cart");$("place").onclick=place}}
+async function place(){const g=i=>$(i).value.trim(),e=$("coerr");
+if(g("cn").length<2)return e.textContent="Please enter your name.";
+if(!/^[+\d][\d\s-]{7,14}$/.test(g("cp")))return e.textContent="Please enter a valid phone number.";
+if(g("ca").length<8)return e.textContent="Please enter your full address.";
+if(!/^\d{6}$/.test(g("cz")))return e.textContent="Please enter a 6-digit PIN code.";
+const s=sub(),t=s+ship(s),id="NV"+Date.now().toString().slice(-7),ph=g("cp");
+const {error:oe}=await sb.from("orders").insert({oid:id,name:g("cn"),phone:ph,addr:g("ca"),pin:g("cz"),items:P.filter(x=>cart[x.id]).map(x=>({id:x.id,n:x.n,q:cart[x.id],p:x.p})),total:t,user_id:currentUser?.id||null});
+if(oe){e.textContent="Sorry, we could not place your order. Please try again.";return}
+if(currentUser)loadAccount();cart={};view="done";upd();$("dt").textContent="Order placed";
+$("db").innerHTML='<div class="ok"><div class="ico">🪷</div><h3>Thank you!</h3><div class="ref">'+id+'</div><p class="muted" id="dn"></p><button class="btn" id="dc">Continue shopping</button></div>';
+$("dn").textContent="Order total "+inr(t)+" · Cash on delivery. Our team will call "+ph+" to confirm your order.";$("dc").onclick=closeD}
+function openD(v){$("ov").hidden=$("dr").hidden=false;drawer(v)}
+function closeD(){$("ov").hidden=$("dr").hidden=true;view="cart"}
+$("cartBtn").onclick=()=>openD("cart");$("dx").onclick=closeD;$("ov").onclick=closeD;
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeD()});
+shop();$("cartN").textContent=cnt();
+(async()=>{
+const [pr,dr]=await Promise.all([sb.from("products").select("*").eq("active",true).order("created_at"),sb.from("doctors").select("*").order("created_at")]);
+P=(pr.data||[]).map(x=>({id:x.id,n:x.name,d:x.description,p:Number(x.price),c:x.category,e:x.emoji,img:x.image_url}));
+Object.keys(cart).forEach(k=>{if(!P.some(x=>String(x.id)===k))delete cart[k]});shop();upd();
+if(!P.length)$("pgrid").innerHTML='<p class="muted" style="grid-column:1/-1;text-align:center">Products coming soon.</p>';
+const L=dr.data||[];if(L.length)$("docs").innerHTML=L.map(x=>`<div class="card"><div class="av">${x.photo_url?`<img src="${esc(x.photo_url)}" alt="">`:"🌿"}</div><h3>${esc(x.name)}</h3><p>${esc(x.dept)}${x.qualification?" · "+esc(x.qualification):""}</p>${x.experience?`<p>${esc(x.experience)} experience</p>`:""}</div>`).join("")})();
+renderDepts();
+</script>
+</body>
+</html>

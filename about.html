@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="The history, purpose and heritage of Nilambur Vaidyasala, an Ayurvedic dispensary and pharmacy in Kerala.">
+<title>About Us — Nilambur Vaidyasala</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;500;600;700&family=Noto+Sans+Malayalam:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#2c3320;--muted:#6a705c;--forest:#3a4a20;--green:#5a7a2e;--sage:#f4f9ee;--line:#e6ecdd;--terra:#cf6528}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:82px}
+body{margin:0;background:#fff;color:var(--ink);font:16px/1.75 Inter,"Noto Sans Malayalam",system-ui,sans-serif;overflow-wrap:anywhere}
+a{color:inherit;text-decoration:none}
+.wrap{width:min(1120px,calc(100% - 48px));margin:auto}
+header{position:sticky;top:0;z-index:5;background:rgba(255,255,255,.94);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+.nav{position:relative;height:78px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:11px;color:var(--forest);font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.brand img{width:48px;height:48px;padding:2px;object-fit:contain;border:1px solid var(--line);border-radius:50%;background:#fff}
+.brand span{display:block;color:var(--terra);font:600 9px Inter,"Noto Sans Malayalam",sans-serif;letter-spacing:.13em;margin-top:4px}
+nav{display:flex;gap:6px;align-items:center}
+nav a{padding:9px 12px;border-radius:999px;color:var(--forest);font-size:.75rem;font-weight:600}
+nav a:hover,nav a[aria-current=page]{background:var(--sage)}
+.menu-toggle{display:none;width:44px;height:44px;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:12px;background:#fff;color:var(--forest);font-size:1.5rem;line-height:1;cursor:pointer}
+.hero{position:relative;overflow:hidden;margin:34px auto 0;padding:clamp(36px,7vw,82px);border:1px solid var(--line);border-radius:28px;background:radial-gradient(circle at 90% 35%,#edf4e5 0 13%,transparent 13.2%),linear-gradient(135deg,#fff,#f8faf5);box-shadow:0 18px 52px rgba(58,74,32,.08)}
+.eyebrow{color:var(--green);font-size:.68rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase}
+.hero h1{max-width:780px;margin:17px 0;color:var(--forest);font:700 clamp(3rem,8vw,6.5rem)/.92 "Cormorant Garamond",Georgia,serif;letter-spacing:-.035em}
+.hero p{max-width:620px;margin:0;color:var(--muted);font-size:1.05rem}
+main{padding-bottom:70px}
+.story-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:24px}
+.section{padding:clamp(26px,4vw,42px);border:1px solid var(--line);border-radius:22px;background:#fff;box-shadow:0 8px 28px rgba(58,74,32,.045)}
+.section h2{margin:0 0 12px;color:var(--forest);font:700 clamp(1.8rem,3vw,2.5rem)/1.1 "Cormorant Garamond",Georgia,serif}
+.section p{margin:0 0 12px;color:var(--muted)}
+.section p:last-child{margin-bottom:0}
+.section.full{grid-column:1/-1}
+.quote{margin:26px 0;padding:22px 28px;border-left:3px solid var(--terra);background:var(--sage);color:var(--forest);font:600 clamp(1.35rem,2.6vw,2rem)/1.35 "Cormorant Garamond",Georgia,serif}
+.figures{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:20px 0 14px}
+.figure{min-width:0;padding:18px;border-radius:16px;background:var(--sage)}
+.figure strong{display:block;color:var(--green);font:700 2rem/1.1 "Cormorant Garamond",Georgia,serif}
+.figure span{display:block;margin-top:5px;color:var(--muted);font-size:1rem}
+.founder-portrait{width:min(100%,420px);margin:18px auto 0;text-align:center}
+.portrait-placeholder{display:grid;place-items:center;min-height:320px;aspect-ratio:4/5;border:1px solid var(--line);border-radius:18px;background:radial-gradient(circle at 50% 34%,#e9eddc 0 17%,transparent 17.5%),linear-gradient(145deg,#f8faf5,#e8eddc);color:var(--forest);font-size:1rem}
+.portrait-placeholder span{align-self:end;margin:0 0 24px;padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.86)}
+.founder-portrait figcaption{padding-top:12px;color:var(--forest);font:700 1.35rem/1.35 "Cormorant Garamond",Georgia,serif}
+.founder-portrait figcaption span{display:block;color:var(--muted);font:500 1rem/1.6 Inter,"Noto Sans Malayalam",sans-serif}
+.contact{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+.button{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 20px;border-radius:999px;background:var(--green);color:#fff;font-size:1rem;font-weight:700}
+.button.secondary{border:1px solid #dce5d2;background:#fff;color:var(--forest)}
+.current{margin-top:22px;padding:18px 20px;border-radius:16px;background:#fbfcf8;color:var(--muted)}
+.current strong{color:var(--forest)}
+footer{padding:36px 24px;background:#183b2b;color:#e8eee5;text-align:center;font-size:.88rem}
+footer img{width:68px;height:68px;padding:3px;border-radius:50%;background:#fff}
+footer p{margin:6px 0}
+footer a{color:#e8eee5;text-decoration:underline;text-underline-offset:3px}
+.call-now{display:none}
+@media(max-width:768px){
+  html{scroll-padding-top:72px}
+  .wrap{width:min(100% - 32px,600px)}
+  .nav{height:68px;gap:12px}
+  .brand{min-width:0;gap:8px;font-size:.78rem;letter-spacing:.04em}
+  .brand img{width:42px;height:42px;flex:none}
+  .brand div{min-width:0}
+  .brand span{font-size:.56rem;letter-spacing:.08em}
+  .menu-toggle{display:inline-flex;flex:none}
+  nav{position:absolute;top:calc(100% + 1px);left:0;right:0;display:none;align-items:stretch;gap:4px;padding:10px;border:1px solid var(--line);border-radius:0 0 16px 16px;background:#fff;box-shadow:0 12px 24px rgba(58,74,32,.1)}
+  .nav.is-open nav{display:grid}
+  nav a{padding:12px;font-size:1rem}
+  .hero{margin-top:18px;padding:30px 22px;border-radius:22px}
+  .hero h1{font-size:clamp(2.5rem,10vw,3.8rem);line-height:.98}
+  .hero p{font-size:1rem}
+  main{padding-bottom:104px}
+  .story-grid{grid-template-columns:minmax(0,1fr);gap:14px}
+  .section{padding:24px 20px;border-radius:20px}
+  .section.full{grid-column:auto}
+  .section h2{font-size:clamp(1.8rem,7vw,2.2rem)}
+  .figures{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .figure{padding:16px}
+  .figure strong{font-size:1.7rem}
+  .quote{padding:19px 21px}
+  .contact{display:grid;grid-template-columns:1fr}
+  .button{width:100%;min-height:48px;font-size:1rem}
+  .current{padding:16px}
+  .call-now{position:fixed;right:0;bottom:0;left:0;z-index:10;display:flex;justify-content:center;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line);background:rgba(255,255,255,.96);backdrop-filter:blur(12px)}
+  .call-now .button{width:min(600px,100%);border-radius:14px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav"><a class="brand" href="index.html"><img src="logo.png" alt="Nilambur Vaidyasala logo" decoding="async"><div>Nilambur Vaidyasala<span>Ayurveda Heritage Hospital</span></div></a><button class="menu-toggle" type="button" aria-label="Open navigation menu" aria-controls="primary-navigation" aria-expanded="false"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"></path></svg></button><nav id="primary-navigation" aria-label="Main navigation"><a href="index.html">Home</a><a href="about.html" aria-current="page">About</a><a href="index.html#departments">Departments</a><a href="index.html#team">Specialists</a><a href="products.html">Store</a><a href="index.html#book">Book Visit</a></nav></div></header>
+<main class="wrap">
+<section class="hero"><span class="eyebrow">A history of care · Nilambur, Kerala</span><h1>Rooted in service.<br>Guided by Ayurveda.</h1><p>The Nilambur Vaidyasala is an Ayurvedic dispensary and pharmacy whose story began with a response to the needs of local residents.</p></section>
+<div class="story-grid">
+<section class="section full"><h2>Our Origin</h2><p>The Nilambur Vaidyasala opened on the 31st of Chingom, 1101 M.E., approximately 1925 C.E. It was established by His Highness Rama Varma, the 7th Prince of Cochin, in response to the healthcare needs of people in the region. The institution operated under the patronage and sole proprietorship of the Senior Raja of Nilambur. Nilambur Palace provided its building rent-free, giving the Vaidyasala a place from which to serve the community.</p><p>Its beginnings joined local need with the support of the Nilambur royal household. That history remains central to the identity of the Vaidyasala.</p></section>
+<section class="section"><h2>Why Nilambur</h2><p>The region’s rich growth of medicinal herbs made Nilambur a fitting home for an Ayurvedic dispensary. Remedies were prepared from available medicinal plants according to authoritative Ayurvedic scriptures. This connection between place, plants and classical knowledge shaped the work of the Vaidyasala.</p></section>
+<section class="section"><h2>What We Do</h2><p>The Vaidyasala’s work brought consultation and pharmacy together. Its services included prescribing treatment, dispensing drugs, and preparing and selling medicines. Each part of this work supported the practical needs of people seeking Ayurvedic care.</p></section>
+<section class="section"><h2>Our Speciality</h2><p>Historical accounts describe the treatment of poisoning cases as a speciality of the Vaidyasala. These included snake, spider, scorpion, rat and wasp bites, as well as mad-dog bites. The dispensary also treated ordinary illnesses, including malaria, spleen enlargement and skin diseases. These descriptions belong to the Vaidyasala’s historical record.</p></section>
+<section class="section"><h2>Our Values</h2><p>Consultation was offered free of charge to all. Prices were kept moderate, and treatment was provided free to people who were poor. Medicines were prepared with care in accordance with classical Ayurvedic texts. These principles expressed the Vaidyasala’s commitment to making its services accessible to the people it served.</p></section>
+<section class="section full"><h2>Our Heritage in Numbers</h2><p>In the first reporting period, from 1102 to 1104 M.E., the Vaidyasala recorded care for 1,185 ordinary patients and 78 poisoning cases. Its work began with a capital of Rs. 750. These early figures offer a measure of the service provided in the institution’s first years.</p><div class="figures"><div class="figure"><strong>1,185</strong><span>ordinary patients recorded</span></div><div class="figure"><strong>78</strong><span>poisoning cases recorded</span></div><div class="figure"><strong>Rs. 750</strong><span>starting capital</span></div></div><p class="muted">First reporting period: 1102–1104 M.E.</p></section>
+</div>
+<blockquote class="quote">“The Vaidyasala began with a partnership: local people’s needs met through the support of Nilambur Palace.”</blockquote>
+<section class="section full" aria-labelledby="founder-heading"><h2 id="founder-heading">Our Founding Physician</h2><figure class="founder-portrait"><div class="portrait-placeholder" role="img" aria-label="Portrait of V. Rama Varier [PLACEHOLDER]"><span>Portrait [PLACEHOLDER]</span></div><figcaption>V. Rama Varier<span>Founding Physician</span></figcaption></figure></section>
+<section class="section full" id="visit"><h2>Visit, consult, contact</h2><p>We welcome you to learn more about the Vaidyasala and arrange a consultation. For directions, hours and contact details, please use the information below.</p><div class="contact"><a class="button" href="index.html#book">Book a consultation</a><a class="button secondary" href="index.html#contact">Contact the Vaidyasala</a></div><div class="current"><p><strong>Address:</strong> [PLACEHOLDER]</p><p><strong>Map link:</strong> [PLACEHOLDER]</p><p><strong>Phone:</strong> [PHONE NUMBER]</p><p><strong>Hours:</strong> [PLACEHOLDER]</p><p><strong>Present-day team:</strong> [PLACEHOLDER]</p></div></section>
+</main>
+<footer><img src="logo.png" alt="Nilambur Vaidyasala logo" loading="lazy" decoding="async"><p>Nilambur Vaidyasala · Ayurveda Heritage Hospital</p><p>Serving since 1925</p></footer>
+<div class="call-now"><a class="button" href="tel:[PHONE NUMBER]">Call Now · [PHONE NUMBER]</a></div>
+<script>
+const menuToggle=document.querySelector(".menu-toggle");
+const navigation=document.querySelector(".nav");
+menuToggle.addEventListener("click",()=>{
+  const isExpanded=menuToggle.getAttribute("aria-expanded")==="true";
+  menuToggle.setAttribute("aria-expanded",String(!isExpanded));
+  menuToggle.setAttribute("aria-label",isExpanded?"Open navigation menu":"Close navigation menu");
+  navigation.classList.toggle("is-open",!isExpanded);
+});
+document.querySelectorAll("#primary-navigation a").forEach(link=>link.addEventListener("click",()=>{
+  menuToggle.setAttribute("aria-expanded","false");
+  menuToggle.setAttribute("aria-label","Open navigation menu");
+  navigation.classList.remove("is-open");
+}));
+document.addEventListener("keydown",event=>{
+  if(event.key==="Escape"){
+    menuToggle.setAttribute("aria-expanded","false");
+    menuToggle.setAttribute("aria-label","Open navigation menu");
+    navigation.classList.remove("is-open");
+    menuToggle.focus();
+  }
+});
+</script>
+</body>
+</html>

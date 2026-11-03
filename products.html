@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Explore Ayurvedic products from Nilambur Vaidyasala.">
+<title>Vaidyasala Store — Nilambur Vaidyasala</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#2c3320;--muted:#6a705c;--green:#5a7a2e;--green2:#78964a;--lime:#d7e7b5;--paper:#fbfcf8;--line:#e6ecdd;--gold:#cf6528;--forest:#3a4a20;--mint:#f4f9ee}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.6 Inter,sans-serif}a{color:inherit;text-decoration:none}button{font:inherit;color:inherit}.wrap{max-width:1180px;margin:auto;padding:0 30px}
+header{height:82px;display:flex;align-items:center;border-bottom:1px solid var(--line);background:rgba(251,252,248,.93);position:relative;z-index:2}.nav{display:flex;align-items:center;justify-content:space-between;width:100%}.brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.04em}.brand img{width:43px;height:43px;border-radius:50%;background:#fff;object-fit:contain;border:2px solid #f4f9ee;box-shadow:0 2px 10px rgba(58,74,32,.12)}.brand span{display:block;font:600 10px/1.2 Inter,sans-serif;letter-spacing:.15em;color:var(--gold)}nav{display:flex;gap:34px;color:#657267;font-size:13px}nav a:hover{color:var(--green)}.actions{display:flex;align-items:center;gap:12px}.iconbtn{border:0;background:transparent;font-size:20px;cursor:pointer}.cart{border:1px solid #dce3d6;border-radius:99px;padding:9px 17px;font-size:13px;font-weight:600;background:white;cursor:pointer}
+.hero{min-height:650px;display:grid;grid-template-columns:1fr 1.08fr;align-items:center;gap:20px;padding-top:56px;padding-bottom:54px;overflow:hidden}.copy{padding:34px 0 40px 5%;position:relative;z-index:1}.eyebrow{display:inline-flex;align-items:center;gap:9px;color:var(--green);font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase}.eyebrow:before{content:"";width:26px;height:1px;background:var(--gold)}h1,h2{font-family:"Cormorant Garamond",Georgia,serif}h1{font-size:clamp(46px,6vw,76px);letter-spacing:-.045em;line-height:1.05;margin:24px 0 12px;color:#29382d}.price{font-size:25px;font-weight:700;color:var(--gold);margin:0 0 14px}.description{max-width:420px;color:#69786e;font-size:15px;min-height:48px;margin:0 0 28px}.product-meta{display:flex;gap:12px;align-items:center;color:var(--muted);font-size:12px;margin-bottom:27px}.dot{width:5px;height:5px;background:#a6b59d;border-radius:50%}.buyrow{display:flex;gap:12px;align-items:center;flex-wrap:wrap}.stepper{display:flex;align-items:center;border:1px solid #dfe6d9;border-radius:10px;background:#fff;height:46px}.stepper button{width:38px;height:44px;border:0;background:transparent;cursor:pointer;font-size:20px}.stepper output{min-width:24px;text-align:center;font-size:13px;font-weight:700}.primary{border:0;border-radius:10px;background:var(--green);color:white;padding:14px 26px;font-weight:700;cursor:pointer;box-shadow:0 10px 24px rgba(73,107,67,.2);transition:transform .2s,background .2s}.primary:hover{background:#3a4a20;transform:translateY(-2px)}.notice{min-height:24px;margin-top:13px;color:var(--green);font-size:13px}.pager{margin-top:37px;display:flex;align-items:center;gap:16px;color:#7a887d;font-size:12px}.pager button{border:0;background:none;padding:4px;cursor:pointer}.pager .line{height:1px;width:30px;background:#bdc8ba}.pager b{color:var(--ink)}.socialproof{margin-top:32px;font-size:11px;color:#879186;letter-spacing:.06em}
+.visual{height:520px;position:relative;display:grid;place-items:center}.orb{position:absolute;width:min(480px,90%);aspect-ratio:1;border-radius:50%;right:-20px;top:20px;background:radial-gradient(circle at 55% 48%,#eef3e8 0 42%,#e1ead9 42.3% 67%,#f4f6ee 67.3%);}.orb:before,.orb:after{content:"";position:absolute;background:#9fb88c;border-radius:70% 10% 70% 10%;transform:rotate(-38deg);opacity:.75}.orb:before{width:18px;height:42px;top:18%;left:10%}.orb:after{width:14px;height:32px;right:9%;bottom:21%;transform:rotate(35deg)}.dish{position:absolute;width:min(370px,70%);height:min(370px,70vw);right:40px;top:75px;border-radius:50%;background:white;box-shadow:0 24px 60px rgba(48,68,44,.17);display:grid;place-items:center;overflow:hidden;border:10px solid rgba(255,255,255,.8)}.dish img{width:100%;height:100%;object-fit:cover}.dish .emoji{font-size:125px}.thumbpath{position:absolute;left:5%;top:6%;height:88%;width:100%;border-left:1px dashed #c6d1c1;border-radius:50%;pointer-events:none}.thumbs{position:absolute;left:0;top:0;bottom:0;width:120px;display:flex;flex-direction:column;justify-content:space-around;align-items:center}.thumb{position:relative;pointer-events:auto;border:3px solid var(--paper);padding:0;width:56px;height:56px;border-radius:50%;overflow:hidden;cursor:pointer;background:white;box-shadow:0 8px 22px rgba(50,73,46,.14);transition:transform .2s,box-shadow .2s}.thumb:hover,.thumb[aria-current="true"]{transform:scale(1.11);box-shadow:0 0 0 2px #9bb28f,0 10px 20px rgba(50,73,46,.17)}.thumb img{width:100%;height:100%;object-fit:cover}.thumb .emoji{font-size:25px;display:grid;place-items:center;width:100%;height:100%}.empty{color:#758274;font-size:14px}.catalog-link{display:inline-block;margin-top:5px;border-bottom:1px solid #9bad98;padding-bottom:3px;color:var(--green);font-weight:600;font-size:13px}.foot{border-top:1px solid var(--line);padding:22px 0 32px;text-align:center;color:#929b91;font-size:11px;letter-spacing:.05em}
+@media(max-width:800px){.wrap{padding:0 22px}header{height:70px}nav{display:none}.hero{min-height:auto;grid-template-columns:1fr;padding-top:36px;padding-bottom:30px;gap:0}.copy{padding:15px 0 0}.visual{height:min(440px,105vw);grid-row:1}.orb{width:min(390px,90%);right:0;top:0}.dish{width:min(300px,68vw);height:min(300px,68vw);right:8%;top:13%}.thumbs{width:85px}.thumb{width:48px;height:48px}.thumbpath{left:4%}.copy{grid-row:2;padding-bottom:35px}.socialproof{margin-top:22px}}
+@media(max-width:420px){.wrap{padding:0 17px}.brand{font-size:13px}.brand img{width:38px;height:38px}.cart{padding:8px 12px}.iconbtn{display:none}.visual{height:340px}.thumbs{width:65px}.thumb{width:42px;height:42px}.dish{right:3%;top:12%}.buyrow{gap:8px}.primary{padding:13px 19px}.pager{margin-top:22px}}
+body{background:#3a4a20;padding:26px clamp(14px,3vw,44px) 38px}
+header{max-width:1400px;margin:0 auto;border-radius:28px 28px 0 0;background:#fff;border-color:#edf0e9}
+header .wrap{max-width:1320px}
+.nav nav{gap:0;padding:5px;background:#f4f9ee;border-radius:999px}
+.nav nav a{padding:9px 15px;border-radius:999px;color:#3a4a20;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
+.nav nav a:hover{background:#d7e7b5}
+main.wrap{max-width:1400px;padding:0 0 20px;background:#fff}
+.hero{width:calc(100% - 48px);max-width:1352px;min-height:610px;margin:24px auto 40px;padding:46px clamp(26px,5vw,76px);border:1px solid #edf0e8;border-radius:28px;background:#fff;box-shadow:0 24px 54px rgba(22,49,34,.13)}
+.hero h1{font-family:Inter,sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:-.065em;color:#101714}
+.price{color:#5a7a2e}
+.primary{background:linear-gradient(100deg,#5a7a2e,#a9c36d);color:#fff}
+.foot{max-width:1400px;margin:0 auto 24px;padding:25px;background:#f2f5ee;border:0;border-radius:0 0 28px 28px;color:#415546}
+@media(max-width:800px){body{padding:0 12px 24px}header{border-radius:0 0 18px 18px}.hero{width:calc(100% - 24px);min-height:0;margin:16px auto 28px;padding:28px 24px;border-radius:22px}.foot{border-radius:18px;margin-bottom:0}}
+@media(max-width:620px){body{padding:0 8px 16px}header .wrap{padding:0 12px}.brand{font-size:12px}.nav nav{display:none}.hero{width:calc(100% - 16px);padding:24px 18px}}
+/* Carry the clinic's olive, forest and terracotta identity through the store. */
+.brand{color:#3a4a20;font-family:"Cormorant Garamond",Georgia,serif;font-size:1.12rem;letter-spacing:.1em;text-transform:uppercase}
+.brand span{color:#cf6528;font:600 9px/1.3 Inter,sans-serif;letter-spacing:.15em}
+.hero h1{font-family:"Cormorant Garamond",Georgia,serif;font-size:clamp(48px,6vw,78px);font-weight:700;text-transform:none;letter-spacing:-.035em;color:#3a4a20}
+.price{color:#cf6528}.primary{background:#5a7a2e;color:#fff;box-shadow:0 10px 24px rgba(58,74,32,.2)}
+.primary:hover{background:#3a4a20}.nav nav{background:#f4f9ee}.nav nav a{color:#3a4a20}.nav nav a:hover{background:#d7e7b5}
+.foot{background:#f4f9ee;color:#3a4a20}
+</style>
+</head>
+<body>
+<header><div class="wrap nav"><a class="brand" href="index.html"><img src="logo.png" alt=""><div>Nilambur Vaidyasala<span>AYURVEDA HERITAGE HOSPITAL</span></div></a><nav><a href="index.html#top">Home</a><a href="about.html">About</a><a href="index.html#departments">Departments</a><a href="products.html" aria-current="page">Store</a><a href="index.html#book">Book Visit</a><a href="index.html#contact">Contact</a></nav><div class="actions"><a class="iconbtn" href="index.html?cart=1" aria-label="Open shopping cart">⌕</a><a class="cart" href="index.html?cart=1">Cart · <span id="cartCount">0</span></a></div></div></header>
+<main class="wrap">
+  <section class="hero" aria-label="Featured Ayurvedic products">
+    <div class="copy"><span class="eyebrow">Vaidyasala Store</span><h1 id="productName">A little care, rooted in nature</h1><p class="price" id="productPrice"></p><p class="description" id="productDescription">Explore products from Nilambur Vaidyasala.</p><div class="product-meta"><span id="productCategory">Traditional care</span><i class="dot"></i><span>Free delivery over ₹999</span></div><div class="buyrow"><div class="stepper" aria-label="Quantity"><button id="minus" aria-label="Decrease quantity">−</button><output id="quantity">1</output><button id="plus" aria-label="Increase quantity">+</button></div><button class="primary" id="order" disabled>Order now</button></div><div class="notice" id="notice" aria-live="polite"></div><div class="pager"><button id="previous" aria-label="Previous product">←</button><span class="line"></span><b id="position">0 / 0</b><span class="line"></span><button id="next" aria-label="Next product">→</button></div><div class="socialproof">Please consult your vaidya before starting any medicine.</div><a class="catalog-link" href="index.html#shop">Browse the full catalogue ↗</a></div>
+    <div class="visual"><div class="orb"></div><div class="thumbpath"></div><div class="dish" id="dish"><span class="emoji">🌿</span></div><div class="thumbs" id="thumbs" aria-label="Choose a product"></div></div>
+  </section>
+</main>
+<footer class="foot"><span>© 2026 Nilambur Vaidyasala · Serving since 1925</span><span> · <a href="https://maps.app.goo.gl/KvUxwnRq5gDMy8mu5" target="_blank" rel="noopener noreferrer">Hospital location ↗</a></span><span> · <a href="tel:+919446549329">Call 9446549329</a></span></footer>
+<script type="module">
+import {sb} from "./supabase.js";
+const $=id=>document.getElementById(id),esc=s=>String(s??"").replace(/[&<>\"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const inr=n=>"₹"+Number(n||0).toLocaleString("en-IN");let products=[],current=0,qty=1;
+function readCart(){try{return JSON.parse(localStorage.getItem("nv_cart")||"{}")}catch{return {}}}
+function updateCount(){const c=Object.values(readCart()).reduce((a,n)=>a+(Number(n)||0),0);$("cartCount").textContent=c}
+function render(){if(!products.length)return;const p=products[current];$("productName").textContent=p.n;$("productPrice").textContent=inr(p.p);$("productDescription").textContent=p.d||"A product from Nilambur Vaidyasala.";$("productCategory").textContent=p.c||"Traditional care";$("position").textContent=`${current+1} / ${products.length}`;$("quantity").textContent=qty;
+  $("dish").innerHTML=p.img?`<img src="${esc(p.img)}" alt="${esc(p.n)}">`:`<span class="emoji" aria-hidden="true">${esc(p.e||"🌿")}</span>`;
+  $("thumbs").innerHTML=products.slice(0,5).map((x,i)=>`<button class="thumb" type="button" data-index="${i}" aria-label="Show ${esc(x.n)}" aria-current="${i===current}">${x.img?`<img src="${esc(x.img)}" alt="">`:`<span class="emoji">${esc(x.e||"🌿")}</span>`}</button>`).join("");
+  $("thumbs").querySelectorAll("button").forEach(b=>b.onclick=()=>select(Number(b.dataset.index)));
+}
+function select(i){if(!products.length)return;current=(i+products.length)%products.length;qty=1;$("notice").textContent="";render()}
+$("minus").onclick=()=>{qty=Math.max(1,qty-1);$("quantity").textContent=qty};$("plus").onclick=()=>{qty=Math.min(99,qty+1);$("quantity").textContent=qty};$("previous").onclick=()=>select(current-1);$("next").onclick=()=>select(current+1);
+$("order").onclick=()=>{const p=products[current],cart=readCart();cart[String(p.id)]=(Number(cart[String(p.id)])||0)+qty;try{localStorage.setItem("nv_cart",JSON.stringify(cart));updateCount();$("notice").textContent=`${qty} × ${p.n} added to your cart.`}catch{$("notice").textContent="Your browser could not save the cart. Please enable local storage and try again."}};
+const{data,error}=await sb.from("products").select("id,name,description,price,category,emoji,image_url").eq("active",true).order("created_at");
+products=(data||[]).map(x=>({id:x.id,n:x.name,d:x.description,p:Number(x.price),c:x.category,e:x.emoji,img:x.image_url}));
+if(error||!products.length){$("productName").textContent=error?"Store is temporarily unavailable":"Products coming soon";$("productDescription").textContent=error?"Please try again later or contact the clinic.":"Our product selection will appear here soon.";$("position").textContent="0 / 0";$("dish").innerHTML='<span class="emoji" aria-hidden="true">🌿</span>'}else{$("order").disabled=false;render()}
+updateCount();
+</script>
+</body>
+</html>

@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex">
 <title>Admin – Nilambur Vaidyasala</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 <style>
 :root{--g:#5a7a2e;--gd:#3a4a20;--o:#cf6528;--line:#e6ecdd;--mint:#f4f9ee;--mut:#6a705c}
-*{box-sizing:border-box}body{margin:0;font:15px/1.5 system-ui,Arial,sans-serif;color:#2c3320;background:#fff}
-h2{margin:0 0 14px;color:var(--gd)}h3{margin:0 0 10px;color:var(--gd)}
+*{box-sizing:border-box}body{margin:0;font:15px/1.5 Inter,system-ui,Arial,sans-serif;color:#2c3320;background:#fff}
+h2{margin:0 0 14px;color:var(--gd);font-family:"Cormorant Garamond",Georgia,serif;font-size:2rem}h3{margin:0 0 10px;color:var(--gd)}
 button,input,select,textarea{font:inherit}
 input,select,textarea{width:100%;padding:9px 11px;border:1.5px solid var(--line);border-radius:9px;background:#fff}
 label{display:block;font-weight:600;font-size:.82rem;margin:10px 0 4px}
 .btn{background:var(--g);color:#fff;border:0;border-radius:999px;padding:9px 20px;font-weight:600;cursor:pointer}
 .btn.s{padding:5px 12px;font-size:.82rem}.btn.o{background:transparent;color:var(--gd);border:1.5px solid var(--g)}.btn.r{background:#b3402a}
-.box{max-width:360px;margin:12vh auto;padding:28px;border:1px solid var(--line);border-radius:18px;text-align:center}
-.box img{width:130px}.err{color:#b3402a;min-height:1.3em;font-size:.88rem}
-header{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:10px 20px;background:var(--gd);color:#fff;position:sticky;top:0;z-index:5}
-header b{margin-right:auto}header button{background:transparent;color:#fff;border:0;padding:6px 12px;border-radius:999px;cursor:pointer}
+.box{max-width:380px;margin:12vh auto;padding:32px;border:1px solid var(--line);border-radius:22px;text-align:center;background:linear-gradient(160deg,#fff,#f4f9ee);box-shadow:0 20px 60px rgba(58,74,32,.1)}
+.box img{width:130px;height:130px;object-fit:contain;border-radius:50%;background:#fff;padding:8px;border:1px solid var(--line)}.err{color:#b3402a;min-height:1.3em;font-size:.88rem}
+header{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:10px 20px;background:var(--gd);color:#fff;position:sticky;top:0;z-index:5;border-bottom:3px solid var(--g);box-shadow:0 8px 24px rgba(58,74,32,.16)}
+header b{margin-right:auto;display:flex;align-items:center;gap:10px;font-family:"Cormorant Garamond",Georgia,serif;font-size:1.2rem;letter-spacing:.04em}header .admin-logo{width:42px;height:42px;padding:3px;object-fit:contain;border-radius:50%;background:#fff}header button{background:transparent;color:#fff;border:0;padding:7px 12px;border-radius:999px;cursor:pointer;font-weight:600}
 header button.on{background:#fff;color:var(--gd)}
 main{max-width:1100px;margin:0 auto;padding:22px 16px}.tab{display:none}.tab.on{display:block}
 .stats{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));margin-bottom:18px}
@@ -34,7 +35,7 @@ td select{padding:4px 6px;width:auto}
 <p class="err" id="lerr"></p><button class="btn" id="li" style="width:100%">Sign in</button></div>
 
 <div id="app" hidden>
-<header><b>🌿 Nilambur Vaidyasala · Admin</b>
+<header><b><img class="admin-logo" src="logo.png" alt="">Nilambur Vaidyasala · Admin</b>
 <button data-t="dash" class="on">Dashboard</button><button data-t="prod">Products</button><button data-t="doc">Doctors</button><button data-t="ord">Orders</button><button data-t="book">Patient bookings</button><button id="out">Sign out</button></header>
 <main>
 <p class="err" id="aerr"></p>
@@ -49,14 +50,14 @@ td select{padding:4px 6px;width:auto}
 <div class="tw"><table><thead><tr><th>Name</th><th>Category</th><th>Price</th><th>Status</th><th></th></tr></thead><tbody id="pt"></tbody></table></div></section>
 
 <section class="tab" id="t-doc"><h2>Doctors</h2><div class="card"><h3 id="df-h">Add doctor</h3><input type="hidden" id="d-id">
-<div class="row"><div><label>Name</label><input id="d-n"></div><div><label>Department</label><select id="d-dept"><option>General</option><option>Orthopaedics</option><option>Neurology</option></select></div><div><label>Qualification</label><input id="d-q" placeholder="BAMS, MD (Ayu)"></div><div><label>Experience</label><input id="d-x" placeholder="12 years"></div></div>
+<div class="row"><div><label>Name</label><input id="d-n"></div><div><label>Department</label><select id="d-dept"><option>General Physician</option><option>Orthopaedics &amp; Sports Injury</option><option>Spine &amp; Back Care</option><option>Skin &amp; Beauty Care</option></select></div><div><label>Qualification</label><input id="d-q" placeholder="BAMS, MD (Ayu)"></div><div><label>Experience</label><input id="d-x" placeholder="12 years"></div></div>
 <label>Doctor photo (optional)</label><input id="d-i" type="file" accept="image/*"><p class="err" id="d-err"></p><button class="btn" id="d-save">Save doctor</button> <button class="btn o" id="d-clr">Clear</button></div>
 <div class="tw"><table><thead><tr><th>Name</th><th>Department</th><th>Qualification</th><th>Experience</th><th></th></tr></thead><tbody id="dt"></tbody></table></div></section>
 
 <section class="tab" id="t-ord"><h2>Orders</h2><div class="bar"><input id="oq" placeholder="Search name / phone"><button class="btn o s" id="o-csv">Export CSV</button></div>
 <div class="tw"><table><thead><tr><th>Placed</th><th>Order</th><th>Customer</th><th>Address</th><th>Items</th><th>Total</th><th>Status</th></tr></thead><tbody id="ot"></tbody></table></div></section>
 
-<section class="tab" id="t-book"><h2>Patient bookings</h2><div class="bar"><input id="bq" placeholder="Search name / phone"><select id="bd" style="max-width:170px"><option value="">All departments</option><option>General</option><option>Orthopaedics</option><option>Neurology</option></select><button class="btn o s" id="b-csv">Export CSV</button></div>
+<section class="tab" id="t-book"><h2>Patient bookings</h2><div class="bar"><input id="bq" placeholder="Search name / phone"><select id="bd" style="max-width:240px"><option value="">All departments</option><option>General Physician</option><option>Orthopaedics &amp; Sports Injury</option><option>Spine &amp; Back Care</option><option>Skin &amp; Beauty Care</option></select><button class="btn o s" id="b-csv">Export CSV</button></div>
 <div class="tw"><table><thead><tr><th>Date</th><th>Time</th><th>Department</th><th>Patient</th><th>Phone</th><th>Concern</th><th>Status</th></tr></thead><tbody id="bt"></tbody></table></div></section>
 </main></div>
 
@@ -84,8 +85,8 @@ $("stats").innerHTML=[["Orders",O.length],["Revenue",inr(O.reduce((a,o)=>a+Numbe
 const days=[...Array(14)].map((_,i)=>{const d=new Date();d.setDate(d.getDate()-13+i);return d}),ks=days.map(key),lb=days.map(d=>d.toLocaleDateString("en-IN",{day:"numeric",month:"short"})),on=k=>O.filter(o=>key(T(o))===k);
 chart("c1",{type:"bar",data:{labels:lb,datasets:[{data:ks.map(k=>on(k).length),backgroundColor:"#5a7a2e"}]},options:{plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{precision:0}}}}});
 chart("c2",{type:"line",data:{labels:lb,datasets:[{data:ks.map(k=>on(k).reduce((a,o)=>a+Number(o.total||0),0)),borderColor:"#cf6528",backgroundColor:"rgba(207,101,40,.15)",fill:true,tension:.3}]},options:{plugins:{legend:{display:false}},scales:{y:{beginAtZero:true}}}});
-const dp=["General","Orthopaedics","Neurology"];
-chart("c3",{type:"doughnut",data:{labels:dp,datasets:[{data:dp.map(x=>B.filter(b=>b.dept===x).length),backgroundColor:["#5a7a2e","#a9c36d","#cf6528"]}]}})}
+const dp=["General Physician","Orthopaedics & Sports Injury","Spine & Back Care","Skin & Beauty Care"];
+chart("c3",{type:"doughnut",data:{labels:dp,datasets:[{data:dp.map(x=>B.filter(b=>b.dept===x).length),backgroundColor:["#5a7a2e","#a9c36d","#cf6528","#7b4a8f"]}]}})}
 function prod(){$("pt").innerHTML=D.products.map(x=>`<tr><td>${esc(x.emoji||"")} ${esc(x.name)}<br><small>${esc(x.description)}</small></td><td>${esc(x.category)}</td><td>${inr(x.price)}</td><td><span class="pill">${x.active?"live":"hidden"}</span></td><td><button class="btn s o" data-e="${x.id}">Edit</button> <button class="btn s r" data-x="${x.id}">Delete</button></td></tr>`).join("")||'<tr><td colspan="5">No products yet.</td></tr>'}
 $("pt").onclick=async e=>{const b=e.target.closest("button");if(!b)return;if(b.dataset.x){if(confirm("Delete this product?")){await sb.from("products").delete().eq("id",b.dataset.x);load()}return}
 const x=D.products.find(v=>v.id===b.dataset.e);$("p-id").value=x.id;$("p-n").value=x.name||"";$("p-d").value=x.description||"";$("p-p").value=x.price||0;$("p-c").value=x.category||"";$("p-e").value=x.emoji||"";pImg=x.image_url||"";$("p-a").checked=x.active;$("pf-h").textContent="Edit product";scrollTo(0,0)};
@@ -95,7 +96,7 @@ try{const f=$("p-i").files[0],img=f?await up(f):pImg,data={name:n,description:$(
 const {error}=id?await sb.from("products").update(data).eq("id",id):await sb.from("products").insert(data);if(error)throw error;pclr();load()}catch(e){$("p-err").textContent="Could not save: "+(e.message||e)}};
 function docs(){$("dt").innerHTML=D.doctors.map(x=>`<tr><td>${esc(x.name)}</td><td>${esc(x.dept)}</td><td>${esc(x.qualification)}</td><td>${esc(x.experience)}</td><td><button class="btn s o" data-e="${x.id}">Edit</button> <button class="btn s r" data-x="${x.id}">Delete</button></td></tr>`).join("")||'<tr><td colspan="5">No doctors yet.</td></tr>'}
 $("dt").onclick=async e=>{const b=e.target.closest("button");if(!b)return;if(b.dataset.x){if(confirm("Delete this doctor?")){await sb.from("doctors").delete().eq("id",b.dataset.x);load()}return}
-const x=D.doctors.find(v=>v.id===b.dataset.e);$("d-id").value=x.id;$("d-n").value=x.name||"";$("d-dept").value=x.dept||"General";$("d-q").value=x.qualification||"";$("d-x").value=x.experience||"";dImg=x.photo_url||"";$("df-h").textContent="Edit doctor";scrollTo(0,0)};
+const x=D.doctors.find(v=>v.id===b.dataset.e);$("d-id").value=x.id;$("d-n").value=x.name||"";$("d-dept").value=x.dept||"General Physician";$("d-q").value=x.qualification||"";$("d-x").value=x.experience||"";dImg=x.photo_url||"";$("df-h").textContent="Edit doctor";scrollTo(0,0)};
 const dclr=()=>{["d-id","d-n","d-q","d-x","d-i"].forEach(i=>$(i).value="");dImg="";$("df-h").textContent="Add doctor";$("d-err").textContent=""};$("d-clr").onclick=dclr;
 $("d-save").onclick=async()=>{const n=$("d-n").value.trim();if(!n)return $("d-err").textContent="Name is required.";
 try{const f=$("d-i").files[0],img=f?await up(f):dImg,data={name:n,dept:$("d-dept").value,qualification:$("d-q").value.trim(),experience:$("d-x").value.trim(),photo_url:img||null},id=$("d-id").value;

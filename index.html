@@ -38,6 +38,35 @@ header .wrap{display:flex;align-items:center;justify-content:space-between;heigh
 .pr .btn{padding:8px 16px;font-size:.88rem}
 .ov{position:fixed;inset:0;background:rgba(20,25,10,.45);z-index:40}
 .dr{position:fixed;top:0;right:0;bottom:0;width:min(420px,100%);background:var(--bg);z-index:50;display:flex;flex-direction:column;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);box-shadow:-10px 0 40px rgba(0,0,0,.2)}
+.auth-modal{position:fixed;inset:0;z-index:80;display:grid;place-items:center;padding:20px;}
+body.auth-open{overflow:hidden}
+.auth-backdrop{position:absolute;inset:0;background:rgba(35,49,27,.34);backdrop-filter:blur(9px)}
+.auth-dialog{position:relative;width:min(440px,100%);max-height:min(90svh,760px);overflow:auto;padding:32px;border:1px solid #dce7cf;border-radius:24px;background:linear-gradient(155deg,rgba(255,255,255,.98),rgba(244,249,238,.97));box-shadow:0 28px 90px rgba(35,52,29,.24);animation:auth-in .32s cubic-bezier(.2,.75,.25,1) both}
+.auth-close{position:absolute;top:14px;right:14px;width:38px;height:38px;border:0;border-radius:50%;background:#3a4a20;color:#fff;font-size:1.15rem;cursor:pointer}
+.auth-brand{display:grid;justify-items:center;gap:9px;margin:0 0 20px;text-align:center;color:#3a4a20}
+.auth-brand .lg{width:64px;height:64px;padding:3px;background:white;border:1px solid #e6ecdd}
+.auth-brand strong{font:700 1.1rem "Cormorant Garamond",Georgia,serif;letter-spacing:.1em;text-transform:uppercase}
+.auth-brand small{display:block;margin-top:3px;color:#cf6528;font:600 .58rem Inter,sans-serif;letter-spacing:.14em}
+.auth-dialog #accountGuest{margin:0;padding:0;border:0;border-radius:0;background:transparent;box-shadow:none;text-align:left}
+.auth-dialog #authHeading{margin:0 0 20px;text-align:center;color:#3a4a20;font:700 2rem "Cormorant Garamond",Georgia,serif}
+.google-signin{display:flex;width:100%;min-height:46px;align-items:center;justify-content:center;gap:11px;border:1px solid #dce5d2;border-radius:11px;background:#fff;color:#2c3320;font:600 .92rem Inter,sans-serif;cursor:pointer}
+.google-signin:hover{background:#f8faf5}
+.google-signin:disabled{opacity:.55;cursor:wait}
+.auth-divider{display:flex;align-items:center;gap:12px;margin:17px 0;color:#7b806f;font-size:.75rem}
+.auth-divider::before,.auth-divider::after{height:1px;flex:1;background:#e6ecdd;content:""}
+.auth-dialog label{display:block;margin:13px 0 5px;color:#3a4a20;font-size:.8rem;font-weight:600}
+.auth-dialog input{width:100%;min-height:46px;padding:11px 13px;border:1px solid #dce5d2;border-radius:11px;background:#fff;color:#2c3320;font:inherit;outline:none}
+.auth-dialog input:focus{border-color:#5a7a2e;box-shadow:0 0 0 3px rgba(90,122,46,.14)}
+.auth-dialog #authErr{min-height:1.2em;margin:10px 0;color:#a33d28;font-size:.82rem}
+.auth-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:10px}
+.auth-actions .btn{min-height:44px;border-radius:11px}
+.auth-actions #authSubmit{grid-column:1/-1;grid-row:1}
+.auth-actions #authSwitch{grid-column:1;grid-row:2}
+.auth-actions #authReset{grid-column:2;grid-row:2}
+.auth-dialog .btn.ghost{background:#fff;color:#3a4a20;border:1px solid #dce5d2}
+@keyframes auth-in{from{opacity:0;transform:translateY(12px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+@media(max-width:480px){.auth-dialog{padding:28px 22px;border-radius:20px}.auth-brand .lg{width:56px;height:56px}}
+@media(prefers-reduced-motion:reduce){.auth-dialog{animation:none}}
 .dh{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--line)}
 .dh h3{font-size:1.5rem;color:var(--green-d)}
 .dh button{background:none;border:0;font-size:1.2rem;color:var(--ink);cursor:pointer}
@@ -49,9 +78,12 @@ header .wrap{display:flex;align-items:center;justify-content:space-between;heigh
 .tr{display:flex;justify-content:space-between;margin:6px 0}
 .tr.t{font-weight:700;font-size:1.1rem;border-top:1px solid var(--line);padding-top:10px;margin-top:10px}
 .tint{background:#f4f9ee}
-.team .card{text-align:center}
-.av img{width:100%;height:100%;border-radius:50%;object-fit:cover}
-.av{width:88px;height:88px;border-radius:50%;margin:0 auto 12px;display:grid;place-items:center;font-size:2.2rem;background:linear-gradient(135deg,var(--sel),color-mix(in srgb,var(--green) 25%,var(--surface)));border:3px solid var(--surface);box-shadow:0 0 0 2px var(--green)}
+.team .card{text-align:center;padding:0 0 22px;overflow:hidden;transition:transform .2s,box-shadow .2s}
+.team .card:hover{transform:translateY(-5px);box-shadow:0 14px 34px rgba(54,75,39,.15)}
+.av img{width:100%;height:100%;border-radius:0;object-fit:cover;object-position:center 42%}
+.av{width:100%;height:190px;border-radius:0;margin:0 auto 16px;display:grid;place-items:center;overflow:hidden;position:relative;font-size:3.6rem;background:radial-gradient(circle at 50% 25%,#f5f7ec 0 20%,transparent 21%),linear-gradient(145deg,#e8eddc,#cbd8b8);border:0;box-shadow:none}
+.team .card h3{margin:0 18px 8px;font-size:1.45rem}
+.team .card p{margin:4px 18px}
 footer .lg{border-radius:50%}
 @media(max-width:760px){.hero{grid-template-columns:1fr;padding:36px 24px}.hero .herologo{grid-column:1;grid-row:auto;width:170px;height:170px;margin-bottom:12px}}
 nav a{margin-left:18px;text-decoration:none;color:var(--muted);font-size:.92rem}
@@ -107,40 +139,168 @@ footer{background:linear-gradient(135deg,#2c3d1a,#46602a);color:#f3f0dc;padding:
 [hidden]{display:none!important}
 @media(min-width:860px){.book{grid-template-columns:1.1fr .9fr}}
 @media(max-width:620px){nav{display:none}.row{grid-template-columns:1fr}}
+/* Product-launch frame adapted for the clinic homepage. */
+body{background:#1d3a2c;padding:26px clamp(14px,3vw,44px) 38px}
+header{max-width:1400px;margin:0 auto;border-radius:28px 28px 0 0;background:#fff;backdrop-filter:blur(12px);border-bottom:1px solid #edf0e9}
+header .wrap{max-width:1320px;height:82px}
+header .brand{color:#1d3328}
+header .brand .bt{font:700 1rem Inter,system-ui,sans-serif;letter-spacing:.11em}
+header .brand small{font-size:.58rem;letter-spacing:.14em;color:#cf6528}
+nav{display:flex;align-items:center;gap:0;padding:5px;background:#f4f9ee;border-radius:999px}
+nav a{margin:0;padding:9px 15px;border-radius:999px;color:#3a4a20;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
+nav a:hover{background:#d7e7b5;color:#3a4a20}
+.cartbtn{background:#3a4a20;color:#fff;font-size:.82rem;padding:10px 15px}
+main{max-width:1400px;margin:0 auto;background:#fff;padding-bottom:24px}
+.hero.wrap{position:relative;isolation:isolate;max-width:1352px;width:calc(100% - 48px);min-height:600px;margin:24px auto 44px;padding:64px clamp(34px,6vw,92px);grid-template-columns:1.05fr .95fr;column-gap:24px;align-content:center;overflow:hidden;border:1px solid #edf0e8;border-radius:28px;background:#fff;color:#17251d;box-shadow:0 24px 54px rgba(22,49,34,.13)}
+.hero:before{content:"";position:absolute;z-index:-1;width:min(650px,58vw);aspect-ratio:1;right:4%;top:50%;transform:translateY(-50%);border-radius:50%;background:radial-gradient(circle,#c8dcc3 0 31%,#e0ebdc 31.5% 48%,#f0f5ed 48.5% 64%,#fff 64.5%)}
+.hero:after{content:"";position:absolute;z-index:-1;width:165px;height:165px;right:12%;top:10%;border-radius:50%;background:radial-gradient(ellipse at 40% 40%,#9ab897,#d5e4ce 68%,transparent 70%);opacity:.55}
+.hero>*{position:relative;z-index:1}
+.hero .herologo{grid-column:2;grid-row:1/7;align-self:center;justify-self:center;position:relative;width:min(350px,30vw);height:min(350px,30vw);margin:0;border-radius:50%;padding:0;box-shadow:0 22px 55px rgba(36,66,43,.22);outline:12px solid rgba(255,255,255,.82)}
+.hero .herologo img{width:100%;height:100%;object-fit:cover}
+.hero .badge{justify-self:start;padding:7px 16px;border-color:#9fbea0;background:#eff5ed;color:#335c3c;font-size:.72rem;letter-spacing:.14em}
+.hero h1{max-width:650px;margin:21px 0 16px;color:#101714;font:800 clamp(3.3rem,6.3vw,6rem)/.98 Inter,system-ui,sans-serif;letter-spacing:-.075em;text-transform:uppercase}
+.hero p{max-width:500px;margin:0 0 22px;color:#68786d;font-size:1.02rem;line-height:1.8}
+.hero .btn{padding:14px 30px;background:linear-gradient(100deg,#5a7a2e,#a9c36d);color:#fff;box-shadow:0 9px 20px rgba(58,74,32,.18)}
+.hero .btn:hover{transform:translateY(-2px);background:linear-gradient(100deg,#3a4a20,#8da854)}
+.stats{gap:30px;margin-top:30px}
+.stats b{font:700 1.45rem Inter,system-ui,sans-serif;color:#5a7a2e}
+.stats span{color:#7b887e;font-size:.75rem;letter-spacing:.03em}
+section{padding:68px 0}
+.about{background:#f8faf6;border-color:#edf0e8}
+.sec-h h2{font:700 clamp(2rem,3.5vw,2.8rem)/1.15 Inter,system-ui,sans-serif;letter-spacing:-.045em;color:#1d3328}
+.sec-h p{color:#758178}
+.card,.panel,.pc{border-color:#e5ebe1;box-shadow:0 8px 28px rgba(35,67,43,.07)}
+.card{border-radius:18px}
+.card h3,.pb h3,.panel h3{color:#2d5037}
+.tint{background:#f3f6f0}
+footer{max-width:1400px;margin:0 auto 24px;padding:32px 24px;background:#f2f5ee;color:#415546;border-radius:0 0 28px 28px;font-size:.84rem}
+footer .lg{width:76px!important;height:76px!important}
+@media(max-width:1080px){nav{display:none}}
+@media(max-width:760px){body{padding:0 12px 24px}header{border-radius:0 0 18px 18px}header .wrap{height:72px}.hero.wrap{width:calc(100% - 24px);min-height:0;margin:16px auto 28px;padding:30px 25px;grid-template-columns:1fr;row-gap:0;border-radius:22px}.hero .herologo{grid-column:1;grid-row:1;width:190px;height:190px;margin:0 auto 25px}.hero:before{width:390px;right:50%;top:19%;transform:translate(50%,0)}.hero:after{right:12%;top:9%;width:95px;height:95px}.hero .badge{grid-column:1}.hero h1{font-size:clamp(2.8rem,12vw,4.8rem)}.hero p{font-size:.96rem}.hero .stats{gap:20px;margin-top:24px}.hero .stats b{font-size:1.2rem}.av{height:172px}section{padding:48px 0}footer{border-radius:18px;margin-bottom:0}}
+@media(max-width:620px){body{padding:0 8px 16px}header .wrap{padding:0 12px}.brand{gap:7px}.brand .bt{font-size:.78rem!important;letter-spacing:.06em!important}.brand small{font-size:.48rem!important;letter-spacing:.08em!important}.brand .lg{width:42px!important;height:42px!important}.cartbtn{padding:8px 10px;font-size:.72rem}nav{display:none}.hero.wrap{width:calc(100% - 16px);padding:26px 20px}.hero .herologo{width:166px;height:166px}.stats{gap:16px}.stats span{font-size:.68rem}}
+/* Cinematic scroll story and light clinical sections. */
+html{scroll-padding-top:88px;scroll-behavior:smooth}
+body{padding:0;background:#fff;color:#20251f;font:16px/1.65 Inter,system-ui,Arial,sans-serif}
+header#siteHeader{position:fixed;inset:0 0 auto;z-index:30;width:100%;max-width:none;height:auto;margin:0;border:0;border-bottom:1px solid rgba(255,255,255,.12);border-radius:0;background:rgba(255,255,255,.94);border-color:#e6ecdd;backdrop-filter:blur(18px);transition:background .35s,border-color .35s,color .35s}
+header#siteHeader .wrap{max-width:1320px;height:82px;padding:0 28px}
+header#siteHeader .brand{color:#3a4a20}
+header#siteHeader .brand .bt{font:700 .94rem Inter,system-ui,sans-serif;letter-spacing:.16em}
+header#siteHeader .brand small{color:#cf6528;font:500 .55rem Inter,sans-serif;letter-spacing:.16em}
+header#siteHeader .lg{background:#fff;border:2px solid #fff;overflow:hidden}
+header#siteHeader .lg img{object-fit:cover}
+header#siteHeader nav{display:flex;gap:3px;padding:5px;border:1px solid #e6ecdd;border-radius:999px;background:#f4f9ee}
+header#siteHeader nav a{margin:0;padding:8px 13px;border-radius:999px;color:#3a4a20;font:600 .68rem Inter,sans-serif;letter-spacing:.08em;text-transform:uppercase}
+header#siteHeader nav a:hover{background:#d7e7b5;color:#3a4a20}
+.head-actions{display:flex;gap:8px;align-items:center}
+header#siteHeader .cartbtn{padding:9px 14px;border:1px solid #3a4a20;background:#3a4a20;color:#fff;font:600 .77rem Inter,sans-serif}
+header#siteHeader.is-light{background:rgba(255,255,255,.96);border-color:#e6ecdd;color:#24372b}
+header#siteHeader.is-light .brand{color:#294331}
+header#siteHeader.is-light .brand small{color:#986943}
+header#siteHeader.is-light nav{background:#edf3e9;border-color:#e4ebdf}
+header#siteHeader.is-light nav a{color:#31503a}
+header#siteHeader.is-light nav a:hover{background:#dce8d5}
+header#siteHeader.is-light .cartbtn{background:#345b3d;border-color:#345b3d;color:#fff}
+main#mainContent{max-width:none;margin:0;padding:0;background:#fff}
+.story{position:relative;height:620vh;background:#fff;color:#26351f;isolation:isolate}
+.story-track{height:100%;position:relative}
+.story-sticky{position:sticky;top:0;height:100svh;min-height:620px;overflow:hidden;background:#fff;color:#26351f}
+#botanicalCanvas{position:absolute;inset:0;display:block;width:100%;height:100%;background:#fff}
+.story-vignette{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 70% 48%,transparent 22%,rgba(244,249,238,.12) 62%,rgba(226,235,215,.28) 100%)}
+.story-wash{position:absolute;inset:0;z-index:2;pointer-events:none;background:#fff;opacity:0}
+.story-sticky.is-light-stage .story-beat h1,.story-sticky.is-light-stage .story-beat h2{color:#1e2a20;text-shadow:none}
+.story-sticky.is-light-stage .story-beat p{color:rgba(24,39,27,.66)}
+.story-sticky.is-light-stage .beat-index{color:#a34d21}
+.story-sticky.is-light-stage .story-link{color:#294331}
+.story-sticky.is-light-stage .ingredient-note{color:rgba(24,39,27,.48)}
+.story-content{position:relative;z-index:3;width:min(1320px,100%);height:100%;margin:auto;padding:0 7.5vw}
+.story-spine{position:absolute;z-index:0;right:3.5vw;top:50%;width:min(38vw,500px);height:min(78vh,850px);object-fit:contain;object-position:center;transform:translateY(-50%);opacity:1;pointer-events:none;filter:drop-shadow(0 18px 32px rgba(35,52,29,.12));transition:opacity .2s ease}
+.story-mark{position:absolute;left:7.5vw;top:19%;color:rgba(58,74,32,.58)}
+.story-kicker,.beat-index{font:600 .66rem Inter,system-ui,sans-serif;letter-spacing:.22em;text-transform:uppercase}
+.story-kicker{color:#5a7a2e}
+.story-beat{position:absolute;left:7.5vw;top:32%;width:min(470px,43vw);opacity:0;transform:translate3d(0,24px,0);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.75,.25,1);pointer-events:none}
+.story-beat.is-active{opacity:1;transform:translate3d(0,0,0);pointer-events:auto}
+.beat-index{display:block;margin-bottom:20px;color:#cf6528}
+.story-beat h1,.story-beat h2{margin:0 0 18px;color:#26351f;font-family:"Cormorant Garamond",Georgia,serif;font-weight:600;letter-spacing:-.035em;text-shadow:none}
+.story-beat h1{font-size:clamp(4rem,8vw,7.8rem);line-height:.83}
+.story-beat h2{font-size:clamp(2.8rem,5.5vw,5.4rem);line-height:.9}
+.story-beat p{max-width:410px;margin:0;color:rgba(38,53,31,.72);font-size:clamp(.94rem,1.3vw,1.08rem);line-height:1.8}
+.story-cta h2{font-size:clamp(3rem,5.2vw,5rem)}
+.story-actions{display:flex;align-items:center;gap:23px;flex-wrap:wrap;margin-top:28px}
+.story-button{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 21px;border-radius:999px;background:#5a7a2e;color:#fff;text-decoration:none;font:600 .82rem Inter,sans-serif;transition:transform .2s,background .2s}
+.story-button:hover{transform:translateY(-2px);background:#3a4a20}
+.story-link{color:#3a4a20;text-decoration:none;font:600 .82rem Inter,sans-serif}
+.story-link span{margin-left:5px;color:#a9c36d}
+.ingredient-note{position:absolute;left:7.5vw;bottom:13%;max-width:410px;margin:0;color:rgba(58,74,32,.52);font:500 .58rem Inter,sans-serif;letter-spacing:.08em;text-transform:uppercase;transition:opacity .4s}
+.story-scroll-cue{position:absolute;z-index:4;left:7.5vw;bottom:35px;display:flex;align-items:center;gap:10px;color:rgba(58,74,32,.56);font:600 .56rem Inter,sans-serif;letter-spacing:.18em;transition:opacity .3s}
+.story-scroll-cue span{display:block;width:34px;height:1px;background:#a9c36d}
+.story-progress{position:absolute;z-index:4;right:34px;top:28%;height:44%;width:1px;background:rgba(58,74,32,.18)}
+.story-progress span{display:block;width:1px;height:100%;background:#5a7a2e;transform-origin:top;transform:scaleY(0)}
+.ingredient-list{display:none}
+section:not(.story){padding:76px 0;background:#fff;color:#24372b}
+section#departments,section#team,section#shop,section#treatments{scroll-margin-top:90px}
+.about{background:#fff;border:0}
+.tint{background:#f4f9ee!important}
+.sec-h h2{color:#294331}
+.team .card{background:#fff}
+.av{height:190px}
+.book{align-items:start}
+footer{max-width:none;margin:0;padding:42px 24px 36px;border-radius:0;background:#183b2b;color:#e8eee5}
+footer .wrap{max-width:1180px}
+footer .lg{width:86px!important;height:86px!important;background:#fff;border:2px solid #fff;overflow:hidden}
+footer .lg img{object-fit:cover}
+.ov{z-index:40}.dr{z-index:50}
+@media(max-width:900px){header#siteHeader nav{display:none}}
+@media(max-width:760px){header#siteHeader .wrap{height:72px;padding:0 16px}.story{height:560vh}.story-sticky{min-height:560px}.story-content{padding:0 24px}.story-spine{right:-8vw;width:55vw;height:62vh;opacity:.25}.story-mark{left:24px;top:13%}.story-beat{left:24px;top:20%;width:calc(100% - 48px);max-width:560px}.story-beat h1{font-size:clamp(3.3rem,13vw,5.4rem)}.story-beat h2{font-size:clamp(2.7rem,10vw,4rem)}.story-beat p{max-width:440px;font-size:.9rem}.story-scroll-cue{left:24px;bottom:22px}.story-progress{right:14px;top:28%;height:42%}.ingredient-note{left:24px;bottom:9%;max-width:80%;font-size:.49rem}.ingredient-list{position:absolute;z-index:4;left:50%;bottom:17%;display:grid;grid-template-columns:repeat(4,auto);gap:7px;justify-content:center;width:max-content;max-width:calc(100% - 36px);opacity:0;transform:translate(-50%,8px);transition:opacity .4s,transform .4s;pointer-events:none}.ingredient-list.is-visible{opacity:1;transform:translate(-50%,0)}.ingredient-list span{padding:4px 7px;border:1px solid rgba(90,122,46,.28);border-radius:99px;background:rgba(244,249,238,.92);color:#3a4a20;font:500 .55rem Inter,sans-serif;letter-spacing:.04em}.story-cta .story-actions{gap:14px;margin-top:22px}section:not(.story){padding:55px 0}.av{height:172px}footer{padding:34px 0}}
+@media(max-width:480px){header#siteHeader .brand .bt{font-size:.75rem;letter-spacing:.1em}header#siteHeader .brand small{font-size:.45rem;letter-spacing:.1em}header#siteHeader .lg{width:42px!important;height:42px!important}.head-actions{gap:5px}header#siteHeader .cartbtn{padding:8px 9px;font-size:.69rem}.story-beat{top:19%}.story-beat h1{font-size:3.15rem}.story-beat h2{font-size:2.55rem}.story-beat p{font-size:.83rem}.story-mark{top:12%}.story-scroll-cue{font-size:.5rem}.story-cta .story-button{min-height:42px;padding:0 16px}.ingredient-list{grid-template-columns:repeat(3,auto);bottom:16%}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.story{height:100svh}.story-sticky{position:relative;height:100svh}.story-beat{display:none}.story-beat:first-of-type{display:block;opacity:1;transform:none;top:28%}.story-wash,.story-progress,.story-scroll-cue,.ingredient-list{display:none!important}.team .card,.story-button{transition:none}}
+.reveal-target{opacity:0;transform:translate3d(0,22px,0);transition:opacity .65s ease,transform .65s cubic-bezier(.2,.75,.25,1);transition-delay:var(--reveal-delay,0ms)}
+.reveal-target.is-revealed{opacity:1;transform:translate3d(0,0,0)}
+@media(prefers-reduced-motion:reduce){.reveal-target{opacity:1;transform:none;transition:none}}
 </style>
 </head>
 <body>
-<header><div class="wrap"><a class="brand" href="#top"><span class="lg" data-logo style="width:56px;height:56px"></span><span class="bt">Nilambur Vaidyasala<small>AYURVEDA HERITAGE HOSPITAL</small></span></a>
-<nav><a href="#about">Our Legacy</a><a href="#departments">Departments</a><a href="#shop">Shop</a><a href="#book">Book Visit</a></nav><div style="display:flex;gap:8px;align-items:center"><button class="cartbtn" id="accountBtn">Sign in</button><button class="cartbtn" id="cartBtn" aria-label="Open cart">🛒 Cart (<span id="cartN">0</span>)</button></div></div></header>
+<header id="siteHeader"><div class="wrap"><a class="brand" href="#top"><span class="lg" data-logo style="width:48px;height:48px"></span><span class="bt">Nilambur Vaidyasala<small>AYURVEDA HERITAGE HOSPITAL</small></span></a>
+<nav><a href="#top">Home</a><a href="about.html">About</a><a href="#departments">Departments</a><a href="#team">Specialists</a><a href="products.html">Store</a><a href="#book">Book Visit</a><a href="#contact">Contact</a></nav><div class="head-actions"><button class="cartbtn" id="accountBtn">Sign in</button><button class="cartbtn" id="cartBtn" aria-label="Open cart">Cart <span id="cartN">0</span></button></div></div></header>
 
-<main id="top">
-<div class="hero wrap">
-<div class="lg herologo" data-logo></div>
-<span class="badge">Ayurveda Heritage Hospital · Since 1925</span>
-<h1>Healing, rooted in tradition</h1>
-<p>For over a century, Nilambur Vaidyasala has restored health through classical Ayurvedic care. Book your consultation in a few simple steps.</p>
-<a class="btn" href="#book">Book a Consultation</a>
-<div class="stats"><div><b>100+</b><span>Years of tradition</span></div><div><b>3</b><span>Specialty departments</span></div><div><b>5</b><span>Generations of vaidyas</span></div></div>
-</div>
-
-<section class="about" id="about"><div class="wrap">
-<div class="sec-h"><h2>A legacy rooted in a century of care</h2></div>
-<p>Founded in the forest-fringed town of Nilambur, Kerala, our vaidyasala has carried forward the knowledge of the Ashtanga Hridaya and classical Ayurvedic texts, passed from teacher to student for over a century.</p>
-<p>Today, traditional diagnosis, herbal formulations and Panchakarma therapies are offered alongside modern patient care, with the same principle as always: treat the person, not just the symptom.</p>
-</div></section>
+<main id="mainContent">
+<section class="story" id="top" aria-label="Nilambur Vaidyasala heritage story">
+  <div class="story-track" id="storyTrack">
+    <div class="story-sticky" id="storySticky">
+      <canvas id="botanicalCanvas" aria-hidden="true"></canvas>
+      <div class="story-vignette" aria-hidden="true"></div>
+      <div class="story-wash" id="storyWash" aria-hidden="true"></div>
+      <img class="story-spine" id="storySpine" src="spine-cutout.png" alt="X-ray illustration showing the spine and upper body" fetchpriority="high" decoding="async">
+      <div class="story-content">
+        <div class="story-mark"><span class="story-kicker">NILAMBUR · KERALA · EST. 1925</span></div>
+        <article class="story-beat is-active" data-from="0" data-to="0.18"><span class="beat-index">01 / 06</span><h1>Rooted<br>in 1925.</h1><p>A century of Ayurvedic care, from the forests of Nilambur.</p></article>
+        <article class="story-beat" data-from="0.18" data-to="0.34"><span class="beat-index">02 / 06</span><h2>Nothing hidden.<br>Everything named.</h2><p>A closer look at the materials behind a traditional preparation.</p></article>
+        <article class="story-beat" data-from="0.34" data-to="0.63"><span class="beat-index">03 / 06</span><h2>Every part has<br>a place.</h2><p>Ingredient categories shown are illustrative only. The actual formula and descriptions await confirmation by the vaidyas.</p></article>
+        <article class="story-beat" data-from="0.63" data-to="0.81"><span class="beat-index">04 / 06</span><h2>Prepared the<br>traditional way.</h2><p>Knowledge carried forward with care, from one generation to the next.</p></article>
+        <article class="story-beat" data-from="0.81" data-to="0.91"><span class="beat-index">05 / 06</span><h2>A century of knowledge.<br>A tradition carried forward.</h2><p>Nilambur Vaidyasala · Ayurveda Heritage Hospital</p></article>
+        <article class="story-beat story-cta" data-from="0.91" data-to="1"><span class="beat-index">06 / 06</span><h2>Begin with a<br>conversation.</h2><p>Speak with our team or explore the Vaidyasala store.</p><div class="story-actions"><a class="story-button" href="#book">Book a consultation</a><a class="story-link" href="products.html">Visit the store <span aria-hidden="true">↗</span></a></div></article>
+        <p class="ingredient-note">Illustrative categories only · formulation to be confirmed by the vaidyas</p>
+      </div>
+      <div class="story-scroll-cue" aria-hidden="true"><span></span> SCROLL TO EXPLORE</div>
+      <div class="story-progress" aria-hidden="true"><span id="storyProgress"></span></div>
+      <div class="ingredient-list" id="ingredientList" aria-hidden="true"><span>Roots</span><span>Leaves</span><span>Bark</span><span>Flowers</span><span>Seeds</span><span>Sesame oil</span><span>Clay vessel</span></div>
+    </div>
+  </div>
+</section>
 
 <section id="departments"><div class="wrap">
 <div class="sec-h"><h2>Our Departments</h2><p>Specialist care, the Ayurvedic way</p></div>
 <div class="grid">
-<div class="card"><div class="ico">🌿</div><h3>General Medicine</h3><p>Kayachikitsa for digestion, immunity, lifestyle disorders, skin, and seasonal wellness.</p></div>
-<div class="card"><div class="ico">🦴</div><h3>Orthopaedics</h3><p>Care for joint pain, arthritis, spine and sports injuries using Kizhi, Abhyanga and Marma therapy.</p></div>
-<div class="card"><div class="ico">🧠</div><h3>Neurology</h3><p>Treatment for paralysis, neuropathy, migraine and stress-related nerve disorders through Panchakarma.</p></div>
+<div class="card"><div class="ico">🌿</div><h3>General Physician</h3><p>General Ayurvedic consultations with Dr. Sheji U.K. (B.A.M.S.), Monday to Saturday.</p></div>
+<div class="card"><div class="ico">🦴</div><h3>Orthopaedics &amp; Sports Injury</h3><p>Orthopaedic and sports-injury consultations with Dr. Muhammad Ameen (B.U.M.S.), Monday and Thursday, 10 am–12 pm.</p></div>
+<div class="card"><div class="ico">🧍</div><h3>Spine &amp; Back Care</h3><p>Spine-related consultations with Dr. Salim M. Thamban (B.A.M.S.), Sunday, 3–5 pm.</p></div>
+<div class="card"><div class="ico">🌸</div><h3>Skin &amp; Beauty Care</h3><p>Skin and beauty-care consultations with Dr. Sripriya R.U. (B.A.M.S.).</p></div>
 </div></div></section>
 
-<section class="tint" id="team"><div class="wrap"><div class="sec-h"><h2>Meet Our Specialists</h2><p>Experienced vaidyas guiding every department</p></div><div class="grid team" id="docs">
-<div class="card"><div class="av">🌿</div><h3>General Medicine</h3><p>Senior Vaidya · Kayachikitsa</p></div>
-<div class="card"><div class="av">🦴</div><h3>Orthopaedics</h3><p>Senior Vaidya · Bone, joint &amp; Marma care</p></div>
-<div class="card"><div class="av">🧠</div><h3>Neurology</h3><p>Senior Vaidya · Panchakarma &amp; nerve care</p></div>
+<section class="tint" id="team"><div class="wrap"><div class="sec-h"><h2>Meet Our Specialists</h2><p>Our doctors and their consultation schedules</p></div><div class="grid team" id="docs">
+<div class="card"><div class="av"><img src="doctor-sheji.jpg" alt="Dr. Sheji U.K." loading="lazy" decoding="async"></div><h3>Dr. Sheji U.K.</h3><p>B.A.M.S. · General Physician</p><p>Monday–Saturday</p></div>
+<div class="card"><div class="av"><img src="doctor-ameen.jpg" alt="Dr. Muhammad Ameen" loading="lazy" decoding="async" style="object-position:center top"></div><h3>Dr. Muhammad Ameen</h3><p>B.U.M.S. · Orthopaedics &amp; Sports Injury</p><p>Monday &amp; Thursday · 10 am–12 pm</p></div>
+<div class="card"><div class="av"><img src="doctor-salim.jpg" alt="Dr. Salim M. Thamban" loading="lazy" decoding="async" style="object-position:center 25%;background:#101010;transform:scale(1.35) translateY(-25%);transform-origin:center 25%"></div><h3>Dr. Salim M. Thamban</h3><p>B.A.M.S. · Spine &amp; Back Care</p><p>Sunday · 3–5 pm</p></div>
+<div class="card"><div class="av"><img src="doctor-sripriya.jpg" alt="Dr. Sripriya R.U." loading="lazy" decoding="async"></div><h3>Dr. Sripriya R.U.</h3><p>B.A.M.S. · Skin &amp; Beauty Care</p></div>
 </div></div></section>
 
 <section id="treatments"><div class="wrap"><div class="sec-h"><h2>Our Signature Therapies</h2><p>Classical treatments, delivered with care</p></div><div class="grid">
@@ -150,7 +310,7 @@ footer{background:linear-gradient(135deg,#2c3d1a,#46602a);color:#f3f0dc;padding:
 <div class="card"><div class="ico">✨</div><h3>Panchakarma</h3><p>Classical detoxification and rejuvenation programme.</p></div>
 </div></div></section>
 
-<section id="shop"><div class="wrap"><div class="sec-h"><h2>Vaidyasala Store</h2><p>Authentic Ayurvedic formulations, prepared the traditional way</p></div><div class="chips" id="chips"></div><div class="pgrid" id="pgrid"></div><p class="muted" style="text-align:center;margin-top:22px">Free delivery on orders above ₹999. Please consult our vaidya before starting any medicine.</p></div></section>
+<section id="shop"><div class="wrap"><div class="sec-h"><h2>Vaidyasala Store</h2><p>Authentic Ayurvedic formulations, prepared the traditional way</p><a class="btn ghost" href="products.html" style="margin-top:16px">Explore the store</a></div><div class="chips" id="chips"></div><div class="pgrid" id="pgrid"></div><p class="muted" style="text-align:center;margin-top:22px">Free delivery on orders above ₹999. Please consult our vaidya before starting any medicine.</p></div></section>
 
 <section id="book" style="background:var(--surface);border-top:1px solid var(--line)"><div class="wrap">
 <div class="sec-h"><h2>Book Your Consultation</h2><p>Choose a department, date and time that suits you</p></div>
@@ -162,7 +322,7 @@ footer{background:linear-gradient(135deg,#2c3d1a,#46602a);color:#f3f0dc;padding:
 <h3 style="margin-top:24px">2 · Date &amp; time</h3>
 <label for="date" style="margin-top:0">Preferred date</label>
 <input type="date" id="date">
-<p class="muted" style="margin:6px 0 0">Consultations run Monday to Saturday.</p>
+<p class="muted" style="margin:6px 0 0">Consultation days and times depend on the selected department.</p>
 <label>Available slots</label>
 <div class="slots" id="slots"><span class="muted">Select a department and date first.</span></div>
 </div>
@@ -189,14 +349,6 @@ footer{background:linear-gradient(135deg,#2c3d1a,#46602a);color:#f3f0dc;padding:
 
 <section id="account" hidden><div class="wrap account-wrap">
 <div class="sec-h"><h2>Your Account</h2><p>Manage your profile, bookings and orders</p></div>
-<div class="panel" id="accountGuest">
-<h3 id="authHeading">Sign in</h3>
-<div id="signupFields" hidden><label for="authName">Full name</label><input id="authName" autocomplete="name"><label for="authPhone">Phone</label><input id="authPhone" type="tel" autocomplete="tel"></div>
-<label for="authEmail">Email</label><input id="authEmail" type="email" autocomplete="email">
-<label for="authPassword">Password</label><input id="authPassword" type="password" autocomplete="current-password">
-<p class="err" id="authErr" role="alert"></p>
-<div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px"><button class="btn" id="authSubmit">Sign in</button><button class="btn ghost" id="authSwitch">Create account</button><button class="btn ghost" id="authReset">Reset password</button></div>
-</div>
 <div class="panel" id="accountHome" hidden>
 <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap"><h3>Profile</h3><button class="btn ghost" id="authSignOut">Sign out</button></div>
 <p class="muted" id="accountEmail"></p>
@@ -210,40 +362,134 @@ footer{background:linear-gradient(135deg,#2c3d1a,#46602a);color:#f3f0dc;padding:
 </div></section>
 </main>
 
+<div class="auth-modal" id="authModal" hidden>
+<div class="auth-backdrop" data-auth-close aria-hidden="true"></div>
+<div class="auth-dialog" role="dialog" aria-modal="true" aria-labelledby="authHeading" aria-describedby="authErr">
+<button class="auth-close" type="button" id="authClose" aria-label="Close sign in">×</button>
+<div class="auth-brand"><span class="lg" data-logo style="width:64px;height:64px"></span><div><strong>Nilambur Vaidyasala</strong><small>AYURVEDA HERITAGE HOSPITAL</small></div></div>
+<div class="panel" id="accountGuest">
+<h2 id="authHeading">Sign in</h2>
+<button class="google-signin" id="googleSignIn" type="button"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.25 5.48-4.73 7.18l7.65 5.93c4.47-4.13 7.12-10.2 7.12-17.58z"/><path fill="#FBBC05" d="M10.53 28.59A14.4 14.4 0 0 1 9.75 24c0-1.59.27-3.13.76-4.59l-7.98-6.19A23.9 23.9 0 0 0 0 24c0 3.87.93 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.9-5.87l-7.65-5.93c-2.13 1.43-4.87 2.27-8.25 2.27-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>Continue with Google</button>
+<div class="auth-divider" aria-hidden="true">or continue with email</div>
+<div id="signupFields" hidden><label for="authName">Full name</label><input id="authName" autocomplete="name"><label for="authPhone">Phone</label><input id="authPhone" type="tel" autocomplete="tel"></div>
+<label for="authEmail">Email</label><input id="authEmail" type="email" autocomplete="email">
+<label for="authPassword">Password</label><input id="authPassword" type="password" autocomplete="current-password">
+<p class="err" id="authErr" role="alert" aria-live="polite"></p>
+<div class="auth-actions"><button class="btn" id="authSubmit">Sign in</button><button class="btn ghost" id="authSwitch">Create account</button><button class="btn ghost" id="authReset">Forgot password?</button></div>
+</div>
+</div>
+</div>
+
 <div id="ov" class="ov" hidden></div>
 <aside id="dr" class="dr" hidden aria-label="Shopping cart"><div class="dh"><h3 id="dt">Your cart</h3><button id="dx" aria-label="Close">✕</button></div><div id="db" class="db"></div></aside>
 
-<footer><div class="wrap">
+<footer id="contact"><div class="wrap">
 <div class="lg" data-logo style="width:120px;height:120px"></div>
 <div style="font-family:'Cormorant Garamond',Georgia,serif;font-size:1.4rem;letter-spacing:.14em;text-transform:uppercase;color:#fff">Nilambur Vaidyasala</div>
-<div>Nilambur, Malappuram, Kerala · Open Monday–Saturday, 9:00 am – 5:00 pm</div>
+<div><a href="https://maps.app.goo.gl/KvUxwnRq5gDMy8mu5" target="_blank" rel="noopener noreferrer">View hospital location · Nilambur, Kerala ↗</a></div>
+<div><a href="tel:+919446549329">Call us: 9446549329</a></div>
+<div>Open Monday–Saturday, 9:00 am–6:30 pm</div>
 <div style="opacity:.7;margin-top:6px">© 2026 Nilambur Vaidyasala · Serving since 1925</div>
 </div></footer>
 
+<script>
+(()=>{
+  const story=document.getElementById("storyTrack"),stage=document.getElementById("storySticky"),canvas=document.getElementById("botanicalCanvas"),ctx=canvas.getContext("2d"),header=document.getElementById("siteHeader"),wash=document.getElementById("storyWash"),bar=document.getElementById("storyProgress"),chips=document.getElementById("ingredientList"),spine=document.getElementById("storySpine"),beats=[...document.querySelectorAll(".story-beat")],reduce=matchMedia("(prefers-reduced-motion: reduce)");
+  let w=0,h=0,dpr=1,progress=0,scrollQueued=false;
+  const clamp=(v,a=0,b=1)=>Math.max(a,Math.min(b,v)),smooth=(a,b,x)=>{const t=clamp((x-a)/(b-a));return t*t*(3-2*t)};
+  function resize(){const r=stage.getBoundingClientRect();w=r.width;h=r.height;dpr=Math.min(devicePixelRatio||1,2);canvas.width=Math.round(w*dpr);canvas.height=Math.round(h*dpr);ctx.setTransform(dpr,0,0,dpr,0,0)}
+  function readScroll(){if(reduce.matches){progress=0;return}const r=story.getBoundingClientRect(),span=Math.max(1,story.offsetHeight-innerHeight);progress=clamp(-r.top/span)}
+  function update(){scrollQueued=false;readScroll();let active=beats.find(b=>progress>=Number(b.dataset.from)&&progress<(Number(b.dataset.to)+.00001));if(progress>=1)active=beats[beats.length-1];beats.forEach(b=>{b.classList.toggle("is-active",b===active);b.setAttribute("aria-hidden",String(b!==active))});const ex=smooth(.22,.39,progress)*(1-smooth(.59,.81,progress));chips.classList.toggle("is-visible",!reduce.matches&&ex>.3&&innerWidth<760);spine.style.opacity=String((innerWidth<760?.5:1)*(1-smooth(.12,.2,progress)));wash.style.opacity=String(reduce.matches?0:smooth(.9,1,progress)*.96);stage.classList.toggle("is-light-stage",!reduce.matches&&progress>.955);bar.style.transform=`scaleY(${progress})`;const mark=document.querySelector(".story-mark"),meter=document.querySelector(".story-progress");if(mark)mark.style.opacity=String(1-smooth(.86,.94,progress));if(meter)meter.style.opacity=String(1-smooth(.88,.97,progress));const sr=story.getBoundingClientRect();header.classList.toggle("is-light",sr.bottom<=88);const cue=document.querySelector(".story-scroll-cue");if(cue)cue.style.opacity=String(clamp(1-progress*1.8))}
+  function requestUpdate(){if(!scrollQueued){scrollQueued=true;requestAnimationFrame(update)}}
+  function roundRect(x,y,width,height,r){ctx.beginPath();ctx.roundRect(x,y,width,height,r)}
+  function drawLeaf(x,y,s,rot){ctx.save();ctx.translate(x,y);ctx.rotate(rot);ctx.fillStyle="#718c4b";ctx.beginPath();ctx.ellipse(0,0,s*.25,s*.62,0,0,Math.PI*2);ctx.fill();ctx.strokeStyle="rgba(212,229,176,.7)";ctx.lineWidth=1.2;ctx.beginPath();ctx.moveTo(0,s*.52);ctx.quadraticCurveTo(s*.02,0,0,-s*.52);ctx.stroke();ctx.restore()}
+  function drawFlower(x,y,s){ctx.save();ctx.translate(x,y);for(let i=0;i<6;i++){ctx.rotate(Math.PI/3);ctx.fillStyle=i%2?"#c7b18a":"#d7cbaa";ctx.beginPath();ctx.ellipse(0,-s*.29,s*.16,s*.31,0,0,Math.PI*2);ctx.fill()}ctx.fillStyle="#bb7a36";ctx.beginPath();ctx.arc(0,0,s*.12,0,Math.PI*2);ctx.fill();ctx.restore()}
+  function drawRoot(x,y,s){ctx.save();ctx.translate(x,y);ctx.strokeStyle="#a78962";ctx.lineWidth=s*.095;ctx.lineCap="round";ctx.beginPath();ctx.moveTo(0,-s*.36);ctx.bezierCurveTo(-s*.08,-s*.05,s*.12,s*.13,0,s*.48);ctx.moveTo(-s*.02,0);ctx.quadraticCurveTo(-s*.32,s*.12,-s*.4,s*.38);ctx.moveTo(s*.02,s*.1);ctx.quadraticCurveTo(s*.33,s*.16,s*.4,s*.43);ctx.moveTo(-s*.12,s*.2);ctx.lineTo(-s*.22,s*.47);ctx.stroke();ctx.restore()}
+  function drawBottle(x,y,unit,p,alpha,now){const s=unit/300;ctx.save();ctx.translate(x,y+Math.sin(now*.0007)*unit*.018);ctx.rotate(Math.sin(now*.0003)*.025);ctx.scale(s,s);ctx.globalAlpha=alpha;
+    ctx.fillStyle="rgba(0,0,0,.52)";ctx.beginPath();ctx.ellipse(0,137,82,14,0,0,Math.PI*2);ctx.fill();
+    const body=new Path2D();body.moveTo(-37,-102);body.lineTo(-37,-62);body.quadraticCurveTo(-43,-48,-65,-34);body.quadraticCurveTo(-79,-25,-79,-4);body.lineTo(-79,102);body.quadraticCurveTo(-79,126,-55,126);body.lineTo(55,126);body.quadraticCurveTo(79,126,79,102);body.lineTo(79,-4);body.quadraticCurveTo(79,-25,65,-34);body.quadraticCurveTo(43,-48,37,-62);body.lineTo(37,-102);body.closePath();
+    const glass=ctx.createLinearGradient(-80,-20,85,30);glass.addColorStop(0,"#382414");glass.addColorStop(.26,"#9a5d25");glass.addColorStop(.56,"#bb7833");glass.addColorStop(.8,"#633918");glass.addColorStop(1,"#261b10");ctx.fillStyle=glass;ctx.fill(body);
+    ctx.save();ctx.clip(body);const oil=ctx.createLinearGradient(0,30,0,130);oil.addColorStop(0,"rgba(199,131,47,.05)");oil.addColorStop(1,"rgba(207,101,40,.58)");ctx.fillStyle=oil;ctx.fillRect(-75,25,150,110);ctx.fillStyle="rgba(255,233,169,.17)";ctx.fillRect(-69,-28,9,130);ctx.restore();
+    ctx.strokeStyle="rgba(249,219,154,.32)";ctx.lineWidth=2;ctx.stroke(body);
+    const neck=ctx.createLinearGradient(-40,0,40,0);neck.addColorStop(0,"#71451f");neck.addColorStop(.45,"#ce914e");neck.addColorStop(1,"#4b2e18");ctx.fillStyle=neck;roundRect(-38,-108,76,38,5);ctx.fill();
+    const lidY=-147-smooth(.16,.26,p)*58;ctx.save();ctx.translate(0,lidY+147);const copper=ctx.createLinearGradient(-45,0,45,0);copper.addColorStop(0,"#6b391d");copper.addColorStop(.35,"#d08a4e");copper.addColorStop(.62,"#f0bd79");copper.addColorStop(1,"#82451f");ctx.fillStyle=copper;roundRect(-45,-147,90,42,8);ctx.fill();ctx.strokeStyle="rgba(255,227,174,.65)";ctx.lineWidth=1;for(let i=-35;i<40;i+=9){ctx.beginPath();ctx.moveTo(i,-143);ctx.lineTo(i,-109);ctx.stroke()}ctx.restore();
+    ctx.fillStyle="#f4ead6";ctx.strokeStyle="rgba(50,36,18,.45)";ctx.lineWidth=1;roundRect(-58,7,116,78,4);ctx.fill();ctx.stroke();ctx.textAlign="center";ctx.fillStyle="#3b4f32";ctx.font="600 10px Inter, sans-serif";ctx.fillText("NILAMBUR VAIDYASALA",0,27);ctx.fillStyle="#8c4c25";ctx.font="600 17px Georgia, serif";ctx.fillText("HERITAGE OIL",0,52);ctx.fillStyle="#657151";ctx.font="500 8px Inter, sans-serif";ctx.fillText("TRADITIONAL PREPARATION",0,69);ctx.globalAlpha=alpha*.7;ctx.fillStyle="#fff0c5";ctx.beginPath();ctx.ellipse(-67,25,3,52,-.05,0,Math.PI*2);ctx.fill();ctx.restore();
+  function drawIngredient(item,x,y,s){ctx.save();ctx.translate(x,y);ctx.globalAlpha=item.alpha;switch(item.kind){case"leaves":drawLeaf(0,0,s,-.4);drawLeaf(s*.22,-s*.05,s*.72,.55);drawLeaf(-s*.18,s*.2,s*.58,-1.1);break;case"roots":drawRoot(0,0,s);break;case"bark":ctx.rotate(-.25);const bg=ctx.createLinearGradient(-s*.35,0,s*.35,0);bg.addColorStop(0,"#4d3824");bg.addColorStop(.45,"#b49363");bg.addColorStop(1,"#59402a");ctx.fillStyle=bg;roundRect(-s*.3,-s*.44,s*.6,s*.88,s*.08);ctx.fill();ctx.strokeStyle="rgba(41,28,17,.6)";for(let i=-2;i<=2;i++){ctx.beginPath();ctx.moveTo(i*s*.09,-s*.38);ctx.lineTo(i*s*.09,s*.38);ctx.stroke()}break;case"flowers":drawFlower(0,0,s);break;case"seeds":for(let i=0;i<7;i++){ctx.save();ctx.rotate(i*.87);ctx.fillStyle=i%2?"#bd9a50":"#80934d";ctx.beginPath();ctx.ellipse(Math.sin(i*7)*s*.2,-s*.22,s*.1,s*.18,.2,0,Math.PI*2);ctx.fill();ctx.restore()}break;case"oil":const drop=ctx.createRadialGradient(-s*.08,-s*.12,1,0,0,s*.4);drop.addColorStop(0,"#ffe79c");drop.addColorStop(.34,"#d58c28");drop.addColorStop(1,"#714515");ctx.fillStyle=drop;ctx.beginPath();ctx.moveTo(0,-s*.48);ctx.bezierCurveTo(-s*.17,-s*.12,-s*.4,s*.13,-s*.31,s*.34);ctx.arc(0,s*.25,s*.31,Math.PI*.96,Math.PI*.04,true);ctx.bezierCurveTo(s*.4,s*.13,s*.17,-s*.12,0,-s*.48);ctx.fill();break;case"clay":const clay=ctx.createLinearGradient(-s*.4,0,s*.4,0);clay.addColorStop(0,"#6d3b29");clay.addColorStop(.5,"#c0734c");clay.addColorStop(1,"#713a28");ctx.fillStyle=clay;ctx.beginPath();ctx.moveTo(-s*.35,-s*.16);ctx.quadraticCurveTo(-s*.43,s*.42,0,s*.43);ctx.quadraticCurveTo(s*.43,s*.42,s*.35,-s*.16);ctx.quadraticCurveTo(0,-s*.02,-s*.35,-s*.16);ctx.fill();ctx.strokeStyle="#e0a77b";ctx.lineWidth=2;ctx.beginPath();ctx.ellipse(0,-s*.16,s*.36,s*.1,0,0,Math.PI*2);ctx.stroke();break}ctx.restore()}
+  const ingredients=[{name:"ROOTS",kind:"roots",dx:-.9,dy:.36},{name:"LEAVES",kind:"leaves",dx:.94,dy:-.55},{name:"BARK",kind:"bark",dx:-.92,dy:-.37},{name:"FLOWERS",kind:"flowers",dx:.92,dy:-.08},{name:"SEEDS",kind:"seeds",dx:-.28,dy:-.9},{name:"SESAME OIL",kind:"oil",dx:.88,dy:.61},{name:"CLAY VESSEL",kind:"clay",dx:-.46,dy:.82}];
+  function drawLabels(cx,cy,u,ex){if(w<850)return;ctx.save();ctx.font="600 9px Inter, sans-serif";ctx.textBaseline="middle";ingredients.forEach((it,i)=>{const x=cx+it.dx*u*ex,y=cy+it.dy*u*ex,s=u*.21;let lx=x+(it.dx>0?48:-48),ly=y+(it.dy>.4?25:it.dy<-.4?-20:0),align=it.dx>0?"left":"right";ctx.globalAlpha=ex*.8;ctx.strokeStyle="rgba(90,122,46,.55)";ctx.lineWidth=.8;ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(lx+(align==="left"?0:0),ly);ctx.lineTo(lx+(align==="left"?30:-30),ly);ctx.stroke();ctx.fillStyle="#3a4a20";ctx.textAlign=align;ctx.fillText(it.name,lx+(align==="left"?34:-34),ly-3);ctx.globalAlpha=ex*.42;ctx.font="500 7px Inter, sans-serif";ctx.fillStyle="#6a705c";ctx.fillText("FORMULA DETAILS TO BE CONFIRMED",lx+(align==="left"?34:-34),ly+9);ctx.font="600 9px Inter, sans-serif";});ctx.restore()}
+  function render(now){if(!w||!h)return;const time=reduce.matches?0:now;ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,w,h);ctx.fillStyle="#ffffff";ctx.fillRect(0,0,w,h);const glow=ctx.createRadialGradient(w*.69,h*.49,0,w*.69,h*.49,Math.max(w,h)*.65);glow.addColorStop(0,"rgba(169,195,109,.20)");glow.addColorStop(.55,"rgba(244,249,238,.28)");glow.addColorStop(1,"rgba(255,255,255,0)");ctx.fillStyle=glow;ctx.fillRect(0,0,w,h);
+    for(let i=0;i<26;i++){const x=(i*197.3%w),y=(i*83.7%h),a=.08+.1*Math.sin(time*.0003+i);ctx.fillStyle=`rgba(190,209,150,${a})`;ctx.beginPath();ctx.arc(x,y,(i%3)*.45+.45,0,Math.PI*2);ctx.fill()}
+    const open=smooth(.16,.26,progress),explode=smooth(.22,.39,progress)*(1-smooth(.59,.81,progress)),mobile=w<760,bottleH=clamp(h*.38,230,335),cx=w*(mobile?.54:.715),cy=h*(mobile?.69:.53),unit=bottleH;
+    const alpha=1-explode*.92,handoff=smooth(.12,.2,progress);drawBottle(cx,cy,unit,progress,alpha*handoff,time);
+    ingredients.forEach((it,i)=>{const bob=Math.sin(time*.0006+i*1.7)*unit*.012,x=cx+it.dx*unit*explode,y=cy+it.dy*unit*explode+bob,s=unit*(.15+.06*explode);drawIngredient({...it,alpha:explode},x,y,s)});drawLabels(cx,cy,unit,explode);
+    if(explode<.08&&progress<.2){ctx.globalAlpha=.25+open*.3;ctx.strokeStyle="#c98249";ctx.lineWidth=1;ctx.beginPath();ctx.ellipse(cx,cy+unit*.42,unit*.58,unit*.09,0,0,Math.PI*2);ctx.stroke();ctx.globalAlpha=1}
+    if(!reduce.matches)requestAnimationFrame(render)
+  }
+  resize();update();window.addEventListener("resize",()=>{resize();requestUpdate()},{passive:true});window.addEventListener("scroll",requestUpdate,{passive:true});reduce.addEventListener?.("change",()=>{requestUpdate();if(reduce.matches)render(0);else requestAnimationFrame(render)});requestAnimationFrame(render);
+})();
+</script>
+<script>
+(()=>{
+  const selector="section:not(.story) .sec-h,section:not(.story) .card,section:not(.story) .pc";
+  const reduced=matchMedia("(prefers-reduced-motion: reduce)");
+  if(reduced.matches||!("IntersectionObserver" in window)){document.querySelectorAll(selector).forEach(el=>el.classList.add("is-revealed"));return}
+  let order=0;
+  const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{
+    if(!entry.isIntersecting)return;
+    entry.target.classList.add("is-revealed");observer.unobserve(entry.target);
+  }),{threshold:.12,rootMargin:"0px 0px -7% 0px"});
+  function scan(root){
+    if(root.nodeType===1&&root.matches(selector))watch(root);
+    root.querySelectorAll?.(selector).forEach(watch);
+  }
+  function watch(el){if(el.dataset.revealReady)return;el.dataset.revealReady="1";el.classList.add("reveal-target");el.style.setProperty("--reveal-delay",`${(order++%6)*65}ms`);observer.observe(el)}
+  scan(document);
+  new MutationObserver(records=>records.forEach(record=>record.addedNodes.forEach(node=>{if(node.nodeType===1)scan(node)}))).observe(document.getElementById("mainContent"),{childList:true,subtree:true});
+})();
+</script>
 <script type="module">
 import {sb} from "./supabase.js";
 const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-const DEPTS=[{id:"General",icon:"🌿",d:"Kayachikitsa"},{id:"Orthopaedics",icon:"🦴",d:"Joints, spine, muscles"},{id:"Neurology",icon:"🧠",d:"Nerves &amp; brain"}];
 const TIMES=["09:00","09:30","10:00","10:30","11:00","11:30","12:00","12:30","14:00","14:30","15:00","15:30","16:00","16:30"];
+const DEPTS=[
+  {id:"General Physician",icon:"🌿",d:"Dr. Sheji U.K. · B.A.M.S. · Mon–Sat",days:[1,2,3,4,5,6],times:TIMES,note:"The poster lists Monday–Saturday consultations but does not specify hours; please confirm your requested slot with the clinic."},
+  {id:"Orthopaedics & Sports Injury",icon:"🦴",d:"Dr. Muhammad Ameen · B.U.M.S. · Mon & Thu, 10 am–12 pm",days:[1,4],times:["10:00","10:30","11:00","11:30"]},
+  {id:"Spine & Back Care",icon:"🧍",d:"Dr. Salim M. Thamban · B.A.M.S. · Sun, 3–5 pm",days:[0],times:["15:00","15:30","16:00","16:30"]},
+  {id:"Skin & Beauty Care",icon:"🌸",d:"Dr. Sripriya R.U. · B.A.M.S.",days:[1,2,3,4,5,6],times:TIMES,note:"The poster does not list this doctor's consultation hours; please confirm your requested slot with the clinic."}
+];
+const DOCTOR_HOURS={
+  "General Physician":"Monday–Saturday · Hours to be confirmed",
+  "Orthopaedics & Sports Injury":"Monday & Thursday · 10 am–12 pm",
+  "Spine & Back Care":"Sunday · 3–5 pm",
+  "Skin & Beauty Care":"Consultation hours not listed · Please call to confirm"
+};
 let state={dept:null,time:null};
 const $=id=>document.getElementById(id);
 const{data:{session:initialSession}}=await sb.auth.getSession();
 let currentUser=initialSession?.user||null,authMode="signin";
 const authErr=$("authErr");
 function setAuthMode(mode){authMode=mode;const signup=mode==="signup";$("authHeading").textContent=signup?"Create your account":"Sign in";$("authSubmit").textContent=signup?"Create account":"Sign in";$("authSwitch").textContent=signup?"I already have an account":"Create account";$("signupFields").hidden=!signup;$("authPassword").autocomplete=signup?"new-password":"current-password";authErr.textContent=""}
-function showAccount(){ $("account").hidden=false;$("account").scrollIntoView({behavior:"smooth",block:"start"});if(currentUser)loadAccount()}
+function openAuthModal(){const modal=$("authModal");modal.hidden=false;document.body.classList.add("auth-open");setTimeout(()=>$("authEmail").focus(),80)}
+function closeAuthModal(){const modal=$("authModal");if(modal.hidden)return;modal.hidden=true;document.body.classList.remove("auth-open")}
+function showAccount(){if(!currentUser){openAuthModal();return}$("account").hidden=false;$("account").scrollIntoView({behavior:"smooth",block:"start"});loadAccount()}
 function renderAccountState(){const signedIn=!!currentUser;$("accountBtn").textContent=signedIn?"Account":"Sign in";$("accountGuest").hidden=signedIn;$("accountHome").hidden=!signedIn;if(signedIn){$("accountEmail").textContent=currentUser.email||"";if(!$("profileName").value)$("profileName").value=currentUser.user_metadata?.full_name||"";if(!$("profilePhone").value)$("profilePhone").value=currentUser.user_metadata?.phone||"";if(!$("name").value)$("name").value=currentUser.user_metadata?.full_name||"";if(!$("phone").value)$("phone").value=currentUser.user_metadata?.phone||""}}
 async function loadAccount(){if(!currentUser)return;const uid=currentUser.id;const[profile,bookings,orders]=await Promise.all([sb.from("profiles").select("full_name,phone").eq("id",uid).maybeSingle(),sb.from("bookings").select("ref,dept,appt_date,appt_time,status").eq("user_id",uid).order("created_at",{ascending:false}),sb.from("orders").select("oid,items,total,status,created_at").eq("user_id",uid).order("created_at",{ascending:false})]);if(!currentUser||currentUser.id!==uid)return;if(profile.error){$("profileErr").textContent="Could not load your profile. Please try again."}else if(profile.data){$("profileName").value=profile.data.full_name||"";$("profilePhone").value=profile.data.phone||"";if(!$("name").value)$("name").value=profile.data.full_name||"";if(!$("phone").value)$("phone").value=profile.data.phone||""}const dt=d=>new Date(d+"T00:00:00").toLocaleDateString("en-IN",{day:"numeric",month:"short",year:"numeric"});$("myBookings").innerHTML=bookings.error?'<p class="muted">Could not load bookings. Please try again.</p>':bookings.data.length?bookings.data.map(b=>`<div class="card"><b>${esc(b.dept)}</b> · ${esc(dt(b.appt_date))} · ${esc(b.appt_time)}<br><span class="muted">Reference ${esc(b.ref||"—")} · ${esc(b.status)}</span></div>`).join(""):'<p class="muted">No bookings yet.</p>';$("myOrders").innerHTML=orders.error?'<p class="muted">Could not load orders. Please try again.</p>':orders.data.length?orders.data.map(o=>`<div class="card"><b>Order ${esc(o.oid||"")}</b> · ₹${Number(o.total||0).toLocaleString("en-IN")}<br><span class="muted">${esc(o.status)} · ${esc(new Date(o.created_at).toLocaleDateString("en-IN",{day:"numeric",month:"short",year:"numeric"}))}</span><div class="muted">${(o.items||[]).map(i=>`${esc(i.n)} × ${Number(i.q)||0}`).join(", ")}</div></div>`).join(""):'<p class="muted">No orders yet.</p>'}
 async function syncProfile(){if(!currentUser)return;const full_name=$("profileName").value.trim(),phone=$("profilePhone").value.trim();$("profileErr").textContent="";if(full_name.length<2){$("profileErr").textContent="Please enter your full name.";return}if(phone&&!/^[+\d][\d\s-]{7,14}$/.test(phone)){$("profileErr").textContent="Please enter a valid phone number.";return}const{error}=await sb.from("profiles").upsert({id:currentUser.id,full_name,phone},{onConflict:"id"});if(error){$("profileErr").textContent=error.message;return}$("name").value=full_name;$("phone").value=phone;$("profileErr").textContent="Profile saved."}
-sb.auth.onAuthStateChange((event,session)=>{currentUser=session?.user||null;renderAccountState();$("recoveryPanel").hidden=event!=="PASSWORD_RECOVERY";if(currentUser)setTimeout(()=>loadAccount(),0)});
+sb.auth.onAuthStateChange((event,session)=>{currentUser=session?.user||null;renderAccountState();$("recoveryPanel").hidden=event!=="PASSWORD_RECOVERY";if(currentUser){closeAuthModal();setTimeout(()=>loadAccount(),0)}if(event==="PASSWORD_RECOVERY"){$("account").hidden=false;setTimeout(()=>$("account").scrollIntoView({behavior:"smooth",block:"start"}),0)}});
 $("accountBtn").onclick=showAccount;
+$("authClose").onclick=closeAuthModal;
+document.querySelector("[data-auth-close]").onclick=closeAuthModal;
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!$("authModal").hidden)closeAuthModal()});
 $("authSwitch").onclick=()=>setAuthMode(authMode==="signup"?"signin":"signup");
-$("authSubmit").onclick=async()=>{authErr.textContent="";const email=$("authEmail").value.trim(),password=$("authPassword").value;if(!email||!password){authErr.textContent="Enter your email and password.";return}if(authMode==="signup"){const name=$("authName").value.trim(),phone=$("authPhone").value.trim();if(name.length<2){authErr.textContent="Please enter your full name.";return}if(password.length<8){authErr.textContent="Use a password with at least 8 characters.";return}if(phone&&!/^[+\d][\d\s-]{7,14}$/.test(phone)){authErr.textContent="Please enter a valid phone number.";return}const{data,error}=await sb.auth.signUp({email,password,options:{data:{full_name:name,phone}}});if(error){authErr.textContent=error.message;return}authErr.textContent=data.session?"Account created. You are signed in.":"Account created. Check your email to confirm the account, then sign in."}else{const{error}=await sb.auth.signInWithPassword({email,password});if(error)authErr.textContent=error.message}};
+$("googleSignIn").onclick=async()=>{authErr.textContent="";const button=$("googleSignIn");button.disabled=true;const{error}=await sb.auth.signInWithOAuth({provider:"google",options:{redirectTo:location.origin+location.pathname}});if(error){authErr.textContent=error.message;button.disabled=false}};
+$("authSubmit").onclick=async()=>{authErr.textContent="";const email=$("authEmail").value.trim(),password=$("authPassword").value;if(!email||!password){authErr.textContent="Enter your email and password.";return}if(authMode==="signup"){const name=$("authName").value.trim(),phone=$("authPhone").value.trim();if(name.length<2){authErr.textContent="Please enter your full name.";return}if(password.length<8){authErr.textContent="Use a password with at least 8 characters.";return}if(phone&&!/^[+\d][\d\s-]{7,14}$/.test(phone)){authErr.textContent="Please enter a valid phone number.";return}const{data,error}=await sb.auth.signUp({email,password,options:{emailRedirectTo:location.origin+location.pathname,data:{full_name:name,phone}}});if(error){authErr.textContent=error.message;return}authErr.textContent=data.session?"Account created. You are signed in.":"Account created. Check your email to confirm the account, then sign in."}else{const{error}=await sb.auth.signInWithPassword({email,password});if(error)authErr.textContent=error.message}};
 $("authReset").onclick=async()=>{authErr.textContent="";const email=$("authEmail").value.trim();if(!email){authErr.textContent="Enter your email first.";return}const{error}=await sb.auth.resetPasswordForEmail(email,{redirectTo:location.origin+location.pathname});authErr.textContent=error?error.message:"If an account exists for that email, a password reset link has been sent."};
 $("recoverySave").onclick=async()=>{const password=$("newPassword").value;$("recoveryErr").textContent="";if(password.length<8){$("recoveryErr").textContent="Use a password with at least 8 characters.";return}const{error}=await sb.auth.updateUser({password});$("recoveryErr").textContent=error?error.message:"Password updated."};
 $("authSignOut").onclick=async()=>{const{error}=await sb.auth.signOut();if(error)$("profileErr").textContent=error.message};
 $("profileSave").onclick=syncProfile;
 setAuthMode("signin");
+renderAccountState();
+if(!currentUser)requestAnimationFrame(openAuthModal);
 const dEl=$("date");
 function iso(d){return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")}
 const today=new Date();dEl.min=iso(today);
@@ -261,19 +507,22 @@ function renderDepts(){
 function renderSlots(){
   const box=$("slots"),v=dEl.value;
   if(!state.dept||!v){box.innerHTML='<span class="muted">Select a department and date first.</span>';return}
-  const day=new Date(v+"T00:00:00").getDay();
-  if(day===0){box.innerHTML='<span class="muted">The hospital is closed on Sundays. Please choose another date.</span>';state.time=null;return}
-  box.innerHTML=TIMES.map(t=>{const off=taken(v,state.dept,t)||pastTime(v,t);return`<button type="button" class="slot" data-t="${t}" ${off?"disabled":""} aria-pressed="${state.time===t}">${fmt(t)}</button>`}).join("");
+  const department=DEPTS.find(x=>x.id===state.dept),day=new Date(v+"T00:00:00").getDay();
+  if(!department||!department.days.includes(day)){box.innerHTML='<span class="muted">No consultations for this department on the selected day. Please choose another date.</span>';state.time=null;return}
+  box.innerHTML=department.times.map(t=>{const off=taken(v,state.dept,t)||pastTime(v,t);return`<button type="button" class="slot" data-t="${t}" ${off?"disabled":""} aria-pressed="${state.time===t}">${fmt(t)}</button>`}).join("")+(department.note?`<p class="muted">${esc(department.note)}</p>`:"");
   box.querySelectorAll(".slot:not(:disabled)").forEach(b=>b.onclick=()=>{state.time=b.dataset.t;renderSlots()});
 }
 dEl.onchange=()=>{state.time=null;watch();renderSlots()};
 $("submit").onclick=async()=>{
   const e=$("err"),name=$("name").value.trim(),phone=$("phone").value.trim(),age=$("age").value;
   e.textContent="";
-  if(!state.dept)return e.textContent="Please choose a department.";
+  const department=DEPTS.find(x=>x.id===state.dept);
+  if(!department)return e.textContent="Please choose a department.";
   if(!dEl.value)return e.textContent="Please choose a date.";
-  if(new Date(dEl.value+"T00:00:00").getDay()===0)return e.textContent="We are closed on Sundays.";
+  const appointmentDay=new Date(dEl.value+"T00:00:00").getDay();
+  if(!department.days.includes(appointmentDay))return e.textContent="No consultations for this department on the selected day. Please choose another date.";
   if(!state.time)return e.textContent="Please pick a time slot.";
+  if(!department.times.includes(state.time))return e.textContent="Please choose an available time for this department.";
   if(name.length<2)return e.textContent="Please enter your name.";
   if(!age||age<0||age>120)return e.textContent="Please enter a valid age.";
   if(!/^[+\d][\d\s-]{7,14}$/.test(phone))return e.textContent="Please enter a valid phone number.";
@@ -302,7 +551,7 @@ const inr=n=>"₹"+n.toLocaleString("en-IN"),cnt=()=>Object.values(cart).reduce(
 function upd(){try{localStorage.setItem("nv_cart",JSON.stringify(cart))}catch(_){}$("cartN").textContent=cnt();if(view==="cart"&&!$("dr").hidden)drawer("cart")}
 function shop(){$("chips").innerHTML=["All",...new Set(P.map(x=>x.c).filter(Boolean))].map(c=>`<button class="chip" data-c="${c}" aria-pressed="${cat===c}">${c}</button>`).join("");
 $("chips").querySelectorAll(".chip").forEach(b=>b.onclick=()=>{cat=b.dataset.c;shop()});
-$("pgrid").innerHTML=P.filter(x=>cat==="All"||x.c===cat).map(x=>`<div class="pc"><div class="pt">${x.img?`<img src="${esc(x.img)}" alt="" style="width:100%;height:100%;object-fit:cover">`:esc(x.e||"🌿")}</div><div class="pb"><h3>${esc(x.n)}</h3><p>${esc(x.d)}</p><div class="pr"><b>${inr(x.p)}</b><button class="btn" data-id="${x.id}">Add to cart</button></div></div></div>`).join("");
+$("pgrid").innerHTML=P.filter(x=>cat==="All"||x.c===cat).map(x=>`<div class="pc"><div class="pt">${x.img?`<img src="${esc(x.img)}" alt="" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover">`:esc(x.e||"🌿")}</div><div class="pb"><h3>${esc(x.n)}</h3><p>${esc(x.d)}</p><div class="pr"><b>${inr(x.p)}</b><button class="btn" data-id="${x.id}">Add to cart</button></div></div></div>`).join("");
 $("pgrid").querySelectorAll("[data-id]").forEach(b=>b.onclick=()=>{cart[b.dataset.id]=(cart[b.dataset.id]||0)+1;upd();b.textContent="Added ✓";setTimeout(()=>b.textContent="Add to cart",900)})}
 function tot(){const s=sub(),h=ship(s);return`<div class="tr"><span>Subtotal</span><span>${inr(s)}</span></div><div class="tr"><span>Delivery</span><span>${h?inr(h):"Free"}</span></div><div class="tr t"><span>Total</span><span>${inr(s+h)}</span></div>`}
 function drawer(v){view=v;const b=$("db");$("dt").textContent=v==="checkout"?"Checkout":v==="done"?"Order placed":"Your cart";
@@ -319,9 +568,10 @@ if(g("cn").length<2)return e.textContent="Please enter your name.";
 if(!/^[+\d][\d\s-]{7,14}$/.test(g("cp")))return e.textContent="Please enter a valid phone number.";
 if(g("ca").length<8)return e.textContent="Please enter your full address.";
 if(!/^\d{6}$/.test(g("cz")))return e.textContent="Please enter a 6-digit PIN code.";
-const s=sub(),t=s+ship(s),id="NV"+Date.now().toString().slice(-7),ph=g("cp");
-const {error:oe}=await sb.from("orders").insert({oid:id,name:g("cn"),phone:ph,addr:g("ca"),pin:g("cz"),items:P.filter(x=>cart[x.id]).map(x=>({id:x.id,n:x.n,q:cart[x.id],p:x.p})),total:t,user_id:currentUser?.id||null});
-if(oe){e.textContent="Sorry, we could not place your order. Please try again.";return}
+const ph=g("cp");
+const {data:placed,error:oe}=await sb.rpc("place_order",{p_name:g("cn"),p_phone:ph,p_addr:g("ca"),p_pin:g("cz"),p_items:P.filter(x=>cart[x.id]).map(x=>({id:String(x.id),q:cart[x.id]}))});
+if(oe||!placed?.length){e.textContent="Sorry, we could not place your order. Please try again.";return}
+const id=placed[0].order_code,t=Number(placed[0].order_total);
 if(currentUser)loadAccount();cart={};view="done";upd();$("dt").textContent="Order placed";
 $("db").innerHTML='<div class="ok"><div class="ico">🪷</div><h3>Thank you!</h3><div class="ref">'+id+'</div><p class="muted" id="dn"></p><button class="btn" id="dc">Continue shopping</button></div>';
 $("dn").textContent="Order total "+inr(t)+" · Cash on delivery. Our team will call "+ph+" to confirm your order.";$("dc").onclick=closeD}
@@ -335,7 +585,8 @@ const [pr,dr]=await Promise.all([sb.from("products").select("*").eq("active",tru
 P=(pr.data||[]).map(x=>({id:x.id,n:x.name,d:x.description,p:Number(x.price),c:x.category,e:x.emoji,img:x.image_url}));
 Object.keys(cart).forEach(k=>{if(!P.some(x=>String(x.id)===k))delete cart[k]});shop();upd();
 if(!P.length)$("pgrid").innerHTML='<p class="muted" style="grid-column:1/-1;text-align:center">Products coming soon.</p>';
-const L=dr.data||[];if(L.length)$("docs").innerHTML=L.map(x=>`<div class="card"><div class="av">${x.photo_url?`<img src="${esc(x.photo_url)}" alt="">`:"🌿"}</div><h3>${esc(x.name)}</h3><p>${esc(x.dept)}${x.qualification?" · "+esc(x.qualification):""}</p>${x.experience?`<p>${esc(x.experience)} experience</p>`:""}</div>`).join("")})();
+const L=dr.data||[];if(L.length)$("docs").innerHTML=L.map(x=>{const isSheji=x.name==="Dr. Sheji U.K.",isSalim=x.name==="Dr. Salim M. Thamban",isAmeen=x.name==="Dr. Muhammad Ameen",isSripriya=x.name==="Dr. Sripriya R.U.",photo=isSheji?"doctor-sheji.jpg":isSalim?"doctor-salim.jpg":isAmeen?"doctor-ameen.jpg":isSripriya?"doctor-sripriya.jpg":x.photo_url,style=isSalim?'style="object-position:center 25%;background:#101010;transform:scale(1.35) translateY(-25%);transform-origin:center 25%"':isAmeen?'style="object-position:center top"':"";return`<div class="card"><div class="av">${photo?`<img src="${esc(photo)}" alt="Portrait of ${esc(x.name)}" loading="lazy" decoding="async" ${style}>`:"🌿"}</div><h3>${esc(x.name)}</h3><p>${esc(x.qualification)}${x.dept?" · "+esc(x.dept):""}</p>${DOCTOR_HOURS[x.dept]?`<p>${esc(DOCTOR_HOURS[x.dept])}</p>`:""}${x.experience?`<p>${esc(x.experience)} experience</p>`:""}</div>`}).join("")})();
+if(new URLSearchParams(location.search).get("cart")==="1")openD("cart");
 renderDepts();
 </script>
 </body>

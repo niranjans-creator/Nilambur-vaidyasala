@@ -49,11 +49,6 @@ body.auth-open{overflow:hidden}
 .auth-brand small{display:block;margin-top:3px;color:#cf6528;font:600 .58rem Inter,sans-serif;letter-spacing:.14em}
 .auth-dialog #accountGuest{margin:0;padding:0;border:0;border-radius:0;background:transparent;box-shadow:none;text-align:left}
 .auth-dialog #authHeading{margin:0 0 20px;text-align:center;color:#3a4a20;font:700 2rem "Cormorant Garamond",Georgia,serif}
-.google-signin{display:flex;width:100%;min-height:46px;align-items:center;justify-content:center;gap:11px;border:1px solid #dce5d2;border-radius:11px;background:#fff;color:#2c3320;font:600 .92rem Inter,sans-serif;cursor:pointer}
-.google-signin:hover{background:#f8faf5}
-.google-signin:disabled{opacity:.55;cursor:wait}
-.auth-divider{display:flex;align-items:center;gap:12px;margin:17px 0;color:#7b806f;font-size:.75rem}
-.auth-divider::before,.auth-divider::after{height:1px;flex:1;background:#e6ecdd;content:""}
 .auth-dialog label{display:block;margin:13px 0 5px;color:#3a4a20;font-size:.8rem;font-weight:600}
 .auth-dialog input{width:100%;min-height:46px;padding:11px 13px;border:1px solid #dce5d2;border-radius:11px;background:#fff;color:#2c3320;font:inherit;outline:none}
 .auth-dialog input:focus{border-color:#5a7a2e;box-shadow:0 0 0 3px rgba(90,122,46,.14)}
@@ -369,8 +364,6 @@ footer .lg img{object-fit:cover}
 <div class="auth-brand"><span class="lg" data-logo style="width:64px;height:64px"></span><div><strong>Nilambur Vaidyasala</strong><small>AYURVEDA HERITAGE HOSPITAL</small></div></div>
 <div class="panel" id="accountGuest">
 <h2 id="authHeading">Sign in</h2>
-<button class="google-signin" id="googleSignIn" type="button"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.25 5.48-4.73 7.18l7.65 5.93c4.47-4.13 7.12-10.2 7.12-17.58z"/><path fill="#FBBC05" d="M10.53 28.59A14.4 14.4 0 0 1 9.75 24c0-1.59.27-3.13.76-4.59l-7.98-6.19A23.9 23.9 0 0 0 0 24c0 3.87.93 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.9-5.87l-7.65-5.93c-2.13 1.43-4.87 2.27-8.25 2.27-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>Continue with Google</button>
-<div class="auth-divider" aria-hidden="true">or continue with email</div>
 <div id="signupFields" hidden><label for="authName">Full name</label><input id="authName" autocomplete="name"><label for="authPhone">Phone</label><input id="authPhone" type="tel" autocomplete="tel"></div>
 <label for="authEmail">Email</label><input id="authEmail" type="email" autocomplete="email">
 <label for="authPassword">Password</label><input id="authPassword" type="password" autocomplete="current-password">
@@ -481,7 +474,6 @@ $("authClose").onclick=closeAuthModal;
 document.querySelector("[data-auth-close]").onclick=closeAuthModal;
 document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!$("authModal").hidden)closeAuthModal()});
 $("authSwitch").onclick=()=>setAuthMode(authMode==="signup"?"signin":"signup");
-$("googleSignIn").onclick=async()=>{authErr.textContent="";const button=$("googleSignIn");button.disabled=true;const{error}=await sb.auth.signInWithOAuth({provider:"google",options:{redirectTo:location.origin+location.pathname}});if(error){authErr.textContent=error.message;button.disabled=false}};
 $("authSubmit").onclick=async()=>{authErr.textContent="";const email=$("authEmail").value.trim(),password=$("authPassword").value;if(!email||!password){authErr.textContent="Enter your email and password.";return}if(authMode==="signup"){const name=$("authName").value.trim(),phone=$("authPhone").value.trim();if(name.length<2){authErr.textContent="Please enter your full name.";return}if(password.length<8){authErr.textContent="Use a password with at least 8 characters.";return}if(phone&&!/^[+\d][\d\s-]{7,14}$/.test(phone)){authErr.textContent="Please enter a valid phone number.";return}const{data,error}=await sb.auth.signUp({email,password,options:{emailRedirectTo:location.origin+location.pathname,data:{full_name:name,phone}}});if(error){authErr.textContent=error.message;return}authErr.textContent=data.session?"Account created. You are signed in.":"Account created. Check your email to confirm the account, then sign in."}else{const{error}=await sb.auth.signInWithPassword({email,password});if(error)authErr.textContent=error.message}};
 $("authReset").onclick=async()=>{authErr.textContent="";const email=$("authEmail").value.trim();if(!email){authErr.textContent="Enter your email first.";return}const{error}=await sb.auth.resetPasswordForEmail(email,{redirectTo:location.origin+location.pathname});authErr.textContent=error?error.message:"If an account exists for that email, a password reset link has been sent."};
 $("recoverySave").onclick=async()=>{const password=$("newPassword").value;$("recoveryErr").textContent="";if(password.length<8){$("recoveryErr").textContent="Use a password with at least 8 characters.";return}const{error}=await sb.auth.updateUser({password});$("recoveryErr").textContent=error?error.message:"Password updated."};

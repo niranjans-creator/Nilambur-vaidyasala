@@ -10,5 +10,5 @@
     ]},
     {"source": "/admin(.html)?", "headers": [{"key": "X-Robots-Tag", "value": "noindex"}]}
   ],
-  "crons": [{"path":"/api/consultation-cron","schedule":"*/5 * * * *"}]
+  "crons": [{"path":"/api/consultation-cron","schedule":"0 0 * * *"}]
 }

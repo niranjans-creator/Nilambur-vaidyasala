@@ -38,13 +38,19 @@ main.wrap{max-width:1400px;padding:0 0 20px;background:#fff}
 .primary:hover{background:#3a4a20}.nav nav{background:#f4f9ee}.nav nav a{color:#3a4a20}.nav nav a:hover{background:#d7e7b5}
 .foot{background:#f4f9ee;color:#3a4a20}
 </style>
+<style>
+.dish .product-initial{color:#91a881;font:700 2rem "Cormorant Garamond",Georgia,serif;letter-spacing:.12em}
+.thumb .product-initial{color:#718b61;font:700 14px "Cormorant Garamond",Georgia,serif;display:grid;place-items:center;width:100%;height:100%}
+</style>
 </head>
 <body>
-<header><div class="wrap nav"><a class="brand" href="index.html"><img src="logo.png" alt=""><div>Nilambur Vaidyasala<span>AYURVEDA HERITAGE HOSPITAL</span></div></a><nav><a href="index.html#top">Home</a><a href="about.html">About</a><a href="index.html#departments">Departments</a><a href="products.html" aria-current="page">Store</a><a href="index.html#book">Book Visit</a><a href="index.html#contact">Contact</a></nav><div class="actions"><a class="iconbtn" href="index.html?cart=1" aria-label="Open shopping cart">⌕</a><a class="cart" href="index.html?cart=1">Cart · <span id="cartCount">0</span></a></div></div></header>
+<!-- ORDER TRACKING: link from storefront navigation and mobile actions -->
+<header><div class="wrap nav"><a class="brand" href="index.html"><img src="logo.png" alt=""><div>Nilambur Vaidyasala<span>AYURVEDA HERITAGE HOSPITAL</span></div></a><nav><a href="index.html#top">Home</a><a href="about.html">About</a><a href="index.html#departments">Departments</a><a href="products.html" aria-current="page">Store</a><a href="index.html#book">Book Visit</a><a href="consult.html">Consult online</a><a href="index.html#track">Track order</a><a href="index.html#contact">Contact</a></nav><div class="actions"><a class="iconbtn" href="index.html?cart=1" aria-label="Open shopping cart">⌕</a><a class="cart" href="index.html#track" aria-label="Track order">Track</a><a class="cart" href="index.html?cart=1">Cart · <span id="cartCount">0</span></a></div></div></header>
+<!-- END ORDER TRACKING -->
 <main class="wrap">
   <section class="hero" aria-label="Featured Ayurvedic products">
     <div class="copy"><span class="eyebrow">Vaidyasala Store</span><h1 id="productName">A little care, rooted in nature</h1><p class="price" id="productPrice"></p><p class="description" id="productDescription">Explore products from Nilambur Vaidyasala.</p><div class="product-meta"><span id="productCategory">Traditional care</span><i class="dot"></i><span>Free delivery over ₹999</span></div><div class="buyrow"><div class="stepper" aria-label="Quantity"><button id="minus" aria-label="Decrease quantity">−</button><output id="quantity">1</output><button id="plus" aria-label="Increase quantity">+</button></div><button class="primary" id="order" disabled>Order now</button></div><div class="notice" id="notice" aria-live="polite"></div><div class="pager"><button id="previous" aria-label="Previous product">←</button><span class="line"></span><b id="position">0 / 0</b><span class="line"></span><button id="next" aria-label="Next product">→</button></div><div class="socialproof">Please consult your vaidya before starting any medicine.</div><a class="catalog-link" href="index.html#shop">Browse the full catalogue ↗</a></div>
-    <div class="visual"><div class="orb"></div><div class="thumbpath"></div><div class="dish" id="dish"><span class="emoji">🌿</span></div><div class="thumbs" id="thumbs" aria-label="Choose a product"></div></div>
+    <div class="visual"><div class="orb"></div><div class="thumbpath"></div><div class="dish" id="dish"><span class="product-initial" aria-hidden="true">NV</span></div><div class="thumbs" id="thumbs" aria-label="Choose a product"></div></div>
   </section>
 </main>
 <footer class="foot"><span>© 2026 Nilambur Vaidyasala · Serving since 1925</span><span> · <a href="https://maps.app.goo.gl/KvUxwnRq5gDMy8mu5" target="_blank" rel="noopener noreferrer">Hospital location ↗</a></span><span> · <a href="tel:+919446549329">Call 9446549329</a></span></footer>
@@ -55,16 +61,16 @@ const inr=n=>"₹"+Number(n||0).toLocaleString("en-IN");let products=[],current=
 function readCart(){try{return JSON.parse(localStorage.getItem("nv_cart")||"{}")}catch{return {}}}
 function updateCount(){const c=Object.values(readCart()).reduce((a,n)=>a+(Number(n)||0),0);$("cartCount").textContent=c}
 function render(){if(!products.length)return;const p=products[current];$("productName").textContent=p.n;$("productPrice").textContent=inr(p.p);$("productDescription").textContent=p.d||"A product from Nilambur Vaidyasala.";$("productCategory").textContent=p.c||"Traditional care";$("position").textContent=`${current+1} / ${products.length}`;$("quantity").textContent=qty;
-  $("dish").innerHTML=p.img?`<img src="${esc(p.img)}" alt="${esc(p.n)}">`:`<span class="emoji" aria-hidden="true">${esc(p.e||"🌿")}</span>`;
-  $("thumbs").innerHTML=products.slice(0,5).map((x,i)=>`<button class="thumb" type="button" data-index="${i}" aria-label="Show ${esc(x.n)}" aria-current="${i===current}">${x.img?`<img src="${esc(x.img)}" alt="">`:`<span class="emoji">${esc(x.e||"🌿")}</span>`}</button>`).join("");
+  $("dish").innerHTML=p.img?`<img src="${esc(p.img)}" alt="${esc(p.n)}">`:`<span class="product-initial" aria-hidden="true">${esc((p.n||"N").charAt(0))}</span>`;
+  $("thumbs").innerHTML=products.slice(0,5).map((x,i)=>`<button class="thumb" type="button" data-index="${i}" aria-label="Show ${esc(x.n)}" aria-current="${i===current}">${x.img?`<img src="${esc(x.img)}" alt="">`:`<span class="product-initial" aria-hidden="true">${esc((x.n||"N").charAt(0))}</span>`}</button>`).join("");
   $("thumbs").querySelectorAll("button").forEach(b=>b.onclick=()=>select(Number(b.dataset.index)));
 }
 function select(i){if(!products.length)return;current=(i+products.length)%products.length;qty=1;$("notice").textContent="";render()}
 $("minus").onclick=()=>{qty=Math.max(1,qty-1);$("quantity").textContent=qty};$("plus").onclick=()=>{qty=Math.min(99,qty+1);$("quantity").textContent=qty};$("previous").onclick=()=>select(current-1);$("next").onclick=()=>select(current+1);
 $("order").onclick=()=>{const p=products[current],cart=readCart();cart[String(p.id)]=(Number(cart[String(p.id)])||0)+qty;try{localStorage.setItem("nv_cart",JSON.stringify(cart));updateCount();$("notice").textContent=`${qty} × ${p.n} added to your cart.`}catch{$("notice").textContent="Your browser could not save the cart. Please enable local storage and try again."}};
-const{data,error}=await sb.from("products").select("id,name,description,price,category,emoji,image_url").eq("active",true).order("created_at");
-products=(data||[]).map(x=>({id:x.id,n:x.name,d:x.description,p:Number(x.price),c:x.category,e:x.emoji,img:x.image_url}));
-if(error||!products.length){$("productName").textContent=error?"Store is temporarily unavailable":"Products coming soon";$("productDescription").textContent=error?"Please try again later or contact the clinic.":"Our product selection will appear here soon.";$("position").textContent="0 / 0";$("dish").innerHTML='<span class="emoji" aria-hidden="true">🌿</span>'}else{$("order").disabled=false;render()}
+const{data,error}=await sb.from("products").select("id,name,description,price,category,image_url").eq("active",true).order("created_at");
+products=(data||[]).map(x=>({id:x.id,n:x.name,d:x.description,p:Number(x.price),c:x.category,img:x.image_url}));
+if(error||!products.length){$("productName").textContent=error?"Store is temporarily unavailable":"Products coming soon";$("productDescription").textContent=error?"Please try again later or contact the clinic.":"Our product selection will appear here soon.";$("position").textContent="0 / 0";$("dish").innerHTML='<span class="product-initial" aria-hidden="true">NV</span>'}else{$("order").disabled=false;render()}
 updateCount();
 </script>
 </body>

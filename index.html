@@ -105,6 +105,13 @@ section{padding:56px 0}
 .card{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:26px;box-shadow:0 6px 24px rgba(90,122,46,.08)}
 .card h3{font-size:1.5rem;color:var(--green-d);margin:6px 0 6px}
 .card p{margin:0;color:var(--muted);font-size:.95rem}
+.track-timeline{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;list-style:none;padding:0;margin:20px 0}
+.track-step{padding:12px 8px;border-top:3px solid var(--line);color:var(--muted);font-size:.88rem}
+.track-step.done{border-color:var(--green);color:var(--green-d)}
+.track-step[aria-current="step"]{font-weight:700}
+#trackResult .card{margin-top:18px}
+#trackResult select{width:100%;min-height:44px;padding:9px 12px;border:1.5px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink);font:inherit}
+@media(max-width:620px){.track-timeline{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .ico{font-size:1.8rem}
 .about{background:var(--surface);border-block:1px solid var(--line)}
 .about p{max-width:720px;margin:0 auto 14px;text-align:center;color:var(--muted)}
@@ -122,7 +129,8 @@ section{padding:56px 0}
 .slot:disabled{text-decoration:line-through;opacity:.4;cursor:not-allowed}
 label{display:block;font-weight:600;font-size:.88rem;margin:14px 0 5px}
 input,textarea{width:100%;padding:11px 13px;border:1.5px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);font:inherit}
-input:focus,textarea:focus,.opt:focus-visible,.slot:focus-visible{outline:2px solid var(--gold);outline-offset:1px}
+input:focus,textarea:focus,select:focus-visible,.opt:focus-visible,.slot:focus-visible{outline:2px solid var(--gold);outline-offset:1px}
+select:focus-visible,button:focus-visible,a:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 .row{display:grid;gap:12px;grid-template-columns:1fr 1fr}
 .muted{color:var(--muted);font-size:.88rem}
 .err{color:#c0392b;font-size:.88rem;min-height:1.3em;margin:10px 0 0}
@@ -176,7 +184,7 @@ footer .lg{width:76px!important;height:76px!important}
 /* Cinematic scroll story and light clinical sections. */
 html{scroll-padding-top:88px;scroll-behavior:smooth}
 body{padding:0;background:#fff;color:#20251f;font:16px/1.65 Inter,system-ui,Arial,sans-serif}
-header#siteHeader{position:fixed;inset:0 0 auto;z-index:30;width:100%;max-width:none;height:auto;margin:0;border:0;border-bottom:1px solid rgba(255,255,255,.12);border-radius:0;background:rgba(255,255,255,.94);border-color:#e6ecdd;backdrop-filter:blur(18px);transition:background .35s,border-color .35s,color .35s}
+header#siteHeader{position:absolute;inset:0 0 auto;z-index:30;width:100%;max-width:none;height:auto;margin:0;border:0;border-bottom:1px solid rgba(255,255,255,.12);border-radius:0;background:rgba(255,255,255,.94);border-color:#e6ecdd;backdrop-filter:blur(18px);transition:background .35s,border-color .35s,color .35s}
 header#siteHeader .wrap{max-width:1320px;height:82px;padding:0 28px}
 header#siteHeader .brand{color:#3a4a20}
 header#siteHeader .brand .bt{font:700 .94rem Inter,system-ui,sans-serif;letter-spacing:.16em}
@@ -251,14 +259,132 @@ footer .lg img{object-fit:cover}
 .reveal-target{opacity:0;transform:translate3d(0,22px,0);transition:opacity .65s ease,transform .65s cubic-bezier(.2,.75,.25,1);transition-delay:var(--reveal-delay,0ms)}
 .reveal-target.is-revealed{opacity:1;transform:translate3d(0,0,0)}
 @media(prefers-reduced-motion:reduce){.reveal-target{opacity:1;transform:none;transition:none}}
+.promo-carousel{--promo-forest:#193b2d;--promo-gold:#ecad2e;--promo-cream:#f6f2e6;position:relative;padding-top:82px;background:var(--promo-forest);color:var(--promo-cream)}
+.promo-window{position:relative;max-width:1400px;min-height:610px;margin:0 auto;overflow:hidden}
+.promo-slide{position:absolute;inset:0;display:grid;grid-template-columns:1fr .9fr;align-items:center;gap:42px;padding:46px 7%;opacity:0;visibility:hidden;transform:translateX(18px);transition:opacity .4s ease,transform .4s ease,visibility .4s}
+.promo-slide.is-active{opacity:1;visibility:visible;transform:translateX(0)}
+.promo-slide--forest{background:var(--promo-forest)}
+.promo-slide--gold{background:var(--promo-gold);color:#182d23}
+.promo-kicker{display:inline-block;margin:0 0 18px;padding:7px 14px;border-radius:99px;background:var(--promo-gold);color:#182d23;font-size:.78rem;font-weight:700}
+.promo-slide--gold .promo-kicker{background:var(--promo-forest);color:var(--promo-cream)}
+.promo-copy h1,.promo-copy h2,.promo-step-heading h2,.promo-clinic-heading h2{max-width:740px;margin:0 0 18px;font:700 4rem/.98 "Cormorant Garamond",Georgia,serif;color:var(--promo-cream)}
+.promo-copy h1 span,.promo-copy h2 span,.promo-step-heading h2 span,.promo-clinic-heading h2 span{color:var(--promo-gold)}
+.promo-slide--gold .promo-step-heading h2{color:#182d23}
+.promo-slide--gold .promo-step-heading h2 span{color:#a75320}
+.promo-copy>p:not(.promo-kicker),.promo-step-heading>p:not(.promo-kicker){max-width:560px;margin:0 0 26px;color:rgba(246,242,230,.82);font-size:1.1rem;line-height:1.65}
+.promo-slide--gold .promo-step-heading>p:not(.promo-kicker){color:#34483a}
+.promo-cta{display:inline-flex;min-height:50px;align-items:center;justify-content:center;padding:0 24px;border:0;border-radius:6px;background:var(--promo-gold);color:#182d23;text-decoration:none;font-weight:700;transition:transform .18s,background .18s}
+.promo-cta:hover{transform:translateY(-2px);background:#f5c45b}
+.promo-slide--gold .promo-cta{background:var(--promo-forest);color:var(--promo-cream)}
+.promo-seal{display:grid;width:min(34vw,390px);aspect-ratio:1;place-content:center;justify-self:center;border:14px solid rgba(246,242,230,.12);border-radius:50%;background:var(--promo-gold);color:#173729;text-align:center;box-shadow:0 0 0 1px rgba(236,173,46,.65)}
+.promo-seal strong{font:700 5.4rem/1 "Cormorant Garamond",Georgia,serif}
+.promo-seal span{font-size:.76rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+.promo-slide--steps{display:flex;flex-direction:column;justify-content:center;gap:22px;padding-top:38px;padding-bottom:78px}
+.promo-step-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.promo-step{min-height:158px;padding:20px;border:1px solid rgba(24,45,35,.12);border-radius:8px;background:var(--promo-cream);color:#182d23}
+.promo-step b{display:grid;width:38px;aspect-ratio:1;place-items:center;margin-bottom:16px;border-radius:50%;background:var(--promo-forest);color:var(--promo-cream);font-size:1.1rem}
+.promo-step h3{margin:0 0 8px;font-size:1.24rem;color:#182d23}
+.promo-step p{margin:0;color:#536354;font-size:.88rem;line-height:1.5}
+.promo-slide--clinics{display:block;padding-top:42px;padding-bottom:80px}
+.promo-clinic-heading h2{margin-bottom:20px}
+.promo-clinic-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 16px;max-width:1040px}
+.promo-clinic{padding:14px 18px;border:1px solid rgba(246,242,230,.15);border-radius:7px;background:rgba(8,28,20,.32)}
+.promo-clinic h3{margin:0 0 3px;color:var(--promo-gold);font:700 1.15rem Inter,system-ui,sans-serif}
+.promo-clinic p{margin:0;color:rgba(246,242,230,.9);font-size:.88rem}
+.promo-clinic .promo-clinic-hours{color:#a9c999;font-weight:600}
+.promo-slide--clinics .promo-cta{margin-top:16px}
+.promo-brandmark{display:grid;width:min(32vw,350px);aspect-ratio:1;place-items:center;justify-self:center;border:1px solid rgba(246,242,230,.2);border-radius:50%;background:rgba(246,242,230,.08)}
+.promo-brandmark img{width:76%;height:76%;border-radius:50%;object-fit:contain;background:#fff}
+.promo-controls{position:relative;z-index:3;display:flex;max-width:1400px;height:64px;align-items:center;gap:12px;margin:-64px auto 0;padding:0 7%;pointer-events:none}
+.promo-controls button{pointer-events:auto}
+.promo-arrow{display:grid;width:38px;height:38px;place-items:center;border:1px solid rgba(246,242,230,.42);border-radius:50%;background:transparent;color:var(--promo-cream);font-size:1.4rem;cursor:pointer}
+.promo-carousel.has-gold-slide .promo-arrow{color:#182d23;border-color:rgba(24,45,35,.45)}
+.promo-dots{display:flex;gap:8px;margin-left:4px}
+.promo-dot{width:9px;height:9px;padding:0;border:1px solid rgba(246,242,230,.8);border-radius:50%;background:transparent;cursor:pointer}
+.promo-dot[aria-pressed="true"]{width:24px;border-radius:99px;background:var(--promo-gold);border-color:var(--promo-gold)}
+.promo-carousel.has-gold-slide .promo-dot{border-color:rgba(24,45,35,.6)}
+.promo-carousel.has-gold-slide .promo-dot[aria-pressed="true"]{background:var(--promo-forest);border-color:var(--promo-forest)}
+.promo-count{margin-left:auto;color:rgba(246,242,230,.75);font-size:.75rem;font-weight:600;letter-spacing:.12em}
+.promo-carousel.has-gold-slide .promo-count{color:#34483a}
+@media(max-width:760px){.promo-carousel{padding-top:72px}.promo-window{min-height:800px}.promo-slide{grid-template-columns:1fr;grid-template-rows:auto auto;align-content:center;gap:18px;padding:34px 24px 84px}.promo-copy h1,.promo-copy h2,.promo-step-heading h2,.promo-clinic-heading h2{font-size:2.7rem}.promo-copy>p:not(.promo-kicker),.promo-step-heading>p:not(.promo-kicker){font-size:1rem}.promo-seal{width:190px;justify-self:center}.promo-seal strong{font-size:4rem}.promo-slide--steps{display:flex;gap:16px;padding:30px 22px 84px}.promo-step-grid{grid-template-columns:1fr;gap:8px}.promo-step{display:grid;grid-template-columns:38px 1fr;column-gap:13px;min-height:0;padding:11px 13px}.promo-step b{grid-row:1/3;margin:0}.promo-step h3{margin:1px 0 2px;font-size:1.1rem}.promo-step p{font-size:.8rem}.promo-slide--clinics{display:block;padding:34px 20px 84px}.promo-clinic-grid{gap:9px}.promo-clinic{padding:12px}.promo-clinic h3{font-size:.98rem}.promo-clinic p{font-size:.78rem}.promo-slide--clinics .promo-cta{margin-top:14px}.promo-brandmark{width:190px}.promo-controls{height:60px;margin-top:-60px;padding:0 20px}.promo-arrow{width:34px;height:34px}}
+@media(max-width:420px){.promo-window{min-height:820px}.promo-slide{padding-right:18px;padding-left:18px}.promo-copy h1,.promo-copy h2,.promo-step-heading h2,.promo-clinic-heading h2{font-size:2.35rem}.promo-clinic-grid{grid-template-columns:1fr 1fr}.promo-clinic{padding:10px}.promo-clinic h3{font-size:.88rem}.promo-clinic p{font-size:.73rem}.promo-slide--clinics{padding-right:14px;padding-left:14px}.promo-step h3{font-size:1rem}}
+@media(max-width:760px){.promo-window{min-height:760px}}
+@media(prefers-reduced-motion:reduce){.promo-slide,.promo-cta{transition:none}.promo-slide{transform:none}}
+.story{height:auto;padding:0}
+.story-track{height:auto}
+.story-sticky{position:relative;top:auto;height:auto;min-height:640px}
+.story-content{height:auto;min-height:640px}
+#botanicalCanvas,.story-vignette,.story-wash,.story-scroll-cue,.story-progress,.ingredient-list{display:none!important}
+.story-spine{top:50%;right:5vw;width:min(38vw,460px);height:520px;transform:translateY(-50%);opacity:1}
+@media(max-width:760px){.story-sticky{min-height:800px}.story-content{min-height:470px;padding:0 24px}.story-mark{left:24px;top:42px}.story-beat{left:24px;top:122px;width:calc(100% - 48px);max-width:560px}.story-beat h1{font-size:3.3rem}.story-spine{top:auto;right:50%;bottom:12px;width:min(78vw,300px);height:300px;transform:translateX(50%);opacity:1}}
+@media(max-width:480px){.story-sticky{min-height:740px}.story-content{min-height:420px}.story-mark{top:32px}.story-beat{top:105px}.story-beat h1{font-size:3.15rem}.story-spine{bottom:8px;width:min(78vw,280px);height:270px}}
+.story-actions{position:relative;z-index:1}
 </style>
 </head>
 <body>
 <header id="siteHeader"><div class="wrap"><a class="brand" href="#top"><span class="lg" data-logo style="width:48px;height:48px"></span><span class="bt">Nilambur Vaidyasala<small>AYURVEDA HERITAGE HOSPITAL</small></span></a>
-<nav><a href="#top">Home</a><a href="about.html">About</a><a href="#departments">Departments</a><a href="#team">Specialists</a><a href="products.html">Store</a><a href="#book">Book Visit</a><a href="#contact">Contact</a></nav><div class="head-actions"><button class="cartbtn" id="accountBtn">Sign in</button><button class="cartbtn" id="cartBtn" aria-label="Open cart">Cart <span id="cartN">0</span></button></div></div></header>
+<!-- ORDER TRACKING: main navigation link and compact mobile shortcut -->
+<nav><a href="#top">Home</a><a href="about.html">About</a><a href="#departments">Departments</a><a href="#team">Specialists</a><a href="products.html">Store</a><a href="#book">Book Visit</a><a href="online-consultation.html">Online consultation</a><a href="#track">Track order</a><a href="#contact">Contact</a></nav><div class="head-actions"><a class="cartbtn" href="#track" aria-label="Track order" style="text-decoration:none">Track</a><button class="cartbtn" id="accountBtn">Sign in</button><button class="cartbtn" id="cartBtn" aria-label="Open cart">Cart <span id="cartN">0</span></button></div></div></header>
 
 <main id="mainContent">
-<section class="story" id="top" aria-label="Nilambur Vaidyasala heritage story">
+<section class="promo-carousel" id="top" aria-label="Consultation booking promotions">
+  <div class="promo-window" id="promoWindow">
+    <article class="promo-slide promo-slide--forest is-active" aria-hidden="false">
+      <div class="promo-copy">
+        <p class="promo-kicker">Online booking offer</p>
+        <h1>Book online.<br><span>Consult for ₹100.</span></h1>
+        <p>Pick your doctor, choose a day and send your consultation request online.</p>
+        <a class="promo-cta" href="#book">Book now on our website</a>
+      </div>
+      <div class="promo-seal" aria-label="Consultation fee ₹100"><span>Consultation fee</span><strong>₹100</strong><span>per visit</span></div>
+    </article>
+    <article class="promo-slide promo-slide--gold promo-slide--steps" aria-hidden="true">
+      <div class="promo-step-heading">
+        <p class="promo-kicker">Simple online booking</p>
+        <h2>Three steps to your <span>₹100 visit</span></h2>
+        <p>Choose your department, select a date and preferred time, then send your request.</p>
+      </div>
+      <div class="promo-step-grid">
+        <div class="promo-step"><b>1</b><h3>Choose a department</h3><p>General, Orthopaedics, Spine or Skin care</p></div>
+        <div class="promo-step"><b>2</b><h3>Pick a date and time</h3><p>Choose from the selected clinic's schedule</p></div>
+        <div class="promo-step"><b>3</b><h3>Enter your details</h3><p>Send your appointment request to the clinic</p></div>
+      </div>
+      <a class="promo-cta" href="#book">Start booking</a>
+    </article>
+    <article class="promo-slide promo-slide--forest promo-slide--clinics" aria-hidden="true">
+      <div class="promo-clinic-heading"><p class="promo-kicker">Consultation fee ₹100</p><h2>Four specialist clinics.<br><span>One ₹100 fee.</span></h2></div>
+      <div class="promo-clinic-grid">
+        <div class="promo-clinic"><h3>General Physician</h3><p>Dr. Sheji U.K. (B.A.M.S.)</p><p class="promo-clinic-hours">Monday–Saturday · 9 am–5 pm</p></div>
+        <div class="promo-clinic"><h3>Orthopaedics &amp; Sports Injury</h3><p>Dr. Mohammed Ameen (B.U.M.S.)</p><p class="promo-clinic-hours">Monday &amp; Thursday · 10 am–12 pm</p></div>
+        <div class="promo-clinic"><h3>Spine &amp; Back Care</h3><p>Dr. Salim M. Thamban (B.A.M.S.)</p><p class="promo-clinic-hours">Sunday · 3–5 pm</p></div>
+        <div class="promo-clinic"><h3>Skin &amp; Beauty Care</h3><p>Dr. Sripriya R.U. (B.A.M.S.)</p><p class="promo-clinic-hours">Monday–Saturday · 9 am–5 pm</p></div>
+      </div>
+      <a class="promo-cta" href="#book">Book a consultation</a>
+    </article>
+    <article class="promo-slide promo-slide--forest" aria-hidden="true">
+      <div class="promo-copy">
+        <p class="promo-kicker">Nilambur Vaidyasala · Since 1925</p>
+        <h2>Ayurvedic care<br>from Nilambur<br><span>since 1925.</span></h2>
+        <p>A century of tradition, now one tap away. Book your consultation online.</p>
+        <a class="promo-cta" href="#book">Book your visit</a>
+      </div>
+      <div class="promo-brandmark" aria-hidden="true"><img src="logo.png" alt=""></div>
+    </article>
+  </div>
+  <div class="promo-controls" aria-label="Carousel controls">
+    <button class="promo-arrow" id="promoPrev" type="button" aria-label="Previous promotion">‹</button>
+    <div class="promo-dots" role="group" aria-label="Choose a promotion">
+      <button class="promo-dot" type="button" data-promo="0" aria-label="Show promotion 1" aria-pressed="true"></button>
+      <button class="promo-dot" type="button" data-promo="1" aria-label="Show promotion 2" aria-pressed="false"></button>
+      <button class="promo-dot" type="button" data-promo="2" aria-label="Show promotion 3" aria-pressed="false"></button>
+      <button class="promo-dot" type="button" data-promo="3" aria-label="Show promotion 4" aria-pressed="false"></button>
+    </div>
+    <button class="promo-arrow" id="promoNext" type="button" aria-label="Next promotion">›</button>
+    <span class="promo-count" id="promoCount" aria-live="polite">01 / 04</span>
+  </div>
+</section>
+
+<section class="story" id="heritage" aria-label="Nilambur Vaidyasala heritage story">
   <div class="story-track" id="storyTrack">
     <div class="story-sticky" id="storySticky">
       <canvas id="botanicalCanvas" aria-hidden="true"></canvas>
@@ -267,13 +393,12 @@ footer .lg img{object-fit:cover}
       <img class="story-spine" id="storySpine" src="spine-cutout.png" alt="X-ray illustration showing the spine and upper body" fetchpriority="high" decoding="async">
       <div class="story-content">
         <div class="story-mark"><span class="story-kicker">NILAMBUR · KERALA · EST. 1925</span></div>
-        <article class="story-beat is-active" data-from="0" data-to="0.18"><span class="beat-index">01 / 06</span><h1>Rooted<br>in 1925.</h1><p>A century of Ayurvedic care, from the forests of Nilambur.</p></article>
+        <article class="story-beat is-active" data-from="0" data-to="0.18"><span class="beat-index">01 / 06</span><h1>Rooted<br>in 1925.</h1><p>A century of Ayurvedic care, from the forests of Nilambur.</p><div class="story-actions"><a class="story-button" href="#book">Book a consultation</a><a class="story-link" href="products.html">Visit the store <span aria-hidden="true">↗</span></a></div></article>
         <article class="story-beat" data-from="0.18" data-to="0.34"><span class="beat-index">02 / 06</span><h2>Nothing hidden.<br>Everything named.</h2><p>A closer look at the materials behind a traditional preparation.</p></article>
-        <article class="story-beat" data-from="0.34" data-to="0.63"><span class="beat-index">03 / 06</span><h2>Every part has<br>a place.</h2><p>Ingredient categories shown are illustrative only. The actual formula and descriptions await confirmation by the vaidyas.</p></article>
+        <article class="story-beat" data-from="0.34" data-to="0.63"><span class="beat-index">03 / 06</span><h2>Every part has<br>a place.</h2><p>A visual tribute to the botanicals and traditional knowledge of Ayurveda.</p></article>
         <article class="story-beat" data-from="0.63" data-to="0.81"><span class="beat-index">04 / 06</span><h2>Prepared the<br>traditional way.</h2><p>Knowledge carried forward with care, from one generation to the next.</p></article>
         <article class="story-beat" data-from="0.81" data-to="0.91"><span class="beat-index">05 / 06</span><h2>A century of knowledge.<br>A tradition carried forward.</h2><p>Nilambur Vaidyasala · Ayurveda Heritage Hospital</p></article>
         <article class="story-beat story-cta" data-from="0.91" data-to="1"><span class="beat-index">06 / 06</span><h2>Begin with a<br>conversation.</h2><p>Speak with our team or explore the Vaidyasala store.</p><div class="story-actions"><a class="story-button" href="#book">Book a consultation</a><a class="story-link" href="products.html">Visit the store <span aria-hidden="true">↗</span></a></div></article>
-        <p class="ingredient-note">Illustrative categories only · formulation to be confirmed by the vaidyas</p>
       </div>
       <div class="story-scroll-cue" aria-hidden="true"><span></span> SCROLL TO EXPLORE</div>
       <div class="story-progress" aria-hidden="true"><span id="storyProgress"></span></div>
@@ -285,30 +410,30 @@ footer .lg img{object-fit:cover}
 <section id="departments"><div class="wrap">
 <div class="sec-h"><h2>Our Departments</h2><p>Specialist care, the Ayurvedic way</p></div>
 <div class="grid">
-<div class="card"><div class="ico">🌿</div><h3>General Physician</h3><p>General Ayurvedic consultations with Dr. Sheji U.K. (B.A.M.S.), Monday to Saturday.</p></div>
-<div class="card"><div class="ico">🦴</div><h3>Orthopaedics &amp; Sports Injury</h3><p>Orthopaedic and sports-injury consultations with Dr. Muhammad Ameen (B.U.M.S.), Monday and Thursday, 10 am–12 pm.</p></div>
-<div class="card"><div class="ico">🧍</div><h3>Spine &amp; Back Care</h3><p>Spine-related consultations with Dr. Salim M. Thamban (B.A.M.S.), Sunday, 3–5 pm.</p></div>
-<div class="card"><div class="ico">🌸</div><h3>Skin &amp; Beauty Care</h3><p>Skin and beauty-care consultations with Dr. Sripriya R.U. (B.A.M.S.).</p></div>
+<div class="card"><h3>General Physician</h3><p>General Ayurvedic consultations with Dr. Sheji U.K. (B.A.M.S.), Monday–Saturday, 9:00 am–5:00 pm.</p></div>
+<div class="card"><h3>Orthopaedics &amp; Sports Injury</h3><p>Orthopaedic and sports-injury consultations with Dr. Mohammed Ameen (B.U.M.S.), Monday and Thursday, 10 am–12 pm.</p></div>
+<div class="card"><h3>Spine &amp; Back Care</h3><p>Spine-related consultations with Dr. Salim M. Thamban (B.A.M.S.), Sunday, 3–5 pm.</p></div>
+<div class="card"><h3>Skin &amp; Beauty Care</h3><p>Skin and beauty-care consultations with Dr. Sripriya R.U. (B.A.M.S.), Monday–Saturday, 9:00 am–5:00 pm.</p></div>
 </div></div></section>
 
 <section class="tint" id="team"><div class="wrap"><div class="sec-h"><h2>Meet Our Specialists</h2><p>Our doctors and their consultation schedules</p></div><div class="grid team" id="docs">
-<div class="card"><div class="av"><img src="doctor-sheji.jpg" alt="Dr. Sheji U.K." loading="lazy" decoding="async"></div><h3>Dr. Sheji U.K.</h3><p>B.A.M.S. · General Physician</p><p>Monday–Saturday</p></div>
-<div class="card"><div class="av"><img src="doctor-ameen.jpg" alt="Dr. Muhammad Ameen" loading="lazy" decoding="async" style="object-position:center top"></div><h3>Dr. Muhammad Ameen</h3><p>B.U.M.S. · Orthopaedics &amp; Sports Injury</p><p>Monday &amp; Thursday · 10 am–12 pm</p></div>
+<div class="card"><div class="av"><img src="doctor-sheji.jpg" alt="Dr. Sheji U.K." loading="lazy" decoding="async"></div><h3>Dr. Sheji U.K.</h3><p>B.A.M.S. · General Physician</p><p>Monday–Saturday · 9:00 am–5:00 pm</p></div>
+<div class="card"><div class="av"><img src="doctor-ameen.jpg" alt="Dr. Mohammed Ameen" loading="lazy" decoding="async" style="object-position:center top"></div><h3>Dr. Mohammed Ameen</h3><p>B.U.M.S. · Orthopaedics &amp; Sports Injury</p><p>Monday &amp; Thursday · 10 am–12 pm</p></div>
 <div class="card"><div class="av"><img src="doctor-salim.jpg" alt="Dr. Salim M. Thamban" loading="lazy" decoding="async" style="object-position:center 25%;background:#101010;transform:scale(1.35) translateY(-25%);transform-origin:center 25%"></div><h3>Dr. Salim M. Thamban</h3><p>B.A.M.S. · Spine &amp; Back Care</p><p>Sunday · 3–5 pm</p></div>
-<div class="card"><div class="av"><img src="doctor-sripriya.jpg" alt="Dr. Sripriya R.U." loading="lazy" decoding="async"></div><h3>Dr. Sripriya R.U.</h3><p>B.A.M.S. · Skin &amp; Beauty Care</p></div>
+<div class="card"><div class="av"><img src="doctor-sripriya.jpg" alt="Dr. Sripriya R.U." loading="lazy" decoding="async" style="object-position:center 62%"></div><h3>Dr. Sripriya R.U.</h3><p>B.A.M.S. · Skin &amp; Beauty Care</p><p>Monday–Saturday · 9:00 am–5:00 pm</p></div>
 </div></div></section>
 
 <section id="treatments"><div class="wrap"><div class="sec-h"><h2>Our Signature Therapies</h2><p>Classical treatments, delivered with care</p></div><div class="grid">
-<div class="card"><div class="ico">💧</div><h3>Abhyanga</h3><p>Warm herbal oil massage to ease muscles and calm the nerves.</p></div>
-<div class="card"><div class="ico">🍃</div><h3>Kizhi</h3><p>Herbal poultice therapy for joint stiffness and pain.</p></div>
-<div class="card"><div class="ico">🪷</div><h3>Shirodhara</h3><p>A steady stream of medicated oil over the forehead for deep relaxation.</p></div>
-<div class="card"><div class="ico">✨</div><h3>Panchakarma</h3><p>Classical detoxification and rejuvenation programme.</p></div>
+<div class="card"><h3>Abhyanga</h3><p>Warm herbal oil massage to ease muscles and calm the nerves.</p></div>
+<div class="card"><h3>Kizhi</h3><p>Herbal poultice therapy for joint stiffness and pain.</p></div>
+<div class="card"><h3>Shirodhara</h3><p>A steady stream of medicated oil over the forehead for deep relaxation.</p></div>
+<div class="card"><h3>Panchakarma</h3><p>Classical detoxification and rejuvenation programme.</p></div>
 </div></div></section>
 
 <section id="shop"><div class="wrap"><div class="sec-h"><h2>Vaidyasala Store</h2><p>Authentic Ayurvedic formulations, prepared the traditional way</p><a class="btn ghost" href="products.html" style="margin-top:16px">Explore the store</a></div><div class="chips" id="chips"></div><div class="pgrid" id="pgrid"></div><p class="muted" style="text-align:center;margin-top:22px">Free delivery on orders above ₹999. Please consult our vaidya before starting any medicine.</p></div></section>
 
 <section id="book" style="background:var(--surface);border-top:1px solid var(--line)"><div class="wrap">
-<div class="sec-h"><h2>Book Your Consultation</h2><p>Choose a department, date and time that suits you</p></div>
+<div class="sec-h"><h2>Request a Consultation</h2><p>Choose a department and preferred date and time</p><a class="btn ghost" href="online-consultation.html">Consult online by video</a></div>
 
 <div id="bookForm" class="book">
 <div class="panel">
@@ -317,8 +442,8 @@ footer .lg img{object-fit:cover}
 <h3 style="margin-top:24px">2 · Date &amp; time</h3>
 <label for="date" style="margin-top:0">Preferred date</label>
 <input type="date" id="date">
-<p class="muted" style="margin:6px 0 0">Consultation days and times depend on the selected department.</p>
-<label>Available slots</label>
+<p class="muted" style="margin:6px 0 0">Listed weekday times are requests; the clinic must confirm your appointment time.</p>
+<label>Preferred time</label>
 <div class="slots" id="slots"><span class="muted">Select a department and date first.</span></div>
 </div>
 
@@ -329,13 +454,13 @@ footer .lg img{object-fit:cover}
 <div><label for="phone">Phone</label><input id="phone" type="tel" autocomplete="tel" inputmode="tel"></div></div>
 <label for="note">Health concern (optional)</label><textarea id="note" rows="3"></textarea>
 <p class="err" id="err" role="alert"></p>
-<button class="btn" id="submit" style="width:100%;margin-top:6px">Confirm Booking</button>
+<button class="btn" id="submit" style="width:100%;margin-top:6px">Send Appointment Request</button>
 </div>
 </div>
 
 <div id="done" class="panel ok" hidden>
-<div class="ico">🪷</div><h3>Booking confirmed</h3>
-<p class="muted">Please arrive 15 minutes early and carry any previous medical records.</p>
+<h3>Request received</h3>
+<p class="muted">Your appointment time is not confirmed yet. Call <a href="tel:+919446549329">9446549329</a> to confirm the schedule.</p>
 <div class="ref" id="ref"></div>
 <div class="sum" id="sum"></div>
 <button class="btn ghost" id="again">Book another visit</button>
@@ -352,9 +477,19 @@ footer .lg img{object-fit:cover}
 <label for="profilePhone">Phone</label><input id="profilePhone" type="tel" autocomplete="tel">
 <p class="err" id="profileErr" role="alert"></p><button class="btn" id="profileSave">Save profile</button>
 <h3 style="margin-top:28px">My bookings</h3><div id="myBookings" class="muted">Loading bookings…</div>
-<h3 style="margin-top:28px">My orders</h3><div id="myOrders" class="muted">Loading orders…</div>
+<!-- ONLINE CONSULTATIONS: own consultations are protected by Supabase RLS. -->
+<h3 style="margin-top:28px">My online consultations</h3><div id="myConsultations" class="muted" aria-live="polite">Loading consultations…</div>
+<!-- ORDER TRACKING: account shortcut and per-order tracking/cancellation controls -->
+<h3 style="margin-top:28px">My orders</h3><p><a href="#track">Track order</a></p><div id="myOrders" class="muted" aria-live="polite">Loading orders…</div>
 </div>
 </div></section>
+
+<!-- ORDER TRACKING: public lookup and result panel -->
+<section id="track"><div class="wrap"><div class="sec-h"><h2>Track your order</h2><p>Enter the order code and the phone number used at checkout</p></div>
+<div class="panel"><form id="trackForm"><label for="trackCode">Order code</label><input id="trackCode" name="code" autocomplete="off" maxlength="12" pattern="[Nn][Vv][A-Fa-f0-9]{10}" required aria-describedby="trackMessage">
+<label for="trackPhone">Phone number</label><input id="trackPhone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required aria-describedby="trackMessage">
+<p class="err" id="trackMessage" role="status" aria-live="polite"></p><button class="btn" type="submit">Track order</button></form><div id="trackResult" aria-live="polite"></div></div></div></section>
+<!-- END ORDER TRACKING -->
 </main>
 
 <div class="auth-modal" id="authModal" hidden>
@@ -381,7 +516,7 @@ footer .lg img{object-fit:cover}
 <div style="font-family:'Cormorant Garamond',Georgia,serif;font-size:1.4rem;letter-spacing:.14em;text-transform:uppercase;color:#fff">Nilambur Vaidyasala</div>
 <div><a href="https://maps.app.goo.gl/KvUxwnRq5gDMy8mu5" target="_blank" rel="noopener noreferrer">View hospital location · Nilambur, Kerala ↗</a></div>
 <div><a href="tel:+919446549329">Call us: 9446549329</a></div>
-<div>Open Monday–Saturday, 9:00 am–6:30 pm</div>
+<div>Hospital: Monday–Saturday, 9:00 am–6:30 pm · Sunday: Spine &amp; Back Care clinic only, 3:00–5:00 pm</div>
 <div style="opacity:.7;margin-top:6px">© 2026 Nilambur Vaidyasala · Serving since 1925</div>
 </div></footer>
 
@@ -391,7 +526,7 @@ footer .lg img{object-fit:cover}
   let w=0,h=0,dpr=1,progress=0,scrollQueued=false;
   const clamp=(v,a=0,b=1)=>Math.max(a,Math.min(b,v)),smooth=(a,b,x)=>{const t=clamp((x-a)/(b-a));return t*t*(3-2*t)};
   function resize(){const r=stage.getBoundingClientRect();w=r.width;h=r.height;dpr=Math.min(devicePixelRatio||1,2);canvas.width=Math.round(w*dpr);canvas.height=Math.round(h*dpr);ctx.setTransform(dpr,0,0,dpr,0,0)}
-  function readScroll(){if(reduce.matches){progress=0;return}const r=story.getBoundingClientRect(),span=Math.max(1,story.offsetHeight-innerHeight);progress=clamp(-r.top/span)}
+  function readScroll(){progress=0}
   function update(){scrollQueued=false;readScroll();let active=beats.find(b=>progress>=Number(b.dataset.from)&&progress<(Number(b.dataset.to)+.00001));if(progress>=1)active=beats[beats.length-1];beats.forEach(b=>{b.classList.toggle("is-active",b===active);b.setAttribute("aria-hidden",String(b!==active))});const ex=smooth(.22,.39,progress)*(1-smooth(.59,.81,progress));chips.classList.toggle("is-visible",!reduce.matches&&ex>.3&&innerWidth<760);spine.style.opacity=String((innerWidth<760?.5:1)*(1-smooth(.12,.2,progress)));wash.style.opacity=String(reduce.matches?0:smooth(.9,1,progress)*.96);stage.classList.toggle("is-light-stage",!reduce.matches&&progress>.955);bar.style.transform=`scaleY(${progress})`;const mark=document.querySelector(".story-mark"),meter=document.querySelector(".story-progress");if(mark)mark.style.opacity=String(1-smooth(.86,.94,progress));if(meter)meter.style.opacity=String(1-smooth(.88,.97,progress));const sr=story.getBoundingClientRect();header.classList.toggle("is-light",sr.bottom<=88);const cue=document.querySelector(".story-scroll-cue");if(cue)cue.style.opacity=String(clamp(1-progress*1.8))}
   function requestUpdate(){if(!scrollQueued){scrollQueued=true;requestAnimationFrame(update)}}
   function roundRect(x,y,width,height,r){ctx.beginPath();ctx.roundRect(x,y,width,height,r)}
@@ -416,7 +551,7 @@ footer .lg img{object-fit:cover}
     const alpha=1-explode*.92,handoff=smooth(.12,.2,progress);drawBottle(cx,cy,unit,progress,alpha*handoff,time);
     ingredients.forEach((it,i)=>{const bob=Math.sin(time*.0006+i*1.7)*unit*.012,x=cx+it.dx*unit*explode,y=cy+it.dy*unit*explode+bob,s=unit*(.15+.06*explode);drawIngredient({...it,alpha:explode},x,y,s)});drawLabels(cx,cy,unit,explode);
     if(explode<.08&&progress<.2){ctx.globalAlpha=.25+open*.3;ctx.strokeStyle="#c98249";ctx.lineWidth=1;ctx.beginPath();ctx.ellipse(cx,cy+unit*.42,unit*.58,unit*.09,0,0,Math.PI*2);ctx.stroke();ctx.globalAlpha=1}
-    if(!reduce.matches)requestAnimationFrame(render)
+    return
   }
   resize();update();window.addEventListener("resize",()=>{resize();requestUpdate()},{passive:true});window.addEventListener("scroll",requestUpdate,{passive:true});reduce.addEventListener?.("change",()=>{requestUpdate();if(reduce.matches)render(0);else requestAnimationFrame(render)});requestAnimationFrame(render);
 })();
@@ -443,18 +578,18 @@ footer .lg img{object-fit:cover}
 <script type="module">
 import {sb} from "./supabase.js";
 const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-const TIMES=["09:00","09:30","10:00","10:30","11:00","11:30","12:00","12:30","14:00","14:30","15:00","15:30","16:00","16:30"];
+const TIMES=["09:00","09:30","10:00","10:30","11:00","11:30","12:00","12:30","13:00","13:30","14:00","14:30","15:00","15:30","16:00","16:30"];
 const DEPTS=[
-  {id:"General Physician",icon:"🌿",d:"Dr. Sheji U.K. · B.A.M.S. · Mon–Sat",days:[1,2,3,4,5,6],times:TIMES,note:"The poster lists Monday–Saturday consultations but does not specify hours; please confirm your requested slot with the clinic."},
-  {id:"Orthopaedics & Sports Injury",icon:"🦴",d:"Dr. Muhammad Ameen · B.U.M.S. · Mon & Thu, 10 am–12 pm",days:[1,4],times:["10:00","10:30","11:00","11:30"]},
-  {id:"Spine & Back Care",icon:"🧍",d:"Dr. Salim M. Thamban · B.A.M.S. · Sun, 3–5 pm",days:[0],times:["15:00","15:30","16:00","16:30"]},
-  {id:"Skin & Beauty Care",icon:"🌸",d:"Dr. Sripriya R.U. · B.A.M.S.",days:[1,2,3,4,5,6],times:TIMES,note:"The poster does not list this doctor's consultation hours; please confirm your requested slot with the clinic."}
+  {id:"General Physician",d:"Dr. Sheji U.K. · B.A.M.S. · Mon–Sat · 9 am–5 pm",days:[1,2,3,4,5,6],times:TIMES},
+  {id:"Orthopaedics & Sports Injury",d:"Dr. Mohammed Ameen · B.U.M.S. · Mon & Thu, 10 am–12 pm",days:[1,4],times:["10:00","10:30","11:00","11:30"]},
+  {id:"Spine & Back Care",d:"Dr. Salim M. Thamban · B.A.M.S. · Sun, 3–5 pm",days:[0],times:["15:00","15:30","16:00","16:30"]},
+  {id:"Skin & Beauty Care",d:"Dr. Sripriya R.U. · B.A.M.S. · Mon–Sat · 9 am–5 pm",days:[1,2,3,4,5,6],times:TIMES}
 ];
 const DOCTOR_HOURS={
-  "General Physician":"Monday–Saturday · Hours to be confirmed",
+  "General Physician":"Monday–Saturday · 9:00 am–5:00 pm",
   "Orthopaedics & Sports Injury":"Monday & Thursday · 10 am–12 pm",
   "Spine & Back Care":"Sunday · 3–5 pm",
-  "Skin & Beauty Care":"Consultation hours not listed · Please call to confirm"
+  "Skin & Beauty Care":"Monday–Saturday · 9:00 am–5:00 pm"
 };
 let state={dept:null,time:null};
 const $=id=>document.getElementById(id);
@@ -466,7 +601,43 @@ function openAuthModal(){const modal=$("authModal");modal.hidden=false;document.
 function closeAuthModal(){const modal=$("authModal");if(modal.hidden)return;modal.hidden=true;document.body.classList.remove("auth-open")}
 function showAccount(){if(!currentUser){openAuthModal();return}$("account").hidden=false;$("account").scrollIntoView({behavior:"smooth",block:"start"});loadAccount()}
 function renderAccountState(){const signedIn=!!currentUser;$("accountBtn").textContent=signedIn?"Account":"Sign in";$("accountGuest").hidden=signedIn;$("accountHome").hidden=!signedIn;if(signedIn){$("accountEmail").textContent=currentUser.email||"";if(!$("profileName").value)$("profileName").value=currentUser.user_metadata?.full_name||"";if(!$("profilePhone").value)$("profilePhone").value=currentUser.user_metadata?.phone||"";if(!$("name").value)$("name").value=currentUser.user_metadata?.full_name||"";if(!$("phone").value)$("phone").value=currentUser.user_metadata?.phone||""}}
-async function loadAccount(){if(!currentUser)return;const uid=currentUser.id;const[profile,bookings,orders]=await Promise.all([sb.from("profiles").select("full_name,phone").eq("id",uid).maybeSingle(),sb.from("bookings").select("ref,dept,appt_date,appt_time,status").eq("user_id",uid).order("created_at",{ascending:false}),sb.from("orders").select("oid,items,total,status,created_at").eq("user_id",uid).order("created_at",{ascending:false})]);if(!currentUser||currentUser.id!==uid)return;if(profile.error){$("profileErr").textContent="Could not load your profile. Please try again."}else if(profile.data){$("profileName").value=profile.data.full_name||"";$("profilePhone").value=profile.data.phone||"";if(!$("name").value)$("name").value=profile.data.full_name||"";if(!$("phone").value)$("phone").value=profile.data.phone||""}const dt=d=>new Date(d+"T00:00:00").toLocaleDateString("en-IN",{day:"numeric",month:"short",year:"numeric"});$("myBookings").innerHTML=bookings.error?'<p class="muted">Could not load bookings. Please try again.</p>':bookings.data.length?bookings.data.map(b=>`<div class="card"><b>${esc(b.dept)}</b> · ${esc(dt(b.appt_date))} · ${esc(b.appt_time)}<br><span class="muted">Reference ${esc(b.ref||"—")} · ${esc(b.status)}</span></div>`).join(""):'<p class="muted">No bookings yet.</p>';$("myOrders").innerHTML=orders.error?'<p class="muted">Could not load orders. Please try again.</p>':orders.data.length?orders.data.map(o=>`<div class="card"><b>Order ${esc(o.oid||"")}</b> · ₹${Number(o.total||0).toLocaleString("en-IN")}<br><span class="muted">${esc(o.status)} · ${esc(new Date(o.created_at).toLocaleDateString("en-IN",{day:"numeric",month:"short",year:"numeric"}))}</span><div class="muted">${(o.items||[]).map(i=>`${esc(i.n)} × ${Number(i.q)||0}`).join(", ")}</div></div>`).join(""):'<p class="muted">No orders yet.</p>'}
+// ORDER TRACKING: scoped lookup, progress display, and RPC-only customer cancellation.
+let currentAccountOrders=[],lastTrackPhone="";
+const orderDate=value=>new Date(value).toLocaleString("en-IN",{day:"numeric",month:"short",year:"numeric",hour:"numeric",minute:"2-digit"});
+function renderTrackResult(o){
+  if(!o){$("trackResult").innerHTML="";return}
+  const items=(o.items||[]).map(i=>`<li>${esc(i.n)} × ${Number(i.q)||0}</li>`).join("");
+  const history=(o.events||[]).map(e=>`<li><b>${esc(e.status)}</b> · ${esc(orderDate(e.created_at))}${e.note?`<br><span class="muted">${esc(e.note)}</span>`:""}</li>`).join("");
+  if(o.status==="cancelled"){
+    $("trackResult").innerHTML=`<div class="card"><h3>Cancelled</h3><p>Order ${esc(o.code)} · ${esc(orderDate(o.cancelled_at||o.placed_at))}</p><p>Reason: ${esc(o.cancel_reason||"Not provided")}</p><h4>Items</h4><ul>${items}</ul><p>Total: <b>₹${Number(o.total||0).toLocaleString("en-IN")}</b></p><p>Delivery PIN: ${esc(o.pin)}</p><h4>Status history</h4><ul>${history}</ul></div>`;return;
+  }
+  const states=["new","confirmed","shipped","delivered"],active=states.indexOf(o.status);
+  const timeline=states.map((status,i)=>{const event=(o.events||[]).find(e=>e.status===status);return `<li aria-current="${i===active?"step":"false"}" class="track-step ${i<=active?"done":""}"><b>${["Placed","Confirmed","Shipped","Delivered"][i]}</b>${event?`<br><span class="muted">${esc(orderDate(event.created_at))}</span>`:""}</li>`}).join("");
+  const cancelControls=["new","confirmed"].includes(o.status)?`<label for="guestCancelReason">Reason (optional)</label><select id="guestCancelReason"><option value="">Choose a reason (optional)</option><option value="ordered by mistake">Ordered by mistake</option><option value="found a better price">Found a better price</option><option value="delivery too slow">Delivery too slow</option><option value="other">Other</option></select><button type="button" class="btn ghost" id="guestCancel" aria-label="Cancel order ${esc(o.code)}">Cancel order</button>`:["shipped","delivered"].includes(o.status)?`<p>This order has already shipped. Please call <a href="tel:+919446549329">9446549329</a>.</p>`:"";
+  $("trackResult").innerHTML=`<div class="card"><h3>Order ${esc(o.code)}</h3><p>Placed ${esc(orderDate(o.placed_at))}</p><ul class="track-timeline">${timeline}</ul><h4>Items</h4><ul>${items}</ul><p>Total: <b>₹${Number(o.total||0).toLocaleString("en-IN")}</b></p><p>Delivery PIN: ${esc(o.pin)}</p><h4>Status history</h4><ul>${history}</ul>${cancelControls}</div>`;
+  $("guestCancel")?.addEventListener("click",()=>cancelCustomerOrder(o.code,lastTrackPhone,$("guestCancelReason").value));
+}
+async function trackLookup(code,phone){
+  lastTrackPhone=phone.trim();$("trackMessage").textContent="";$("trackResult").innerHTML="";
+  const{data,error}=await sb.rpc("track_order",{p_code:code.trim().toUpperCase(),p_phone:phone.trim()});
+  if(error||!data){$("trackMessage").textContent="We couldn't find an order with those details";return null}
+  renderTrackResult(data);return data;
+}
+$("trackForm").addEventListener("submit",async e=>{e.preventDefault();await trackLookup($("trackCode").value,$("trackPhone").value)});
+async function cancelCustomerOrder(code,phone,reason){
+  if(!confirm("Cancel this order?"))return;
+  const{data,error}=await sb.rpc("cancel_order",{p_code:code,p_phone:phone,p_reason:reason||null});
+  if(error||!data){alert("We couldn't find an order with those details");return}
+  if(data.not_cancellable){alert("This order has already shipped. Please call 9446549329.");return}
+  await loadAccount();await trackLookup(code,phone);
+}
+// ONLINE CONSULTATIONS: fetch only the signed-in user’s RLS-filtered rows.
+async function loadAccount(){if(!currentUser)return;const uid=currentUser.id;const[profile,bookings,orders,consultations]=await Promise.all([sb.from("profiles").select("full_name,phone").eq("id",uid).maybeSingle(),sb.from("bookings").select("ref,dept,appt_date,appt_time,status").eq("user_id",uid).order("created_at",{ascending:false}),sb.from("orders").select("oid,phone,items,total,status,created_at").eq("user_id",uid).order("created_at",{ascending:false}),sb.from("online_consultations").select("reference,doctor_name,department,appointment_date,appointment_time,status,payment_status,meeting_url,created_at").eq("user_id",uid).order("created_at",{ascending:false})]);if(!currentUser||currentUser.id!==uid)return;currentAccountOrders=orders.data||[];if(profile.error){$("profileErr").textContent="Could not load your profile. Please try again."}else if(profile.data){$("profileName").value=profile.data.full_name||"";$("profilePhone").value=profile.data.phone||"";if(!$("name").value)$("name").value=profile.data.full_name||"";if(!$("phone").value)$("phone").value=profile.data.phone||""}const dt=d=>new Date(d+"T00:00:00").toLocaleDateString("en-IN",{day:"numeric",month:"short",year:"numeric"});$("myBookings").innerHTML=bookings.error?'<p class="muted">Could not load bookings. Please try again.</p>':bookings.data.length?bookings.data.map(b=>`<div class="card"><b>${esc(b.dept)}</b> · ${esc(dt(b.appt_date))} · ${esc(b.appt_time)}<br><span class="muted">Reference ${esc(b.ref||"—")} · ${esc(b.status)}</span></div>`).join(""):'<p class="muted">No bookings yet.</p>';
+  $("myConsultations").innerHTML=consultations.error?'<p class="muted">Could not load consultations. Please try again.</p>':consultations.data.length?consultations.data.map(c=>{const when=c.appointment_date?new Date(`${c.appointment_date}T${String(c.appointment_time).slice(0,5)}:00+05:30`):null;const joined=when&&Date.now()>=when.getTime()-10*60000;const dateText=when?new Intl.DateTimeFormat("en-IN",{dateStyle:"medium",timeStyle:"short",timeZone:"Asia/Kolkata"}).format(when)+" IST":"Time not selected";return `<div class="card"><b>${esc(c.doctor_name)}</b> · ${esc(c.department)}<br><span class="muted">${esc(dateText)} · ${esc(c.status)} · ${esc(c.payment_status)} · ${esc(c.reference)}</span>${c.status==="confirmed"?joined?`<p><a class="btn" href="${esc(c.meeting_url)}" target="_blank" rel="noopener">Join video consultation</a></p>`:'<p class="muted">Meeting link available 10 minutes before your appointment.</p>':""}</div>`}).join(""):'<p class="muted">No online consultations yet. <a href="consult.html">Consult online</a></p>';
+  $("myOrders").innerHTML=orders.error?'<p class="muted">Could not load orders. Please try again.</p>':currentAccountOrders.length?currentAccountOrders.map((o,i)=>`<div class="card"><b>Order ${esc(o.oid||"")}</b> · ₹${Number(o.total||0).toLocaleString("en-IN")}<br><span class="muted">${esc(o.status)} · ${esc(new Date(o.created_at).toLocaleDateString("en-IN",{day:"numeric",month:"short",year:"numeric"}))}</span><div class="muted">${(o.items||[]).map(i=>`${esc(i.n)} × ${Number(i.q)||0}`).join(", ")}</div><p><button type="button" class="btn ghost" data-track-order="${i}" aria-label="Track order ${esc(o.oid)}">Track</button></p>${["new","confirmed"].includes(o.status)?`<label for="cancelReason${i}">Reason (optional)</label><select id="cancelReason${i}" data-cancel-reason="${i}"><option value="">Choose a reason (optional)</option><option value="ordered by mistake">Ordered by mistake</option><option value="found a better price">Found a better price</option><option value="delivery too slow">Delivery too slow</option><option value="other">Other</option></select><button type="button" class="btn ghost" data-cancel-order="${i}" aria-label="Cancel order ${esc(o.oid)}">Cancel order</button>`:["shipped","delivered"].includes(o.status)?'<p class="muted">This order has already shipped. Please call 9446549329.</p>':""}</div>`).join(""):'<p class="muted">No orders yet.</p>';
+  $("myOrders").querySelectorAll("[data-track-order]").forEach(b=>b.onclick=async()=>{const o=currentAccountOrders[Number(b.dataset.trackOrder)];$("trackCode").value=o.oid;$("trackPhone").value=o.phone||"";$("track").scrollIntoView({behavior:"smooth"});await trackLookup(o.oid,o.phone||"")});
+  $("myOrders").querySelectorAll("[data-cancel-order]").forEach(b=>b.onclick=()=>{const i=Number(b.dataset.cancelOrder),o=currentAccountOrders[i];cancelCustomerOrder(o.oid,o.phone,$(`[data-cancel-reason="${i}"]`).value)});
+}
 async function syncProfile(){if(!currentUser)return;const full_name=$("profileName").value.trim(),phone=$("profilePhone").value.trim();$("profileErr").textContent="";if(full_name.length<2){$("profileErr").textContent="Please enter your full name.";return}if(phone&&!/^[+\d][\d\s-]{7,14}$/.test(phone)){$("profileErr").textContent="Please enter a valid phone number.";return}const{error}=await sb.from("profiles").upsert({id:currentUser.id,full_name,phone},{onConflict:"id"});if(error){$("profileErr").textContent=error.message;return}$("name").value=full_name;$("phone").value=phone;$("profileErr").textContent="Profile saved."}
 sb.auth.onAuthStateChange((event,session)=>{currentUser=session?.user||null;renderAccountState();$("recoveryPanel").hidden=event!=="PASSWORD_RECOVERY";if(currentUser){closeAuthModal();setTimeout(()=>loadAccount(),0)}if(event==="PASSWORD_RECOVERY"){$("account").hidden=false;setTimeout(()=>$("account").scrollIntoView({behavior:"smooth",block:"start"}),0)}});
 $("accountBtn").onclick=showAccount;
@@ -493,7 +664,7 @@ function taken(date,dept,t){return takenSet.has(t)}
 async function watch(){const tok=++wtok;takenSet=new Set();if(!state.dept||!dEl.value)return;const {data}=await sb.rpc("taken_slots",{d:dEl.value,dp:state.dept});if(tok!==wtok)return;takenSet=new Set((data||[]).map(r=>r.appt_time));renderSlots()}
 function pastTime(date,t){if(date!==iso(new Date()))return false;const[h,m]=t.split(":").map(Number);const n=new Date();return h*60+m<=n.getHours()*60+n.getMinutes()}
 function renderDepts(){
-  $("depts").innerHTML=DEPTS.map(x=>`<button type="button" class="opt" data-d="${x.id}" aria-pressed="${state.dept===x.id}"><span class="ico">${x.icon}</span><b>${x.id}</b><small>${esc(x.d)}</small></button>`).join("");
+  $("depts").innerHTML=DEPTS.map(x=>`<button type="button" class="opt" data-d="${x.id}" aria-pressed="${state.dept===x.id}"><b>${x.id}</b><small>${esc(x.d)}</small></button>`).join("");
   $("depts").querySelectorAll(".opt").forEach(b=>b.onclick=()=>{state.dept=b.dataset.d;state.time=null;renderDepts();watch();renderSlots()});
 }
 function renderSlots(){
@@ -522,7 +693,7 @@ $("submit").onclick=async()=>{
   const dt=new Date(dEl.value+"T00:00:00").toLocaleDateString("en-IN",{weekday:"long",day:"numeric",month:"long",year:"numeric"});
   const esc=s=>s.replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
   $("ref").textContent=ref;
-  $("sum").innerHTML=`<b>Patient:</b> ${esc(name)}<br><b>Department:</b> ${state.dept}<br><b>Date:</b> ${dt}<br><b>Time:</b> ${fmt(state.time)}`;
+  $("sum").innerHTML=`<b>Patient:</b> ${esc(name)}<br><b>Department:</b> ${state.dept}<br><b>Requested date:</b> ${dt}<br><b>Preferred time:</b> ${fmt(state.time)}`;
   const {error:be}=await sb.from("bookings").insert({ref,dept:state.dept,appt_date:dEl.value,appt_time:state.time,name,age:+age,phone,note:$("note").value.trim().slice(0,500),user_id:currentUser?.id||null});
   if(be){e.textContent=be.code==="23505"?"Sorry, that slot was just taken. Please choose another time.":"Sorry, we could not save your booking. Please try again or call us.";watch();return}
   if(currentUser)loadAccount();
@@ -543,16 +714,16 @@ const inr=n=>"₹"+n.toLocaleString("en-IN"),cnt=()=>Object.values(cart).reduce(
 function upd(){try{localStorage.setItem("nv_cart",JSON.stringify(cart))}catch(_){}$("cartN").textContent=cnt();if(view==="cart"&&!$("dr").hidden)drawer("cart")}
 function shop(){$("chips").innerHTML=["All",...new Set(P.map(x=>x.c).filter(Boolean))].map(c=>`<button class="chip" data-c="${c}" aria-pressed="${cat===c}">${c}</button>`).join("");
 $("chips").querySelectorAll(".chip").forEach(b=>b.onclick=()=>{cat=b.dataset.c;shop()});
-$("pgrid").innerHTML=P.filter(x=>cat==="All"||x.c===cat).map(x=>`<div class="pc"><div class="pt">${x.img?`<img src="${esc(x.img)}" alt="" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover">`:esc(x.e||"🌿")}</div><div class="pb"><h3>${esc(x.n)}</h3><p>${esc(x.d)}</p><div class="pr"><b>${inr(x.p)}</b><button class="btn" data-id="${x.id}">Add to cart</button></div></div></div>`).join("");
-$("pgrid").querySelectorAll("[data-id]").forEach(b=>b.onclick=()=>{cart[b.dataset.id]=(cart[b.dataset.id]||0)+1;upd();b.textContent="Added ✓";setTimeout(()=>b.textContent="Add to cart",900)})}
+$("pgrid").innerHTML=P.filter(x=>cat==="All"||x.c===cat).map(x=>`<div class="pc"><div class="pt">${x.img?`<img src="${esc(x.img)}" alt="" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover">`:'<span aria-hidden="true">NV</span>'}</div><div class="pb"><h3>${esc(x.n)}</h3><p>${esc(x.d)}</p><div class="pr"><b>${inr(x.p)}</b><button class="btn" data-id="${x.id}">Add to cart</button></div></div></div>`).join("");
+$("pgrid").querySelectorAll("[data-id]").forEach(b=>b.onclick=()=>{cart[b.dataset.id]=(cart[b.dataset.id]||0)+1;upd();b.textContent="Added";setTimeout(()=>b.textContent="Add to cart",900)})}
 function tot(){const s=sub(),h=ship(s);return`<div class="tr"><span>Subtotal</span><span>${inr(s)}</span></div><div class="tr"><span>Delivery</span><span>${h?inr(h):"Free"}</span></div><div class="tr t"><span>Total</span><span>${inr(s+h)}</span></div>`}
 function drawer(v){view=v;const b=$("db");$("dt").textContent=v==="checkout"?"Checkout":v==="done"?"Order placed":"Your cart";
 if(v==="cart"){if(!sub()){b.innerHTML='<p class="muted">Your cart is empty. Browse the store to add products.</p>';return}
-b.innerHTML=P.filter(x=>cart[x.id]).map(x=>`<div class="ci"><span class="ce">${x.e}</span><div><b>${esc(x.n)}</b><div class="muted">${inr(x.p)}</div></div><div class="qty"><button data-m="${x.id}" aria-label="Remove one">−</button><span>${cart[x.id]}</span><button data-a="${x.id}" aria-label="Add one">+</button></div></div>`).join("")+'<div style="margin:14px 0">'+tot()+'</div><button class="btn" id="go" style="width:100%">Proceed to checkout</button>';
+b.innerHTML=P.filter(x=>cart[x.id]).map(x=>`<div class="ci"><span class="ce" aria-hidden="true">${esc((x.n||"N").charAt(0))}</span><div><b>${esc(x.n)}</b><div class="muted">${inr(x.p)}</div></div><div class="qty"><button data-m="${x.id}" aria-label="Remove one">−</button><span>${cart[x.id]}</span><button data-a="${x.id}" aria-label="Add one">+</button></div></div>`).join("")+'<div style="margin:14px 0">'+tot()+'</div><button class="btn" id="go" style="width:100%">Proceed to checkout</button>';
 b.querySelectorAll("[data-a]").forEach(e=>e.onclick=()=>{cart[e.dataset.a]++;upd()});
 b.querySelectorAll("[data-m]").forEach(e=>e.onclick=()=>{if(--cart[e.dataset.m]<=0)delete cart[e.dataset.m];upd()});
 $("go").onclick=()=>drawer("checkout")}
-else if(v==="checkout"){b.innerHTML=tot()+'<label for="cn">Full name</label><input id="cn" autocomplete="name"><label for="cp">Phone</label><input id="cp" type="tel" autocomplete="tel"><label for="ca">Delivery address</label><textarea id="ca" rows="3" autocomplete="street-address"></textarea><label for="cz">PIN code</label><input id="cz" inputmode="numeric" maxlength="6"><label>Payment</label><p class="muted" style="margin:0">✅ Cash on delivery<br>Online payment (UPI / cards) will be available soon.</p><p class="err" id="coerr" role="alert"></p><button class="btn" id="place" style="width:100%">Place order</button><button class="btn ghost" id="back" style="width:100%;margin-top:10px">Back to cart</button>';
+else if(v==="checkout"){b.innerHTML=tot()+'<label for="cn">Full name</label><input id="cn" autocomplete="name"><label for="cp">Phone</label><input id="cp" type="tel" autocomplete="tel"><label for="ca">Delivery address</label><textarea id="ca" rows="3" autocomplete="street-address"></textarea><label for="cz">PIN code</label><input id="cz" inputmode="numeric" maxlength="6"><label>Payment</label><p class="muted" style="margin:0">Cash on delivery<br>Online payment (UPI / cards) will be available soon.</p><p class="err" id="coerr" role="alert"></p><button class="btn" id="place" style="width:100%">Place order</button><button class="btn ghost" id="back" style="width:100%;margin-top:10px">Back to cart</button>';
 $("cn").value=$("profileName").value||currentUser?.user_metadata?.full_name||"";$("cp").value=$("profilePhone").value||currentUser?.user_metadata?.phone||"";
 $("back").onclick=()=>drawer("cart");$("place").onclick=place}}
 async function place(){const g=i=>$(i).value.trim(),e=$("coerr");
@@ -565,7 +736,7 @@ const {data:placed,error:oe}=await sb.rpc("place_order",{p_name:g("cn"),p_phone:
 if(oe||!placed?.length){e.textContent="Sorry, we could not place your order. Please try again.";return}
 const id=placed[0].order_code,t=Number(placed[0].order_total);
 if(currentUser)loadAccount();cart={};view="done";upd();$("dt").textContent="Order placed";
-$("db").innerHTML='<div class="ok"><div class="ico">🪷</div><h3>Thank you!</h3><div class="ref">'+id+'</div><p class="muted" id="dn"></p><button class="btn" id="dc">Continue shopping</button></div>';
+$("db").innerHTML='<div class="ok"><h3>Thank you!</h3><div class="ref">'+id+'</div><p class="muted" id="dn"></p><button class="btn" id="dc">Continue shopping</button></div>';
 $("dn").textContent="Order total "+inr(t)+" · Cash on delivery. Our team will call "+ph+" to confirm your order.";$("dc").onclick=closeD}
 function openD(v){$("ov").hidden=$("dr").hidden=false;drawer(v)}
 function closeD(){$("ov").hidden=$("dr").hidden=true;view="cart"}
@@ -574,12 +745,23 @@ document.addEventListener("keydown",e=>{if(e.key==="Escape")closeD()});
 shop();$("cartN").textContent=cnt();
 (async()=>{
 const [pr,dr]=await Promise.all([sb.from("products").select("*").eq("active",true).order("created_at"),sb.from("doctors").select("*").order("created_at")]);
-P=(pr.data||[]).map(x=>({id:x.id,n:x.name,d:x.description,p:Number(x.price),c:x.category,e:x.emoji,img:x.image_url}));
+P=(pr.data||[]).map(x=>({id:x.id,n:x.name,d:x.description,p:Number(x.price),c:x.category,img:x.image_url}));
 Object.keys(cart).forEach(k=>{if(!P.some(x=>String(x.id)===k))delete cart[k]});shop();upd();
 if(!P.length)$("pgrid").innerHTML='<p class="muted" style="grid-column:1/-1;text-align:center">Products coming soon.</p>';
-const L=dr.data||[];if(L.length)$("docs").innerHTML=L.map(x=>{const isSheji=x.name==="Dr. Sheji U.K.",isSalim=x.name==="Dr. Salim M. Thamban",isAmeen=x.name==="Dr. Muhammad Ameen",isSripriya=x.name==="Dr. Sripriya R.U.",photo=isSheji?"doctor-sheji.jpg":isSalim?"doctor-salim.jpg":isAmeen?"doctor-ameen.jpg":isSripriya?"doctor-sripriya.jpg":x.photo_url,style=isSalim?'style="object-position:center 25%;background:#101010;transform:scale(1.35) translateY(-25%);transform-origin:center 25%"':isAmeen?'style="object-position:center top"':"";return`<div class="card"><div class="av">${photo?`<img src="${esc(photo)}" alt="Portrait of ${esc(x.name)}" loading="lazy" decoding="async" ${style}>`:"🌿"}</div><h3>${esc(x.name)}</h3><p>${esc(x.qualification)}${x.dept?" · "+esc(x.dept):""}</p>${DOCTOR_HOURS[x.dept]?`<p>${esc(DOCTOR_HOURS[x.dept])}</p>`:""}${x.experience?`<p>${esc(x.experience)} experience</p>`:""}</div>`}).join("")})();
+const L=(dr.data||[]).map(x=>x.name==="Dr. Muhammad Ameen"?{...x,name:"Dr. Mohammed Ameen"}:x);if(L.length)$("docs").innerHTML=L.map(x=>{const isSheji=x.name==="Dr. Sheji U.K.",isSalim=x.name==="Dr. Salim M. Thamban",isAmeen=x.name==="Dr. Mohammed Ameen",isSripriya=x.name==="Dr. Sripriya R.U.",photo=isSheji?"doctor-sheji.jpg":isSalim?"doctor-salim.jpg":isAmeen?"doctor-ameen.jpg":isSripriya?"doctor-sripriya.jpg":x.photo_url,style=isSalim?'style="object-position:center 25%;background:#101010;transform:scale(1.35) translateY(-25%);transform-origin:center 25%"':isAmeen?'style="object-position:center top"':isSripriya?'style="object-position:center 62%"':"";return`<div class="card"><div class="av">${photo?`<img src="${esc(photo)}" alt="Portrait of ${esc(x.name)}" loading="lazy" decoding="async" ${style}>`:""}</div><h3>${esc(x.name)}</h3><p>${esc(x.qualification)}${x.dept?" · "+esc(x.dept):""}</p>${DOCTOR_HOURS[x.dept]?`<p>${esc(DOCTOR_HOURS[x.dept])}</p>`:""}${x.experience?`<p>${esc(x.experience)} experience</p>`:""}</div>`}).join("")})();
 if(new URLSearchParams(location.search).get("cart")==="1")openD("cart");
 renderDepts();
+</script>
+<script>
+(()=>{
+  const carousel=document.getElementById("top"),slides=[...carousel.querySelectorAll(".promo-slide")],dots=[...carousel.querySelectorAll("[data-promo]")],count=document.getElementById("promoCount");
+  let active=0;
+  function show(index){active=(index+slides.length)%slides.length;slides.forEach((slide,i)=>{const selected=i===active;slide.classList.toggle("is-active",selected);slide.setAttribute("aria-hidden",String(!selected))});dots.forEach((dot,i)=>dot.setAttribute("aria-pressed",String(i===active)));carousel.classList.toggle("has-gold-slide",active===1);count.textContent=`${String(active+1).padStart(2,"0")} / ${String(slides.length).padStart(2,"0")}`}
+  document.getElementById("promoPrev").addEventListener("click",()=>show(active-1));
+  document.getElementById("promoNext").addEventListener("click",()=>show(active+1));
+  dots.forEach(dot=>dot.addEventListener("click",()=>show(Number(dot.dataset.promo))));
+  carousel.addEventListener("keydown",event=>{if(event.key==="ArrowLeft")show(active-1);if(event.key==="ArrowRight")show(active+1)});
+})();
 </script>
 </body>
 </html>

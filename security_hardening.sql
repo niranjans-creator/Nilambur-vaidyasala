@@ -8,10 +8,10 @@ begin
   if new.dept not in ('General Physician','Orthopaedics & Sports Injury','Spine & Back Care','Skin & Beauty Care') then raise exception 'Invalid department'; end if;
   dow := extract(dow from new.appt_date);
   slot_minutes := split_part(new.appt_time, ':', 1)::int * 60 + split_part(new.appt_time, ':', 2)::int;
-  if new.appt_time !~ '^(09|10|11|12|14|15|16):(00|30)$' then raise exception 'Invalid appointment time'; end if;
+  if new.appt_time !~ '^(09|10|11|12|13|14|15|16):(00|30)$' then raise exception 'Invalid appointment time'; end if;
   if new.dept = 'Orthopaedics & Sports Injury' and (dow not in (1,4) or slot_minutes < 600 or slot_minutes >= 720) then raise exception 'Outside consultation schedule'; end if;
   if new.dept = 'Spine & Back Care' and (dow <> 0 or slot_minutes < 900 or slot_minutes >= 1020) then raise exception 'Outside consultation schedule'; end if;
-  if new.dept in ('General Physician','Skin & Beauty Care') and (dow not in (1,2,3,4,5,6) or slot_minutes not in (540,570,600,630,660,690,720,750,840,870,900,930,960,990)) then raise exception 'Outside consultation schedule'; end if;
+  if new.dept in ('General Physician','Skin & Beauty Care') and (dow not in (1,2,3,4,5,6) or slot_minutes < 540 or slot_minutes >= 1020) then raise exception 'Outside consultation schedule'; end if;
   return new;
 end $$;
 drop trigger if exists bookings_validate_schedule on public.bookings;
